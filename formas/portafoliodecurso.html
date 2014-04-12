@@ -1,0 +1,148 @@
+<ul class="nav nav-tabs">
+  <li><a href="#Agregar" data-toggle="tab">Agregar Curso</a></li>
+  <li><a href="#Inscritos" data-toggle="tab">Inscritos</a></li> 
+  <li><a href="#Ver" data-toggle="tab" id="ver">Ver/administrar Cursos</a></li> 
+   
+</ul>
+
+<div class="tab-content">
+
+  <div class="tab-pane active" id="Agregar">
+		<h1>Agregar Curso </h1>
+		<div id="alertas">
+			<div class="alert alert-info">Llene todos los campos</div>
+		</div>
+	  	<form role="form" onsubmit="return false;">
+			  <div class="form-group">
+			     <label>Seleccione un Area </label>
+			          <input list="Areas" id="tareas" name="tareas" class="form-control">
+			          <datalist id="Areas">
+			            <option value="Perforacion">
+			            <option value="Yacimiento">
+			            <option value="Administracion">
+			            <option value="Finanzas">
+			          </datalist>
+			  </div>
+			  <div class="form-group">
+			    <label >Escriba un Curso asociado al area</label>
+			    <input type="text" class="form-control" id="curso" >
+			  </div>
+			  <div class="form-group">
+			    <label >Fecha desde </label>
+			    <input type="date" class="form-control" id="tdesde" >
+			  </div>
+			  <div class="form-group">
+			    <label >Fecha Hasta</label>
+			    <input type="date" class="form-control" id="thasta" >
+			  </div>
+			    <div class="form-group">
+			    <label >Duracion</label>
+			    <input type="text" class="form-control" id="tduracion" >
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputFile">Subir Pdf</label>
+			    <input type="file" id="subir">
+			    <p class="help-block">Contenido Programable del Curso</p>
+			  </div>
+
+			  <button type="submit" class="btn btn-default" id="agregarPortafolio">Agregar al Portafolio</button>
+			  
+		</form>
+  </div>
+  <div class="tab-pane" id="Ver">
+  	<ul class="nav nav-tabs" id="myTab">
+	  <li><a href="#Perforacion" data-toggle="tab" id="perforacion">Perforacion</a></li>
+	  <li><a href="#Yacimiento" data-toggle="tab" id="yacimiento">Yacimiento</a></li>
+	  <li><a href="#Administracion" data-toggle="tab" id="administracion" >Administracion</a></li>
+	  <li><a href="#Finanzas" data-toggle="tab" id="finanzas"> Finanzas</a></li>
+	</ul>
+
+	<div class="tab-content">	  
+	  <div class="tab-pane" id="Perforacion">
+	  </div>
+	  <div class="tab-pane" id="Yacimiento">
+	  </div>
+	  <div class="tab-pane" id="Administracion">
+	  </div>
+	  <div class="tab-pane" id="Finanzas">
+	  </div>
+	</div>
+
+	<script>
+	  $(function () {
+	    $('#myTab a:last').tab('show')
+	  })
+	</script>
+	</div>
+
+	<div class="tab-pane" id="Inscritos">
+	   	<table class="table table-hover">
+	  		<thead>
+	  			<tr>
+	  				<th>Nombre </th>
+	  				<th>Apellido</th>
+	  				<th>Telefono</th>
+	  				<th>Correo</th>
+	  				<th>
+	  				   <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="Ver detalles"> 
+  							<span class="glyphicon glyphicon-eye-open"></span>
+					   </button>
+	  				   <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar">
+	  				    	<span class="glyphicon glyphicon-remove"></span>
+	  				   </button>
+	  				</th>
+	  			</tr>
+	  		</thead>
+	  		<tbody>
+	  			
+	  		</tbody>
+	  	</table>
+	</div>
+</div>
+
+	<div class="modal fade " id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Modificar Curso</h4>
+	      </div>
+	      <div class="modal-body">
+	  		<form role="form" onsubmit="return false;">
+			  <div class="form-group">
+			     <label>Seleccione un Area </label>
+			          <input list="Areas" id="tareas2" name="tareas2" class="form-control">
+			          <datalist id="Areas">
+			            <option value="Perforacion">
+			            <option value="Yacimiento">
+			            <option value="Administracion">
+			            <option value="Finanzas">
+			          </datalist>
+			  </div>
+			  <div class="form-group">
+			    <label >Escriba un Curso asociado al area</label>
+			    <input type="text" class="form-control" id="curso2" >
+			  </div>
+			  <div class="form-group">
+			    <label >Fecha desde </label>
+			    <input type="date" class="form-control" id="tdesde2"  >
+			  </div>
+			  <div class="form-group">
+			    <label >Fecha Hasta</label>
+			    <input type="date" class="form-control" id="thasta2" >
+			  </div>
+			    <div class="form-group">
+			    <label >Duracion</label>
+			    <input type="text" class="form-control" id="tduracion2" >
+			  </div>
+			</form>    
+	      </div>
+	      <div id="alertas2"></div>
+	      <div class="modal-footer" id="footermodificar">
+	        
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
