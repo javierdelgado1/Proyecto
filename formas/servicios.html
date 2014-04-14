@@ -1,33 +1,50 @@
 <H1>SERVICIOS</H1>
-<form>
+<form onsubmit="return false;">
 	<fieldset> 
  		<legend>Datos Personales</legend>
 		<label>Nombre	</label>
-		<input 	type="text" name="tnombre" id="tnombre">
+		<input 	type="text" name="tnombre" id="tnombre" class="text2">
 		<br>
 		<label>Apellido	</label>
-		<input 	type="text" name="tapellido" id="tapellido">
+		<input 	type="text" name="tapellido" id="tapellido" class="text2">
 		<br>
 		<label>Telefono	</label>
-		<input 	type="text" name="tTelefono" id="tTelefono">
+		<input 	type="text" name="tTelefono" id="tTelefono" class="text2">
 		<br>
 		<label>Correo Electrónico	</label>
-		<input 	type="text" name="tcorreo" id="tcorreo">	
+		<input 	type="text" name="tcorreo" id="tcorreo" class="text2">	
 	</fieldset>
 
 	<fieldset> 
  		<legend>Datos de programa que desea cursar</legend>
-		<label>Diplomado/curso/taller	</label>
-		<input 	type="text" name="tnombre" id="tnombre">
+ 		<label>Area	</label>
+ 		<input list="Areas" id="tareas" name="tareas"  >
+          <datalist id="Areas" >
+			<option value="Perforacion">
+			<option value="Yacimiento">
+			<option value="Administracion">
+			<option value="Finanzas">            
+          </datalist>
+		<br>	          
+		<label>Curso	</label>
+		<input  list="cursos" name="tnombre" id="tcurso">
+		<datalist id="cursos">            
+        </datalist>
 		<br>
 		<label>Fecha de inicio	</label>
-		<input 	type="datetime" name="tapellido" id="tapellido">
+		<input 	type="datetime" name="tapellido" id="tFecha" class="text2">
 		<br>
 		<label>Indique otros temas de su interes	</label>
-		<input 	type="text" name="tTelefono" id="tTelefono">
+		<input 	type="text" name="tTemas" id="tTemas" class="text2">
 		<br>
-		<label>Correo Electrónico	</label>
-		<input 	type="text" name="tcorreo" id="tcorreo">	
+		<label>Modalidad	</label>
+		<input 	type="text" list="modalidadlist"name="tmodalidad" id="tmodalidad" >
+		<br>		
+		<datalist id="modalidadlist" >
+			<option value="In Company">
+			<option value="Cursos Abiertos">
+			<option value="Solicitud">			           
+        </datalist>
 	</fieldset>
 
 	<button class="enviar">Registrar</button>

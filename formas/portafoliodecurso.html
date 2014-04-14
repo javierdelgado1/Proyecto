@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs">
   <li><a href="#Agregar" data-toggle="tab">Agregar Curso</a></li>
-  <li><a href="#Inscritos" data-toggle="tab">Inscritos</a></li> 
+  <li><a href="#Inscritos" data-toggle="tab" id="inscritos">Inscritos</a></li> 
   <li><a href="#Ver" data-toggle="tab" id="ver">Ver/administrar Cursos</a></li> 
    
 </ul>
@@ -39,6 +39,10 @@
 			    <label >Duracion</label>
 			    <input type="text" class="form-control" id="tduracion" >
 			  </div>
+			   <div class="form-group">
+			    <label >Cupos</label>
+			    <input type="number" class="form-control" id="tcupos" >
+			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputFile">Subir Pdf</label>
 			    <input type="file" id="subir">
@@ -76,31 +80,10 @@
 	</div>
 
 	<div class="tab-pane" id="Inscritos">
-	   	<table class="table table-hover">
-	  		<thead>
-	  			<tr>
-	  				<th>Nombre </th>
-	  				<th>Apellido</th>
-	  				<th>Telefono</th>
-	  				<th>Correo</th>
-	  				<th>
-	  				   <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="Ver detalles"> 
-  							<span class="glyphicon glyphicon-eye-open"></span>
-					   </button>
-	  				   <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar">
-	  				    	<span class="glyphicon glyphicon-remove"></span>
-	  				   </button>
-	  				</th>
-	  			</tr>
-	  		</thead>
-	  		<tbody>
-	  			
-	  		</tbody>
-	  	</table>
 	</div>
 </div>
 
-	<div class="modal fade " id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade " id="Modificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -135,10 +118,105 @@
 			    <label >Duracion</label>
 			    <input type="text" class="form-control" id="tduracion2" >
 			  </div>
+  			    <div class="form-group">
+			    <label >Cupos</label>
+			    <input type="number" class="form-control" id="tcupos2" disabled="disabled">
+			  </div>
 			</form>    
 	      </div>
 	      <div id="alertas2"></div>
 	      <div class="modal-footer" id="footermodificar">
+	        
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade " id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Eliminar Curso</h4>
+	      </div>
+	      <div class="modal-body">
+			   <div id="alertas3"><div class="alert alert-warning">¿Esta seguro que desea eliminar ?</div></div> 
+	      </div>
+	      
+	      <div class="modal-footer" id="footereliminar">
+	        
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade " id="EliminarInscrito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Eliminar Curso</h4>
+	      </div>
+	      <div class="modal-body">
+			   <div id="alertaseliminarinscrito"><div class="alert alert-warning">¿Esta seguro que desea eliminar ?</div></div> 
+	      </div>
+	      
+	      <div class="modal-footer" id="footereliminarinscrito">
+	        
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<div class="modal fade " id="ModalInscritos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Modificar Inscrito</h4>
+	      </div>
+	      <div class="modal-body">
+   	  		<form role="form" onsubmit="return false;">
+			  <div class="form-group">
+			     <label>Nombre</label>
+		          <input   type="text" id="tnombre"  name="tnombre" class="form-control">		
+			  </div>
+			  <div class="form-group">
+			    <label >Apellido</label>
+			    <input type="text" class="form-control" id="tapellido" >
+			  </div>
+			  <div class="form-group">
+			    <label >Telefono</label>
+			    <input type="text" class="form-control" id="tTelefono"  >
+			  </div>
+			  <div class="form-group">
+			    <label >Correo</label>
+			    <input type="text" class="form-control" id="tcorreo" >
+			  </div>
+			    <div class="form-group">
+			    <label >Diplomado/curso/taller</label>
+			    <input type="text" class="form-control" id="diplomadocursotaller" >
+			  </div>
+			  <div class="form-group">
+			    <label >Fecha de inicio</label>
+			    <input type="date" class="form-control" id="tFecha" >
+			  </div>
+			  <div class="form-group">
+			    <label >Temas de Interes</label>
+			    <input type="text" class="form-control" id="tTemas" >
+			  </div>
+			   <div class="form-group">
+			    <label >Modalidad</label>
+			    <input type="text" class="form-control" id="tModalidad" >
+			  </div>
+			</form>  
+	      </div>
+	      <div id="alertasactualizado"></div>
+	      <div class="modal-footer" id="footerModificarInscrito">
 	        
 	       
 	      </div>

@@ -17,8 +17,126 @@
 		case 4:
 			actualizarCurso();
 			break;
-	
+		case 5:
+			EliminarCurso();
+			break;
+		case 6:
+			inscritos();
+			break;
+		case 7:
+			MostrarInscrito();
+			break;
+		case 8:
+			Actualizarinscrito();
+			break;
+		case 9:
+			EliminarInscrito();
+			break;
+		case 10:
+			BuscarCursosDeArea();
+			break;
+
 		default;
+	}
+	function BuscarCursosDeArea(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$Area=$_REQUEST['Areas'];
+		$tupla="SELECT Curso FROM portafolio WHERE Area='$Area'";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['mensaje']=false;
+		$i=0;
+		$objeto[0]['m']=$resultado->num_rows;
+
+		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['Curso']=$db_resultado['Curso'];
+			$i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
+	}
+	function EliminarInscrito(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$ID=$_REQUEST['ID'];		
+		$tupla="DELETE FROM inscritos  WHERE id='$ID'";
+		$resultado = $mysqli->query($tupla);
+		$mysqli->close();
+		echo json_encode("true");
+	}
+	function Actualizarinscrito(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$ID=$_REQUEST['ID'];
+		$Nombre=$_REQUEST['Nombre'];
+		$Apellido=$_REQUEST['Apellido'];
+		$Telefono=$_REQUEST['Telefono'];
+		$Correo=$_REQUEST['Correo'];
+		$diplomadocursotaller=$_REQUEST['diplomadocursotaller'];
+		$fecha=$_REQUEST['Fecha'];
+		$Tema=$_REQUEST['Tema'];
+		$Modalidad=$_REQUEST['Modalidad'];
+		$tupla="UPDATE inscritos SET Nombre='$Nombre', Apellido='$Apellido', Telefono='$Telefono', Correo='$Correo', DiplomadoCursoTaller='$diplomadocursotaller',  Fechadeinicio='$fecha', Temasdeinteres='$Tema', Modalidad='$Modalidad' WHERE id='$ID'";
+		$resultado = $mysqli->query($tupla);
+		$mysqli->close();
+		echo json_encode("true");
+	}
+	function MostrarInscrito(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$ID=$_REQUEST['ID'];
+		$tupla="SELECT *  FROM inscritos WHERE id='$ID'";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['mensaje']=false;
+		$i=0;
+		$objeto[0]['m']=$resultado->num_rows;
+
+		if($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['id']=$db_resultado['id'];
+			$objeto[$i]['Nombre']=$db_resultado['Nombre'];
+			$objeto[$i]['Apellido']=$db_resultado['Apellido'];
+			$objeto[$i]['Telefono']=$db_resultado['Telefono'];			
+			$objeto[$i]['Correo']=$db_resultado['Correo'];
+			$objeto[$i]['DiplomadoCursoTaller']=$db_resultado['DiplomadoCursoTaller'];
+			$objeto[$i]['Fechadeinicio']=$db_resultado['Fechadeinicio'];
+			/*$date = new DateTime($objeto[$i]['Fechadeinicio']);
+			$objeto[$i]['Fechadeinicio']=$date->format('d-m-Y');*/
+			$objeto[$i]['Temasdeinteres']=$db_resultado['Temasdeinteres'];
+			$objeto[$i]['Modalidad']=$db_resultado['Modalidad'];
+			$i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
+	}
+	function inscritos(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$tupla="SELECT id, Nombre, Apellido, Telefono, Correo  FROM inscritos";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['mensaje']=false;
+		$i=0;
+		$objeto[0]['m']=$resultado->num_rows;
+
+		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['id']=$db_resultado['id'];
+			$objeto[$i]['Nombre']=$db_resultado['Nombre'];
+			$objeto[$i]['Apellido']=$db_resultado['Apellido'];
+			$objeto[$i]['Telefono']=$db_resultado['Telefono'];			
+			$objeto[$i]['Correo']=$db_resultado['Correo'];
+			/*$objeto[$i]['DiplomadoCursoTaller']=$db_resultado['DiplomadoCursoTaller'];
+			$objeto[$i]['Fechadeinicio']=$db_resultado['Fechadeinicio'];
+			$date = new DateTime($objeto[$i]['Fechadeinicio']);
+			$objeto[$i]['Fechadeinicio']=$date->format('d-m-Y');
+			$objeto[$i]['Temasdeinteres']=$db_resultado['Temasdeinteres'];*/
+			$i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
+	}
+	function EliminarCurso(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$ID=$_REQUEST['ID'];		
+		$tupla="DELETE FROM portafolio  WHERE id='$ID'";
+		$resultado = $mysqli->query($tupla);
+		echo json_encode("true");
 	}
 	function actualizarCurso(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
@@ -48,7 +166,7 @@
 			$objeto[0]['Curso']=$db_resultado['Curso'];
 			$objeto[0]['Desde']=$db_resultado['Desde'];
 			$objeto[0]['Hasta']=$db_resultado['Hasta'];
-			
+			$objeto[0]['Cupos']=$db_resultado['Cupos'];
 			$objeto[0]['Duracion']=$db_resultado['Duracion'];
 			$objeto[0]['Archivo']=$db_resultado['Archivo'];
 			 
@@ -101,7 +219,8 @@
 		$desde=$_REQUEST['desde'];;
 		$hasta=$_REQUEST['hasta'];;
 		$duracion=$_REQUEST['duracion'];
-		$tupla = "INSERT INTO portafolio (`Area`, `Curso`, `Desde`, `Hasta`, `Duracion`) VALUES ('$area','$curso','$desde','$hasta','$duracion')";
+		$cupos=$_REQUEST['cupos'];
+		$tupla = "INSERT INTO portafolio (`Area`, `Curso`, `Desde`, `Hasta`, `Duracion`, `Cupos`) VALUES ('$area','$curso','$desde','$hasta','$duracion','$cupos')";
 		$resultado = $mysqli->query($tupla);
 
 		echo json_encode("true");
