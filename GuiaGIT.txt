@@ -1,5 +1,5 @@
 REGLA 1: Se tiene que usar la consola para casi todo.
-
+Conflicto
 
 ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
 
