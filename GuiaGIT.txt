@@ -8,9 +8,8 @@ ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
 2- Seleccionar todos los archivos, y hacer: Commit > Stage to commit  ó "Ctrl + T" 
 (Todos los cambios ahora salen en Stage Changes)
 3- Rellenar "Commit Message" y pulsar "Commit"
-4- Seleccionar "Push" para actualizar el servidor (Si da error, hacerlo en la consola: git push)
-(Recomendación y casi obligación: Justo antes de actualizar tús cambios en el servidor, Ejecuta un git pull,
-resuelve los conflictos y ahora si ejecuta el push)
+4- IMPORTANTE: Abrir consola y ejecutar "git pull" (Resolver conflictos si ocurren. Nota A)
+5- Seleccionar "Push" para actualizar el servidor (Si da error, hacerlo en la consola: git push)
 
 ACTUALIZAR LOCAL: (Se descargan los cambios del servidor)
 1- Abrir git bash (Consola)
@@ -32,8 +31,9 @@ DESHACER TODOS LOS CAMBIOS LOCALES Y ACTUALIZAR LOCAL:
 (Si no pones "origin" en cada comando, deshace solo los cambios locales hechos despues del último commit local)
 
 NOTAS:
-
-A) Conflicto al hacer git pull:
+A) Recomendación y casi obligación: Justo despues del commit local y antes de push (actualizar tús cambios en el servidor),
+	ejecuta un git pull, resuelve los conflictos y ahora si ejecuta el push) Sino...
+B) Conflicto al hacer git pull:
 	Rara vez hay un conflicto pero estos ocurren si trabajamos paralelamente en un archivo en el mismo 
 	código:
 		- Git resuelve el conflicto cuando corresponde a partes de códigos distintas.
