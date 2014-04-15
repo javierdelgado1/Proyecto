@@ -60,4 +60,4 @@ A) Conflicto al hacer git pull:
 		-----------------------------------------------------------------------
 		Solo realizas la unión o sustitución y actualizas ese archivo únicamente en el servidor con el conflicto solucionado
 		y ya puedes hacer git pull.
-B) Siéntete libre de agregar más utilidades a la guia o notas.
+B) Siéntete libre de agregar más utilidades a la guia o notas...
