@@ -9,7 +9,7 @@ resuelve los conflictos y ahora si ejecuta el push)
 2- Seleccionar todos los archivos, y hacer: Commit > Stage to commit  ó "Ctrl + T"  (Todos los cambios ahora salen en Stage Changes)
 3- Rellenar "Commit Message" y pulsar "Commit"
 4- Seleccionar "Push" para actualizar el servidor (Si da error, hacerlo en la consola: git push)
-
+Recomendación:
 
 ACTUALIZAR LOCAL: (Se descargan los cambios del servidor)
 1- Abrir git bash (Consola)
