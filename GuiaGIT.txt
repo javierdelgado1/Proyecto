@@ -13,6 +13,7 @@ ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
 ACTUALIZAR LOCAL: (Se descargan los cambios del servidor)
 1- Abrir git bash (Consola)
 2- git pull
+Nota: Soy más actual.
 
 Al inicio cuando no tienes nada:
 
