@@ -1,0 +1,127 @@
+<div style="position:absolute; left:10px; ">
+	<h2>Formas de pago - <small>Cuentas Bancarias</small></h2>
+	<div style="color: #ECF0FF;" id="cuentas">
+		<h4>
+			<i>Av. Fuerzas Armadas, Villa Terracota II Casa 3-C, Barcelona Edo. Anzoátegui, 
+			Teléfonos 0416-6813944/0416-6816433</i> 
+		</h4>
+	</div>
+	<h3><small>Comprobar Pago</small></h3>
+	
+	<div class="alert alert-info" id="alertas">
+		<b>Todos los campos con (*) son requeridos.</b>	
+	</div>
+	<table>
+		<tr>
+			<td>
+				<b> Nombre</b> 
+			</td>
+			<td>
+				*
+			</td>
+			<td>
+				<input type="text" id="tnombre" class="CajaTexto" />
+			</td>
+			<td>
+				<b>Nro. de Cuenta</b>
+			</td>
+			<td>*</td>
+			<td>
+				<input 	list="numeros" name="tnumerodecuenta" id="tnumerodecuenta" class="CajaTexto">	
+				<datalist id="numeros" >								          
+				</datalist>				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 <b>Apellido</b>  
+			</td>
+			<td>
+				*
+			</td>
+			<td>
+				<input 	type="text" name="tapellido" id="tapellido"  class="CajaTexto" />
+			</td>
+			<td>
+				<b>Tipo de Pago</b>
+			</td>
+			<td>*</td>
+			<td>
+				<input 	 name="tTipo" id="tTipo" class="CajaTexto" list="Tipo">
+				<datalist id="Tipo" >
+					<option value="Transferencia">
+					<option value="Deposito">				          
+				</datalist>					
+			</td>
+		</tr>
+			<tr>
+			<td>
+				<b>Telefono</b>
+			</td>
+			<td>
+				*
+			</td>
+			<td>
+				<input type="text" id="tTelefono" class="CajaTexto" />
+			</td>
+			<td>
+				<b>Nro. de Comprobante</b>
+			</td>
+			<td>*</td>
+			<td>
+				<input  type="texto" 	 name="tComprobante" id="tComprobante" class="CajaTexto">								
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<b>Correo Electrónico</b>
+			</td>
+			<td>*</td>
+			<td>
+				<input 	type="email" name="tcorreo" id="tcorreo" class="CajaTexto">
+			</td>
+			<td>
+				<b>Fecha del Pago</b>
+			</td>
+			<td>*</td>
+			<td>
+				<input 	type="date" name="tfechadepago" id="tfechadepago" class="CajaTexto">								
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<b>Banco</b>
+			</td>
+			<td>*</td>
+			<td>
+				<input 	 name="tbanco" id="tbanco" class="CajaTexto" list="bancos">
+				<datalist id="bancos" >				          
+				</datalist>	
+			</td>
+			<td>
+				<b>Monto del Pago</b>
+			</td>
+			<td>*</td>
+			<td>
+				<input type="text" name="tmonto" id="tmonto" class="CajaTexto">								
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<b>Concepto del Pago</b>
+			</td>
+			<td>*</td>
+			<td>
+				<input type="text" name="tconcepto" id="tconcepto" class="CajaTexto">								
+			</td>
+
+		</tr>
+
+	</table>
+	<table>
+		<tr>
+			<td><b>Escaneo del Recibo</b><input type="file" name="trecibo" id="trecibo" class="CajaTexto"></td>
+			<td><input type="submit" value="Enviar Datos de Confirmacion" class="boton" id="enviarformadepago" /></td>
+		</tr>
+	</table>
+</div>

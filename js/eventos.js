@@ -1,4 +1,8 @@
 function eventos() {
+	$("#INICIO2").click(function(){
+		$("#contenedor").load('formas/inicio.html');	
+		$('#girar').fadeIn();
+	});
 	INICIO.onclick=function(){		
 		$("#contenedor").load('formas/inicio.html');	
 		$('#girar').fadeIn();		
@@ -59,7 +63,10 @@ function eventos() {
 						success:
 						function (msg) 
 						{	
-							console.log(msg);			
+							tnombre2.value="";
+							temail2.value="";
+							tTelefono2.value="";
+							tmensajec.value="";
 						},
 						error:
 						function (msg) {console.log(msg +"No se pudo realizar la conexion");}
@@ -69,6 +76,92 @@ function eventos() {
 		});	
 		$('#girar').fadeOut();
 	}
+
+	$("#formasdepago").click(function(){		
+		$("#contenedor").load('formas/formasdepago.html', function(){
+					$.ajax
+						({
+						type: "POST",
+						url: "Modelo/consultasFormasdePago.php",
+						data: {id:6},
+						async: false,
+						dataType: "json",									
+						success:
+						function (msg) 
+						{	
+							var salida="<h4><i>";
+							for(var i=0; i<msg[0].m; i++){
+								salida+=msg[i].Banco+ ", " + msg[i].Titular + "," + msg[i].Numero + ", " + msg[i].Tipo + ", " + msg[i].CIRIF+"<br>";	
+							}
+							salida+="</i></h4>"
+							$("#cuentas").html(salida);
+
+							for(var i=0; i<msg[0].m; i++){								
+								$("#bancos").append("<option value='"+msg[i].Banco+"'>");
+							}
+						},
+						error:
+						function (msg) {console.log(msg +"No se pudo realizar la conexion");}
+						});	
+			$("input[name=tbanco]").change(function(){
+				
+				tnumerodecuenta.value="";
+				$("#numeros").empty();
+				$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasFormasdePago.php",
+						data: {id:7, Banco:$(this).val()},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{				
+							for(var i=0; i<msg[0].m; i++){								
+								$("#numeros").append("<option value='"+msg[i].Numero+"'>");
+							}
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});
+			});
+
+			$("#enviarformadepago").click(function(){
+				if(validarFormularioFormasdepago()){
+					$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasFormasdePago.php",
+						data: {id:8, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Correo:tcorreo.value,  Banco:tbanco.value, Numero:tnumerodecuenta.value, Tipo:tTipo.value, Comprobante:tComprobante.value, Fecha:tfechadepago.value, Monto:tmonto.value, Concepto:tconcepto.value},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{				
+							if(msg=="true"){
+								tnombre.value="";
+								tapellido.value="";
+								tTelefono.value="";
+								tcorreo.value=""; 
+								tbanco.value=""; 
+								tnumerodecuenta.value="";
+								tTipo.value="";
+								tComprobante.value="";
+								tfechadepago.value="";
+								tmonto.value="";
+								tconcepto.value="";
+							}
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});
+				}
+			});
+		});	
+		$('#girar').fadeOut();
+	});
 
 	minicio.onclick=function(){		
 		$("#contenedor").load('formas/inicio.html');	
@@ -110,9 +203,9 @@ function validarFormularioContacto(){
         alertas.innerHTML="<center><b>Escriba un correo valido</b></center>";
 		return false;
 	}
-	else if(tTelefono2.value=="")
+	else if(!tTelefono2.value.match(/^[0-9-]+$/))
 	{  
-        alertas.innerHTML="<center><b>Escriba un telefono</b></center>";
+        alertas.innerHTML="<center><b>Escriba un telefono valida</b></center>";
 		return false;
 	}		
 	else if(tmensajec.value=="")
@@ -122,3 +215,68 @@ function validarFormularioContacto(){
 	}	
 	else {return true;}	
 }
+
+function validarFormularioFormasdepago(){
+	if(tnombre.value==""){
+		alertas.innerHTML="<center><b>Escriba un nombre</b></center>";
+		return false;
+	}	
+	else if(tapellido.value=="")
+	{  
+        alertas.innerHTML="<center><b>Escriba un Apellido</b></center>";
+		return false;
+	}
+	else if(!tTelefono.value.match(/^[0-9-]+$/))
+	{  
+        alertas.innerHTML="<center><b>Escriba un telefono valido</b></center>";
+		return false;
+	}		
+	else if(tcorreo.value==""||!validar_email(tcorreo.value))
+	{  
+        alertas.innerHTML="<center><b>Escriba un correo valido</b></center>";
+		return false;
+	}	
+	else if(!tnumerodecuenta.value.match(/^[0-9-]+$/)){
+		alertas.innerHTML="<center><b>Escriba un numero de cuenta valido</b></center>";
+		return false;
+	}	
+	else if(tComprobante.value=="")
+	{  
+        alertas.innerHTML="<center><b>Escriba en numero de comprobante</b></center>";
+		return false;
+	}
+	else if(tfechadepago.value=="")
+	{  
+        alertas.innerHTML="<center><b>Escriba la fecha de pago</b></center>";
+		return false;
+	}		
+	else if(tbanco.value=="")
+	{  
+        alertas.innerHTML="<center><b>Escriba el banco donde hizo el pago</b></center>";
+		return false;
+	}	
+	else if(tmonto.value=="")
+	{  
+        alertas.innerHTML="<center><b>Escriba el monto del pago</b></center>";
+		return false;
+	}
+
+	else if(tconcepto.value=="")
+	{  
+        alertas.innerHTML="<center><b>Escriba el concepto de pago</b></center>";
+		return false;
+	}
+
+	else {return true;}	
+}
+
+	function validar_email(valor)
+	{
+		// creamos nuestra regla con expresiones regulares.
+		var filter = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+		// utilizamos test para comprobar si el parametro valor cumple la regla
+		if(filter.test(valor))
+			return true;
+		else
+			return false;
+	}
