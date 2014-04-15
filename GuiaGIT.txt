@@ -14,8 +14,7 @@ resuelve los conflictos y ahora si ejecuta el push)
 ACTUALIZAR LOCAL: (Se descargan los cambios del servidor)
 1- Abrir git bash (Consola)
 2- git pull
-(No borra modificaciones en lo local nunca, se actualiza a la versión más nueva,
-es decir no deshace cambios locales recientes. Ver notas si ocurre un conflicto)
+(No borra modificaciones en lo local nunca, se actualiza a la versión más nueva. Ver notas si ocurre un conflicto)
 
 EMPEZAR DE CERO:
 
