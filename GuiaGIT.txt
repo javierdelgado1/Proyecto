@@ -13,13 +13,37 @@ ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
 ACTUALIZAR LOCAL: (Se descargan los cambios del servidor)
 1- Abrir git bash (Consola)
 2- git pull
-Nota: Soy más actual.
+(Se actualiza a la versión más nueva, es decir no deshace cambios locales recientes. Ver notas si ocurre un conflicto)
 
 Al inicio cuando no tienes nada:
 
 1- Abrir git bash (Consola) en la carpeta donde se va a descargar el proyecto.
-2- Comando: git clone https://github.com/cheche338/Proyecto/
+2- Escribir Comando: "git clone https://github.com/cheche338/Proyecto/"
 
+ACTUALIZAR UN ÚNICO ARCHIVO (Se descarga el archivo original del servidor y se sustituye en el local)
+1- Abrir git bash (Consola)
+2- git checkout -- <filename>
 
+DESHACER TODOS LOS CAMBIOS LOCALES Y ACTUALIZAR LOCAL:
+1- git fetch
+2- git reset --hard
 
+NOTAS:
 
+A) Conflicto al hacer git pull:
+	Rara vez hay un conflicto pero estos ocurren si trabajamos paralelamente en un archivo en el mismo 
+	código:
+		- Git resuelve el conflicto cuando corresponde a partes de códigos distintas.
+		- Si no lo logra resolver al hacer pull mostrará el mensaje de conflicto y
+		el archivo de conflicto se va a actualizar como el siguiente ejemplo:
+	----------------------------------------------------------------------
+	<<<<<<< HEAD
+	...........Modificaciones paralelas en local......
+	.......etc.........etc......etc
+	=======
+	.....Modificaciones paralelas en servidor.......
+	...................etc.......etc......
+	>>>>>>> 24e222cf47f29de6e6b2f43caad4e6373220e704
+	-----------------------------------------------------------------------
+	Solo realizas la unión o sustitución y actualizas ese archivo únicamente en el servidor con el conflicto solucionado
+	y ya puedes hacer git pull.
