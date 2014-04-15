@@ -1,0 +1,24 @@
+REGLA 1: Se tiene que usar la consola para casi todo.
+Algunos comandos como el push que da error en el GUI, lo usas en la consola (con todo igual) y funciona
+Además los comandos son cortos.
+
+ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
+
+1- Abrir GUI  (Todos los cambios salen en "Unstaged Changes")
+2- Seleccionar todos los archivos, y hacer: Commit > Stage to commit  ó "Ctrl + T"  (Todos los cambios ahora salen en Stage Changes)
+3- Rellenar "Commit Message" y pulsar "Commit"
+4- Seleccionar "Push" para actualizar el servidor (Si da error, hacerlo en la consola: git push)
+
+
+ACTUALIZAR LOCAL: (Se descargan los cambios del servidor)
+1- Abrir git bash (Consola)
+2- git pull
+
+Al inicio cuando no tienes nada:
+
+1- Abrir git bash (Consola) en la carpeta donde se va a descargar el proyecto.
+2- Comando: git clone https://github.com/cheche338/Proyecto/
+
+
+
+
