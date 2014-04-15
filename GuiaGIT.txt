@@ -1,5 +1,5 @@
 REGLA 1: Se tiene que usar la consola para casi todo.
-Conflicto
+
 
 ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
 
@@ -7,9 +7,11 @@ ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
 2- Precionar "Rescan" y Seleccionar todos los archivos, y hacer: Commit > Stage to commit  ó "Ctrl + T" 
 (Todos los cambios ahora salen en Stage Changes)
 3- Rellenar "Commit Message" y pulsar "Commit"
-4- IMPORTANTE: Abrir git bash (Consola) y ejecutar "git pull" (Resolver conflictos si ocurren y volver a paso 2. Nota A)
 5- Seleccionar "Push" para actualizar el servidor.
-
+IMPORTANTE: Si ocurre error "Updates were rejected because the remote contains work that you do not have locally.".
+			casi seguro es por un conflicto hacer lo siguiente:
+				- Abrir git bash (Consola)
+				- Ejecutar "git pull" (Resolver conflictos (Leer Nota A) y volver al paso 2)
 
 
 ACTUALIZAR LOCAL: (Se descargan los cambios del servidor)
@@ -41,9 +43,7 @@ DESHACER TODOS LOS CAMBIOS LOCALES Y ACTUALIZAR LOCAL:
 
 
 NOTAS:
-A) Recomendación y casi obligación: Justo despues del commit local y antes de push (actualizar tús cambios en el servidor),
-	ejecuta un git pull, resuelve los conflictos y ahora si ejecuta el push) Sino...
-B) Conflicto al hacer git pull:
+A) Conflicto al hacer git pull:
 	Rara vez hay un conflicto pero estos ocurren si trabajamos paralelamente en un archivo en el mismo 
 	código:
 		- Git resuelve el conflicto cuando corresponde a partes de códigos distintas.
@@ -60,4 +60,4 @@ B) Conflicto al hacer git pull:
 		-----------------------------------------------------------------------
 		Solo realizas la unión o sustitución y actualizas ese archivo únicamente en el servidor con el conflicto solucionado
 		y ya puedes hacer git pull.
-C) Siéntete libre de agregar más utilidades a la guia o notas.
+B) Siéntete libre de agregar más utilidades a la guia o notas.
