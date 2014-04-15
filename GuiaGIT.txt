@@ -1,5 +1,5 @@
 REGLA 1: Se tiene que usar la consola para casi todo.
-Algunos comandos como el push que da error en el GUI, lo usas en la consola (con todo igual) y funciona
+Algunos cdadadada error en el GUI, lo usas en la consola (con todo igual) y funciona
 Además los comandos son cortos.
 
 ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
