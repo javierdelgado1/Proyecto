@@ -1,4 +1,4 @@
-REGLA 1: Se tiene que usar la consola para casi todo
+REGLA 1: Se tiene que usar la consola para casi todo.
 
 
 ACTUALIZAR SERVIDOR: (Lo local se pasa al servidor)
