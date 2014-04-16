@@ -56,6 +56,7 @@ function eventosPanel() {
 			});
 			$("#Pagosrealizados").click(function(){
 				listarComprobantesdepago();
+				VerAdjuntos();
 				EditarActualizarComprobantes();
 				eliminarcomprobante();
 			});
@@ -729,9 +730,10 @@ function ListarTabladeComprobantes(msg, table, row){
 		var fila2 = $('<td></td>').text(msg[i].Apellido);
 		var fila3 = $('<td></td>').text(msg[i].Telefono);
 		var fila4 = $('<td></td>').text(msg[i].Correo);
-	    var fila6 = $('<td></td>').append('<a  class="editarcomprobante btn btn-default btn-sm" data-toggle="modal" data-target="#ModificarComprobante"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
+		var fila6 = $('<td></td>').append('<a type="button" class="btn btn-default btn-sm veradjuntos" data-toggle="modal" data-target="#ModalVerAdjuntos"  title="Adjuntos" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-paperclip"></span></a>');
+	    fila6.append('<a type="button" class="btn btn-default btn-sm editarcomprobante" data-toggle="modal" data-target="#ModificarComprobante"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
 	    fila6.append('<a type="button" class="btn btn-default btn-sm eliminarcomprobante" data-toggle="modal" data-target="#EliminarComprobante"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');
-
+	    
 		row2.append(fila1);
 		row2.append(fila2);
 		row2.append(fila3);
@@ -743,40 +745,40 @@ function ListarTabladeComprobantes(msg, table, row){
 }
 
 function EditarActualizarComprobantes(){
-	$('a.editarcomprobante').on('click',  function(){
-	var id=$(this).attr('name');
-	alertas2.innerHTML="";
-	console.log(id+"Editar cuenta");
-	$.ajax
-	({
-		type: "POST",
-		url: "Modelo/consultasFormasdePago.php",
-		data: {id:10, ID:id},
-		async: false,
-		dataType: "json",
-		success:
-		function (msg) 
-		{
-			tnombre.value=msg[0].Nombre;
-			tapellido.value=msg[0].Apellido;
-			ttelefono.value=msg[0].Telefono;
-			tCorreo.value=msg[0].Correo;
-			tbanco3.value=msg[0].Banco;
-			tConcepto3.value=msg[0].Concepto;
-			tnumero.value=msg[0].Nrodecuenta;
-			tTipo.value=msg[0].Tipodepago;
-			tcomprobante.value=msg[0].NroComprobante;
-			tfecha.value=msg[0].Fecha;
-			tmonto.value=msg[0].Monto;			
-			$("#footermodificarComprobante").html("");
-			$("#footermodificarComprobante").append(' <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="actualizarcomprobante btn btn-primary" name="'+id+'">Actualizar</a>');
-		},
-		error:
-		function (msg) {
-			console.log( msg +"No se pudo realizar la conexion");}
+	$('a.editarcomprobante').on('click',  function()
+	{
+		var id=$(this).attr('name');
+		alertas2.innerHTML="";
+		$.ajax
+		({
+			type: "POST",
+			url: "Modelo/consultasFormasdePago.php",
+			data: {id:10, ID:id},
+			async: false,
+			dataType: "json",
+			success:
+			function (msg) 
+			{
+				tnombre.value=msg[0].Nombre;
+				tapellido.value=msg[0].Apellido;
+				ttelefono.value=msg[0].Telefono;
+				tCorreo.value=msg[0].Correo;
+				tbanco3.value=msg[0].Banco;
+				tConcepto3.value=msg[0].Concepto;
+				tnumero.value=msg[0].Nrodecuenta;
+				tTipo.value=msg[0].Tipodepago;
+				tcomprobante.value=msg[0].NroComprobante;
+				tfecha.value=msg[0].Fecha;
+				tmonto.value=msg[0].Monto;			
+				$("#footermodificarComprobante").html("");
+				$("#footermodificarComprobante").append(' <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="actualizarcomprobante btn btn-primary" name="'+id+'">Actualizar</a>');
+			},
+			error:
+			function (msg) {console.log( msg +"No se pudo realizar la conexion");}
 		});
 
-		$('a.actualizarcomprobante').on('click',  function(){
+		$('a.actualizarcomprobante').on('click',  function()
+		{
 			var id=$(this).attr('name');
 			console.log(id+"Actualizar");
 			$.ajax
@@ -789,20 +791,51 @@ function EditarActualizarComprobantes(){
 				success:
 				function (msg) 
 				{
-					if(msg=="true"){
-					alertasComprobante.innerHTML="<div class='alert alert-success'>Se ha Actualizado</div>";
-					listarComprobantesdepago();
-					EditarActualizarComprobantes();
-					eliminarcomprobante();
-				}
+					if(msg=="true")
+					{
+						alertasComprobante.innerHTML="<div class='alert alert-success'>Se ha Actualizado</div>";
+						listarComprobantesdepago();
+						EditarActualizarComprobantes();
+						eliminarcomprobante();
+					}
 
 				},
 				error:
-				function (msg) {
-					console.log( msg +"No se pudo realizar la conexion");}
-				});
+				function (msg) {console.log( msg +"No se pudo realizar la conexion");}
+			});
 		});
 
+	});
+}
+
+function VerAdjuntos(){
+	$('a.veradjuntos').on('click',  function(){
+		var id=$(this).attr('name');
+		console.log(id);
+		$("#footereliminarComprobante").html("");
+		$("#footereliminarComprobante").append('<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="eliminardefinitivo2c btn btn-primary" name="'+id+'">Borrar</a>');
+		$('a.eliminardefinitivo2c').on('click',  function(){	
+			var id=$(this).attr('name');
+			$.ajax
+		({
+			type: "POST",
+			url: "Modelo/consultasFormasdePago.php",
+			data: {id:12, ID:id},
+			async: false,
+			dataType: "json",
+			success:
+			function (msg) 
+			{
+				alertas3c.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";	
+				listarComprobantesdepago();
+				EditarActualizarComprobantes();
+				eliminarcomprobante();
+							},
+			error:
+			function (msg) {
+				console.log( msg +"No se pudo realizar la conexion");}
+			});
+		});
 	});
 }
 

@@ -138,7 +138,7 @@ function eventos() {
 						dataType: "json",
 						success:
 						function (msg) 
-						{				
+						{
 							if(msg=="true"){
 								tnombre.value="";
 								tapellido.value="";
@@ -151,6 +151,12 @@ function eventos() {
 								tfechadepago.value="";
 								tmonto.value="";
 								tconcepto.value="";
+								// Eliminando visualmente los archivos cargados
+								var trs = $('tr.template-download');
+								for(var i = trs.length - 1; i > -1; i--)
+								{
+								    trs[i].outerHTML = "";
+								}
 							}
 						},
 					error:
@@ -266,9 +272,17 @@ function validarFormularioFormasdepago(){
         alertas.innerHTML="<center><b>Escriba el concepto de pago</b></center>";
 		return false;
 	}
+	else if (typeof ArchivoSubido == "undefined") 
+	{
+		alertas.innerHTML="<center><b>Cargue el escaneo del recibo</b></center>";
+		return false;
+	}
 
 	else {return true;}	
 }
+	function validar_recibo(valor){
+
+	}
 
 	function validar_email(valor)
 	{

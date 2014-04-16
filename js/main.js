@@ -19,9 +19,10 @@ $(function () {
 
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
-        url: 'server/php/'
+        // Comendando original
+        //url: 'server/php/'
+        url: fileupload.attributes['action'].value
     });
-    console.log("main.js");
 
     // Enable iframe cross-domain access via redirect option:
     $('#fileupload').fileupload(
@@ -33,8 +34,10 @@ $(function () {
         )
     );
 
+
     // Load existing files:
     $('#fileupload').addClass('fileupload-processing');
+
     $.ajax({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},

@@ -121,6 +121,24 @@
 		$mysqli->close();
 		echo json_encode($objeto);
 	}
+
+
+	function moverArchivos($ubicacion,$destino){
+		// Moviendo desde la ubicacion al destino
+        if(!file_exists($destino))
+        {
+        	mkdir($destino,  0775);
+        }
+		if ($gestor = opendir($ubicacion)) {
+		    while (false !== ($entrada = readdir($gestor))) {
+		        if ($entrada != "." && $entrada != ".." && !is_dir($ubicacion.'/'.$entrada)) {
+		            rename ($ubicacion.'/'.$entrada,$destino.'/'.$entrada);
+		        }
+		    }
+		    closedir($gestor);
+		}
+	}
+
 	function ComprobantedePago(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
 		$Nombre=$_REQUEST['Nombre'];
@@ -137,6 +155,11 @@
 		$tupla="INSERT INTO  comprobantes (Nombre, Apellido, Telefono, Correo, Banco, Concepto, NrodeCuenta, Tipodepago, NroComprobante, Fecha, Monto)  
 		VALUES ('$Nombre','$Apellido','$Telefono','$Correo','$Banco', '$Concepto', '$Numero','$Tipo','$Comprobante','$Fecha','$Monto')";
 		$resultado = $mysqli->query($tupla);
+		$id = $mysqli->insert_id;
+		session_start();
+		$ubicacion = '../server/php/files/tempcomprobantes/'.session_id();
+		$destino = '../server/php/files/comprobantes/'.$id;
+		moverArchivos($ubicacion,$destino);
 		$mysqli->close();
 		echo json_encode("true");
 
