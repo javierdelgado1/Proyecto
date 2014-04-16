@@ -36,7 +36,7 @@
 			    <input type="date" class="form-control" id="thasta" >
 			  </div>
 			    <div class="form-group">
-			    <label >Duracion</label>
+			    <label >Duración</label>
 			    <input type="text" class="form-control" id="tduracion" >
 			  </div>
 			   <div class="form-group">
@@ -44,8 +44,9 @@
 			    <input type="number" class="form-control" id="tcupos" >
 			  </div>
 			  <div class="form-group">
-			    <label for="exampleInputFile">Subir Pdf</label>
-			    <input type="file" id="subir">
+			    <!--<label for="exampleInputFile">Subir Pdf</label>
+			    <input type="file" id="subir"> -->
+			    <a class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#ModalSubirArchivo">Cargar Archivos</a>
 			    <p class="help-block">Contenido Programable del Curso</p>
 			  </div>
 
@@ -55,10 +56,10 @@
   </div>
   <div class="tab-pane" id="Ver">
   	<ul class="nav nav-tabs" id="myTab">
-	  <li><a href="#Perforacion" data-toggle="tab" id="perforacion">Perforacion</a></li>
+	  <li><a href="#Perforacion" data-toggle="tab" id="perforacion">Perforación</a></li>
 	  <li><a href="#Yacimiento" data-toggle="tab" id="yacimiento">Yacimiento</a></li>
-	  <li><a href="#Administracion" data-toggle="tab" id="administracion" >Administracion</a></li>
-	  <li><a href="#Finanzas" data-toggle="tab" id="finanzas"> Finanzas</a></li>
+	  <li><a href="#Administracion" data-toggle="tab" id="administracion" >Administración</a></li>
+	  <li><a href="#Finanzas" data-toggle="tab" id="finanzas">Finanzas</a></li>
 	</ul>
 
 	<div class="tab-content">	  
@@ -93,7 +94,7 @@
 	      <div class="modal-body">
 	  		<form role="form" onsubmit="return false;">
 			  <div class="form-group">
-			     <label>Seleccione un Area </label>
+			     <label>Seleccione un área </label>
 			          <input list="Areas" id="tareas2" name="tareas2" class="form-control">
 			          <datalist id="Areas">
 			            <option value="Perforacion">
@@ -103,7 +104,7 @@
 			          </datalist>
 			  </div>
 			  <div class="form-group">
-			    <label >Escriba un Curso asociado al area</label>
+			    <label >Escriba un Curso asociado al área</label>
 			    <input type="text" class="form-control" id="curso2" >
 			  </div>
 			  <div class="form-group">
@@ -111,11 +112,11 @@
 			    <input type="date" class="form-control" id="tdesde2"  >
 			  </div>
 			  <div class="form-group">
-			    <label >Fecha Hasta</label>
+			    <label >Fecha hasta</label>
 			    <input type="date" class="form-control" id="thasta2" >
 			  </div>
 			    <div class="form-group">
-			    <label >Duracion</label>
+			    <label >Duración</label>
 			    <input type="text" class="form-control" id="tduracion2" >
 			  </div>
   			    <div class="form-group">
@@ -141,7 +142,7 @@
 	        <h4 class="modal-title" id="myModalLabel">Eliminar Curso</h4>
 	      </div>
 	      <div class="modal-body">
-			   <div id="alertas3"><div class="alert alert-warning">¿Esta seguro que desea eliminar ?</div></div> 
+			   <div id="alertas3"><div class="alert alert-warning">¿Está seguro que desea eliminar?</div></div> 
 	      </div>
 	      
 	      <div class="modal-footer" id="footereliminar">
@@ -160,7 +161,7 @@
 	        <h4 class="modal-title" id="myModalLabel">Eliminar Curso</h4>
 	      </div>
 	      <div class="modal-body">
-			   <div id="alertaseliminarinscrito"><div class="alert alert-warning">¿Esta seguro que desea eliminar ?</div></div> 
+			   <div id="alertaseliminarinscrito"><div class="alert alert-warning">¿Está seguro que desea eliminar?</div></div> 
 	      </div>
 	      
 	      <div class="modal-footer" id="footereliminarinscrito">
@@ -190,7 +191,7 @@
 			    <input type="text" class="form-control" id="tapellido" >
 			  </div>
 			  <div class="form-group">
-			    <label >Telefono</label>
+			    <label >Teléfono</label>
 			    <input type="text" class="form-control" id="tTelefono"  >
 			  </div>
 			  <div class="form-group">

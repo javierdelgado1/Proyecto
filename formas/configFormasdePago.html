@@ -4,85 +4,140 @@
 </ul>
 
 <div class="tab-content"> 
-  <div class="tab-pane" id="Agregar">
+	<div class="tab-pane" id="Agregar">
   		<h1>Agregar Cuenta</h1>
   		<div id="alertas">
 			<div class="alert alert-info">Llene todos los campos</div>
 		</div>
-  		  	<form role="form" onsubmit="return false;">
-			  <div class="form-group">
-			     <label>Banco </label>
-			          <input list="bancos" id="tbanco" name="tbanco" class="form-control">
-						<datalist id="bancos">
-							<option value="BANCAMIGA BANCO MICROFINANCIONER, C.A.">
-							<option value="BANCO ACTIVO">
-							<option value="BANCO AGRICOLA">
-							<option value="BANCO BICENTENARIO BANCO UNIVERSAL, C.A.">
-							<option value="BANCO CARONI">
-							<option value="BANCO CENTRAL DE VENEZUELA">
-							<option value="BANCO DE LAS FUERZAS ARMADAS (BANFANB)">
-							<option value="BANCO DEL CARIBE">
-							<option value="BANCO DEL PUEBLO SOBERANO, C.A.">
-							<option value="BANCO DEL SOL">
-							<option value="BANCO DEL TESORO">
-							<option value="BANCO ESPIRITO SANTO, S.A.">
-							<option value="BANCO EXTERIOR">
-							<option value="BANCO INDUSTRIAL DE VENEZUELA">
-							<option value="BANCO INTERNACIONAL DE DESARROLLO">
-							<option value="BANCO MERCANTIL">
-							<option value="BANCO NACIONAL DE CREDITO">
-							<option value="BANCO OCCIDENTAL DE DESCUENTO C.A.">
-							<option value="BANCO PLAZA">
-							<option value="BANCO PROVINCIAL">
-							<option value="BANCO SOFITASA">
-							<option value="BANCO VENEZOLANO DE CREDITO">
-							<option value="BANCRECER">
-							<option value="BANESCO">
-							<option value="BANGENTE">
-							<option value="BANPLUS, BANCO COMERCIAL">
-							<option value="CITIBANK">
-							<option value="CORP BANCA">
-							<option value="EAP DEL SUR">
-							<option value="FONDO COMUN BANCO UNIVERSAL">
-							<option value="INSTITUTO MUNICIPAL DE CREDITO P.">
-							<option value="INVERUNION BANCO COMERCIAL">
-							<option value="MIBANCO BANCO DE DESARROLLO">
-							<option value="100% BANCO">
-						</datalist>
-			  </div>
-			  <div class="form-group">
-			    <label >Titular</label>
-			    <input type="text" class="form-control" id="titular" >
-			  </div>
-			  <div class="form-group">
-			    <label >Nro de cuenta  </label>
-			    <input type="text" class="form-control" id="nrodecuenta" >
-			  </div>
-			  <div class="form-group">
-			    <label >Tipo de Cuenta</label>
-			    <select class="form-control" id="tipo">			    
-			    	<option value="Ahorro" >Ahorro</option>
-			    	<option value="Corriente" >Corriente</option>
-			     </select>
-			  </div>
-			    <div class="form-group">
-			    <label >CI/RIF</label>
-			    <input type="text" class="form-control" id="rif" >
-			  </div>
-			  <button type="submit" class="btn btn-default" id="agregarCuenta">Agregar cuenta</button>
-			  
+	  	<form role="form" onsubmit="return false;">
+			<div class="form-group">
+				<label>Banco </label>
+				<input list="bancos" id="tbanco" name="tbanco" class="form-control" >
+				<datalist id="bancos">
+					<option value="BANCAMIGA BANCO MICROFINANCIONER, C.A.">
+					<option value="BANCO ACTIVO">
+					<option value="BANCO AGRICOLA">
+					<option value="BANCO BICENTENARIO BANCO UNIVERSAL, C.A.">
+					<option value="BANCO CARONI">
+					<option value="BANCO CENTRAL DE VENEZUELA">
+					<option value="BANCO DE LAS FUERZAS ARMADAS (BANFANB)">
+					<option value="BANCO DEL CARIBE">
+					<option value="BANCO DEL PUEBLO SOBERANO, C.A.">
+					<option value="BANCO DEL SOL">
+					<option value="BANCO DEL TESORO">
+					<option value="BANCO ESPIRITO SANTO, S.A.">
+					<option value="BANCO EXTERIOR">
+					<option value="BANCO INDUSTRIAL DE VENEZUELA">
+					<option value="BANCO INTERNACIONAL DE DESARROLLO">
+					<option value="BANCO MERCANTIL">
+					<option value="BANCO NACIONAL DE CREDITO">
+					<option value="BANCO OCCIDENTAL DE DESCUENTO C.A.">
+					<option value="BANCO PLAZA">
+					<option value="BANCO PROVINCIAL">
+					<option value="BANCO SOFITASA">
+					<option value="BANCO VENEZOLANO DE CREDITO">
+					<option value="BANCRECER">
+					<option value="BANESCO">
+					<option value="BANGENTE">
+					<option value="BANPLUS, BANCO COMERCIAL">
+					<option value="CITIBANK">
+					<option value="CORP BANCA">
+					<option value="EAP DEL SUR">
+					<option value="FONDO COMUN BANCO UNIVERSAL">
+					<option value="INSTITUTO MUNICIPAL DE CREDITO P.">
+					<option value="INVERUNION BANCO COMERCIAL">
+					<option value="MIBANCO BANCO DE DESARROLLO">
+					<option value="100% BANCO">
+				</datalist>
+			</div>
+			<div class="form-group">
+				<label >Titular</label>
+				<input type="text" class="form-control" id="titular" >
+			</div>
+			<div class="form-group">
+				<label >Nro de cuenta  </label>
+				<input type="text" class="form-control" id="nrodecuenta" >
+			</div>
+			<div class="form-group">
+				<label >Tipo de Cuenta</label>
+				<select class="form-control" id="tipo">			    
+					<option value="Ahorro" >Ahorro</option>
+					<option value="Corriente" >Corriente</option>
+				 </select>
+			</div>
+			<div class="form-group">
+				<label >CI/RIF</label>
+				<input type="text" class="form-control" id="rif" >
+			</div>
+			<button type="submit" class="btn btn-default" id="agregarCuenta">Agregar cuenta</button>
 		</form>
 		<div id="cuentasAgregadas">
-
 		</div> 
-  </div>
-  <div class="tab-pane" id="PagosRealizados">
-  	<div id="comprobantes">
-
 	</div>
-  </div>
-	 
-  </div>
+
+	<!-- PAGOS REALIZADOS  -->
+	<div class="tab-pane" id="PagosRealizados">
+		<div class="tab-pane" id="AgregarComprobante">
+			<h1>Agregar Comprobante</h1>
+			<div id="alertas">
+				<div class="alert alert-info">Llene todos los campos</div>
+			</div>
+		  	<form role="form" onsubmit="return false;">
+				<div class="form-group">
+					<label>Nombre</label>
+					<input list="bancos" id="tnombre" name="tnombre" class="form-control">	
+				</div>
+				<div class="form-group">
+					<label >Apellido</label>
+					<input type="text" class="form-control" id="tapellido" >
+				</div>
+				<div class="form-group">
+					<label >Telefono</label>
+					<input type="text" class="form-control" id="ttelefono" >
+				</div>
+				<div class="form-group">
+					<label >Correo</label>
+					<input type="text" class="form-control" id="tCorreo" >
+				</div>
+				<div class="form-group">
+					<label >Banco</label>
+					<input type="text" class="form-control" id="tbanco3" >
+				</div> 
+				<div class="form-group">
+					<label >Concepto de pago</label>
+					<input type="text" class="form-control" id="tConcepto3" >
+				</div> 
+				<div class="form-group">
+					<label >Nro de Cuenta</label>
+					<input type="text" class="form-control" id="tnumero" >
+				</div> 
+				<div class="form-group">
+					<label >Tipo de Pago</label>
+					<input type="text" class="form-control" id="tTipo" >
+				</div> 
+				<div class="form-group">
+					<label >Nro de Comprobante</label>
+					<input type="text" class="form-control" id="tcomprobante" >
+				</div> 
+				<div class="form-group">
+					<label >Fecha del pago</label>
+					<input type="date" class="form-control" id="tfecha" >
+				</div> 
+				<div class="form-group">
+					<label >Monto del pago</label>
+					<input type="text" class="form-control" id="tmonto" >
+				</div>
+				<button type="submit" class="btn btn-default" id="agregarCuenta">Agregar Comprobante</button>
+			</form>
+			<div id="cuentasAgregadas">
+			</div> 
+		</div>
+		<div id="comprobantes">
+		</div>
+	</div>
+</div>
+
+
 
 
 	<div class="modal fade " id="Modificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -96,8 +151,8 @@
 <form role="form" onsubmit="return false;">
 			  <div class="form-group">
 			     <label>Banco </label>
-			          <input list="bancos" id="tbanco2" name="tbanco2" class="form-control">
-						<datalist id="bancos">
+			          <input list="bancos" id="tbanco2" name="tbanco2" class="form-control"  list="bancos_list">
+						<datalist id="bancos_list">
 							<option value="BANCAMIGA BANCO MICROFINANCIONER, C.A.">
 							<option value="BANCO ACTIVO">
 							<option value="BANCO AGRICOLA">
@@ -139,7 +194,7 @@
 			    <input type="text" class="form-control" id="titular2" >
 			  </div>
 			  <div class="form-group">
-			    <label >Nro de cuenta  </label>
+			    <label >Nro de cuenta</label>
 			    <input type="text" class="form-control" id="nrodecuenta2" >
 			  </div>
 			  <div class="form-group">
@@ -168,7 +223,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">Eliminar Curso</h4>
+	        <h4 class="modal-title" id="myModalLabel">Eliminar Cuenta Bancaria</h4>
 	      </div>
 	      <div class="modal-body">
 			   <div id="alertas3"><div class="alert alert-warning">¿Esta seguro que desea eliminar ?</div></div> 
@@ -188,12 +243,12 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">Modificar Cuenta Bancaria</h4>
+	        <h4 class="modal-title" id="myModalLabel">Modificar Comprobante</h4>
 	      </div>
 	      <div class="modal-body">
 <form role="form" onsubmit="return false;">
 			  <div class="form-group">
-			     <label>Nombre </label>
+			     <label>Nombre</label>
 			     <input list="bancos" id="tnombre" name="tnombre" class="form-control">	
 			  </div>
 			  <div class="form-group">
@@ -235,7 +290,7 @@
 			  <div class="form-group">
 			    <label >Monto del pago</label>
 			    <input type="text" class="form-control" id="tmonto" >
-			  </div> 
+			  </div>
 	      </div>
 	      <div id="alertasComprobante"></div>
 	      <div class="modal-footer" id="footermodificarComprobante">
@@ -251,7 +306,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">Eliminar Curso</h4>
+	        <h4 class="modal-title" id="myModalLabel">Eliminar Comprobante</h4>
 	      </div>
 	      <div class="modal-body">
 			   <div id="alertas3c"><div class="alert alert-warning">¿Esta seguro que desea eliminar ?</div></div> 

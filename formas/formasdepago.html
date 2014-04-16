@@ -14,7 +14,7 @@
 	<table>
 		<tr>
 			<td>
-				<b> Nombre</b> 
+				<b>Nombre</b> 
 			</td>
 			<td>
 				*
@@ -120,8 +120,14 @@
 	</table>
 	<table>
 		<tr>
-			<td><b>Escaneo del Recibo</b><input type="file" name="trecibo" id="trecibo" class="CajaTexto"></td>
-			<td><input type="submit" value="Enviar Datos de Confirmacion" class="boton" id="enviarformadepago" /></td>
+			<td>
+				<b>Escaneo del Recibo</b>
+				<!--<input type="file" name="trecibo" id="trecibo" class="CajaTexto">-->
+				<a class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#ModalSubirArchivo">Cargar Archivos</a>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Enviar Datos de Confirmacion" class="boton" id="enviarformadepago"/></td>
 		</tr>
 	</table>
 </div>

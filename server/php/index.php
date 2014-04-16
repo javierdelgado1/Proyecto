@@ -18,6 +18,11 @@ class CustomUploadHandler extends UploadHandler {
         return $_SESSION['id'];
     }
 }
-$upload_handler = new CustomUploadHandler(array(
+class HandlerFormasPago extends UploadHandler {
+    protected function get_user_id() {
+        return "formaspago";
+    }
+}
+$upload_handler = new HandlerFormasPago(array(
     'user_dirs' => true
 ));
