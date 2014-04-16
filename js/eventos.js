@@ -35,6 +35,8 @@ function eventos() {
 						console.log( msg +"No se pudo realizar la conexion");}
 					});
 			});
+
+
 		});	
 		$('#girar').fadeOut();
 	}
@@ -76,7 +78,52 @@ function eventos() {
 		});	
 		$('#girar').fadeOut();
 	}
-
+	$("#preinscripcionaloscursos").click(function(){
+		$("#contenedor").load('formas/preinscripcion.html', function(){
+			$("input[name=tareas]").change(function(){				
+				$("#cursos").empty();
+				$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:10, Areas:$(this).val()},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{				
+							for(var i=0; i<msg[0].m; i++){								
+								$("#cursos").append("<option value='"+msg[i].Curso+"'>");
+							}
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});
+			});
+			$("#inscribirse").click(function(){
+				if(validarFormulariodeinscripcion()){
+					$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPreinscripcion.php",
+						data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Correo:tcorreo.value,  Curso:tcurso.value, Modalidad:tmodalidad.value, Fecha:tFecha.value, Temas:tTemas.value},
+						async: false,
+						
+						success:
+						function (msg) 
+						{				
+							console.log(msg);
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});
+				}
+			});
+		});
+		$('#girar').fadeOut();
+	});
 	$("#formasdepago").click(function(){		
 		$("#contenedor").load('formas/formasdepago.html', function(){
 					$.ajax
@@ -193,6 +240,55 @@ function eventos() {
 	}
 }
 
+function validarFormulariodeinscripcion(){
+	if(tnombre.value==""){
+		alertas.innerHTML="<center><b>Escriba  su  nombre</b></center>";
+		return false;
+	}	
+	else if(tapellido.value=="")
+	{  
+        alertas.innerHTML="<center><b>Escriba su Apellido</b></center>";
+		return false;
+	}
+	else if(!tTelefono.value.match(/^[0-9-]+$/))
+	{  
+        alertas.innerHTML="<center><b>Escriba un telefono valido</b></center>";
+		return false;
+	}		
+
+	else if(tcorreo.value==""||!validar_email(tcorreo.value))
+	{  
+        alertas.innerHTML="<center><b>Escriba un correo valido</b></center>";
+		return false;
+	}	
+	else if(tareas.value=="")
+	{  
+        alertas.innerHTML="<center><b>Debe escribir el Area</b></center>";
+		return false;
+	}
+	else if(tcurso.value=="")
+	{  
+        alertas.innerHTML="<center><b>Debe escribir un Curso/Diplomado/Taller</b></center>";
+		return false;
+	}
+	else if(tFecha.value=="")
+	{  
+        alertas.innerHTML="<center><b>Debe escribir una fecha</b></center>";
+		return false;
+	}
+	else if(tTemas.value=="")
+	{  
+        alertas.innerHTML="<center><b>Escriba un tema de interes</b></center>";
+		return false;
+	}	
+	else if(tmodalidad.value=="")
+	{  
+        alertas.innerHTML="<center><b>Elija una modalidad</b></center>";
+		return false;
+	}								
+	
+	else {return true;}	
+}
 function validarFormularioContacto(){
 	if(tnombre2.value==""){
 		alertas.innerHTML="<center><b>Escriba un nombre</b></center>";

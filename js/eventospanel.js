@@ -757,17 +757,18 @@ function EditarActualizarComprobantes(){
 		success:
 		function (msg) 
 		{
-			tnombre.value=msg[0].Nombre;
-			tapellido.value=msg[0].Apellido;
-			ttelefono.value=msg[0].Telefono;
-			tCorreo.value=msg[0].Correo;
+
+			tnombre2.value=msg[0].Nombre;
+			tapellido2.value=msg[0].Apellido;
+			ttelefono2.value=msg[0].Telefono;
+			tCorreo2.value=msg[0].Correo;
 			tbanco3.value=msg[0].Banco;
 			tConcepto3.value=msg[0].Concepto;
-			tnumero.value=msg[0].Nrodecuenta;
-			tTipo.value=msg[0].Tipodepago;
-			tcomprobante.value=msg[0].NroComprobante;
-			tfecha.value=msg[0].Fecha;
-			tmonto.value=msg[0].Monto;			
+			tnumero2.value=msg[0].Nrodecuenta;
+			tTipo2.value=msg[0].Tipodepago;
+			tcomprobante2.value=msg[0].NroComprobante;
+			tfecha2.value=msg[0].Fecha;
+			tmonto2.value=msg[0].Monto;			
 			$("#footermodificarComprobante").html("");
 			$("#footermodificarComprobante").append(' <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="actualizarcomprobante btn btn-primary" name="'+id+'">Actualizar</a>');
 		},

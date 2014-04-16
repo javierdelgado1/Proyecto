@@ -1,51 +1,78 @@
 <H1>SERVICIOS</H1>
+<div class="alert alert-info" id="alertas">
+		<b>Todos los campos con (*) son requeridos.</b>	
+	</div>
 <form onsubmit="return false;">
 	<fieldset> 
  		<legend>Datos Personales</legend>
-		<label>Nombre	</label>
-		<input 	type="text" name="tnombre" id="tnombre" class="text2">
-		<br>
-		<label>Apellido	</label>
-		<input 	type="text" name="tapellido" id="tapellido" class="text2">
-		<br>
-		<label>Telefono	</label>
-		<input 	type="text" name="tTelefono" id="tTelefono" class="text2">
-		<br>
-		<label>Correo Electrónico	</label>
-		<input 	type="text" name="tcorreo" id="tcorreo" class="text2">	
+		<table>
+			<tr>
+				<td><b>Nombre</b></td>
+				<td><input 	type="text" name="tnombre" id="tnombre" class="CajaTexto"></td>				
+			</tr>
+			<tr>
+				<td><b>Apellido</b></td>
+				<td><input 	type="text" name="tapellido" id="tapellido" class="CajaTexto"></td>
+			</tr>
+			<tr>
+				<td><b>Telefono</b></td>
+				<td><input 	type="text" name="tTelefono" id="tTelefono" class="CajaTexto"></td>
+			</tr>
+			<tr>
+				<td><b>Correo Electrónico</b></td>
+				<td><input 	type="text" name="tcorreo" id="tcorreo" class="CajaTexto"></td>
+			</tr>
+		</table>			
 	</fieldset>
 
 	<fieldset> 
  		<legend>Datos de programa que desea cursar</legend>
- 		<label>Area	</label>
- 		<input list="Areas" id="tareas" name="tareas"  >
-          <datalist id="Areas" >
-			<option value="Perforacion">
-			<option value="Yacimiento">
-			<option value="Administracion">
-			<option value="Finanzas">            
-          </datalist>
-		<br>	          
-		<label>Curso	</label>
-		<input  list="cursos" name="tnombre" id="tcurso">
-		<datalist id="cursos">            
-        </datalist>
-		<br>
-		<label>Fecha de inicio	</label>
-		<input 	type="datetime" name="tapellido" id="tFecha" class="text2">
-		<br>
-		<label>Indique otros temas de su interes	</label>
-		<input 	type="text" name="tTemas" id="tTemas" class="text2">
-		<br>
-		<label>Modalidad	</label>
-		<input 	type="text" list="modalidadlist"name="tmodalidad" id="tmodalidad" >
-		<br>		
-		<datalist id="modalidadlist" >
-			<option value="In Company">
-			<option value="Cursos Abiertos">
-			<option value="Solicitud">			           
-        </datalist>
-	</fieldset>
+ 		<table>
+ 			<tr> 		
+	 			<td><b>Area</b></td>
+	 			<td>	
+					<input list="Areas" id="tareas" name="tareas"  class="CajaTexto" >
+					<datalist id="Areas" >
+						<option value="Perforacion">
+						<option value="Yacimiento">
+						<option value="Administracion">
+						<option value="Finanzas">            
+					</datalist>
+		        </td>
+	        </tr>
+	        <tr>
+	        	<td><b>Curso</b></td>
+	        	<td>
+					<input  list="cursos" name="tcurso" id="tcurso" class="CajaTexto">
+					<datalist id="cursos">            
+					</datalist>	        		
+	        	</td>
+	        </tr>
+	        <tr>
+	        	<td><b>Fecha de inicio</b></td>
+	        	<td><input 	type="datetime" name="tFecha" id="tFecha" class="CajaTexto"></td>
+	        </tr>
+	        <tr>
+	        	<td><b>Indique otros temas de su interes</b></td>
+	        	<td><input 	type="text" name="tTemas" id="tTemas" class="CajaTexto"></td>
+	        </tr>
+	        <tr>
+	        	<td><b>Modalidad</b></td>
+	        	<td>
+					<input 	type="text" list="modalidadlist"name="tmodalidad" id="tmodalidad" class="CajaTexto" >							
+					<datalist id="modalidadlist" >
+						<option value="In Company">
+						<option value="Cursos Abiertos">
+						<option value="Solicitud">			           
+					</datalist>
+	        	</td>
+	        </tr>
+	        <tr>
+	        	<td><button class="boton" id="inscribirse">Inscribirse</button></td>
+	        	<td></td>
+	        </tr>
+ 		</table>
+ 		</fieldset>
 
-	<button class="enviar">Registrar</button>
+	
 </form>

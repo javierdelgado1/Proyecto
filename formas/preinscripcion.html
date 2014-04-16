@@ -1,0 +1,126 @@
+<div style="position:absolute; left:10px; ">
+<H1>PREINSCRIPCION A LOS CURSOS</H1>
+
+	<div style="width: 600px; color: #ECF0FF;">
+
+		<h4>
+			
+				<small><b>Para su incorporación al programa,  solo debes seguir estos 4 pasos:</b>
+				<br>
+				<br>
+				1. Inscribirse en línea en este formulario, suministrando de manera completa y precisa la información solicitada<br>
+				2. Un asesor te contactara para indicarle como pagar los aranceles correspondientes.<br>
+				3. Entregar la carpeta con recaudos indicados por el asesor en nuestra sede<br>
+				4. Asistir a la entrevista (solo casos puntuales)</small>
+				
+				
+			 
+		</h4>
+	</div>
+
+
+<div class="alert alert-info" id="alertas">
+		<b>Todos los campos con (*) son requeridos.</b>	
+	</div>
+<form onsubmit="return false;">
+	<fieldset> 
+ 		<legend>Formulario de inscripcion</legend>
+		<table>
+			<tr>
+				<td><b>Nombre</b></td>
+				<td><input 	type="text" name="tnombre" id="tnombre" class="CajaTexto"></td>	
+				<td><b>Area</b></td>
+	 			<td>	
+					<input list="Areas" id="tareas" name="tareas"  class="CajaTexto" >
+					<datalist id="Areas" >
+						<option value="Perforacion">
+						<option value="Yacimiento">
+						<option value="Administracion">
+						<option value="Finanzas">            
+					</datalist>
+		        </td>			
+			</tr>
+			<tr>
+				<td><b>Apellido</b></td>
+				<td><input 	type="text" name="tapellido" id="tapellido" class="CajaTexto"></td>
+				<td><b>Curso</b></td>
+	        	<td>
+					<input  list="cursos" name="tcurso" id="tcurso" class="CajaTexto">
+					<datalist id="cursos">            
+					</datalist>	        		
+	        	</td>
+			</tr>
+			<tr>
+				<td><b>Telefono</b></td>
+				<td><input 	type="text" name="tTelefono" id="tTelefono" class="CajaTexto"></td>
+				<td><b>Fecha de inicio</b></td>
+	        	<td><input 	type="date" name="tFecha" id="tFecha" class="CajaTexto"></td>
+			</tr>
+			<tr>
+				<td><b>Correo Electrónico</b></td>
+				<td><input 	type="text" name="tcorreo" id="tcorreo" class="CajaTexto"></td>
+				<td><b>Indique otros temas de su interes</b></td>
+	        	<td><input 	type="text" name="tTemas" id="tTemas" class="CajaTexto"></td>
+			</tr>
+			<tr>
+				
+	        	<td><b>Modalidad</b></td>
+	        	<td>
+					<input 	type="text" list="modalidadlist"name="tmodalidad" id="tmodalidad" class="CajaTexto" >							
+					<datalist id="modalidadlist" >
+						<option value="In Company">
+						<option value="Cursos Abiertos">
+						<option value="Solicitud">			           
+					</datalist>
+	        	</td>
+	        	<td></td>
+	        	<td></td>
+			</tr>
+		</table>			
+	</fieldset>
+
+	<button class="boton" id="inscribirse">Inscribirse</button>
+
+	<!-- <fieldset> 
+ 		<legend>Datos de programa que desea cursar</legend>
+ 		<table>
+ 			<tr> 		
+	 			
+	        </tr>
+	        <tr>
+	        	<td><b>Curso</b></td>
+	        	<td>
+					<input  list="cursos" name="tcurso" id="tcurso" class="CajaTexto">
+					<datalist id="cursos">            
+					</datalist>	        		
+	        	</td>
+	        </tr>
+	        <tr>
+	        	<td><b>Fecha de inicio</b></td>
+	        	<td><input 	type="date" name="tFecha" id="tFecha" class="CajaTexto"></td>
+	        </tr>
+	        <tr>
+	        	<td><b>Indique otros temas de su interes</b></td>
+	        	<td><input 	type="text" name="tTemas" id="tTemas" class="CajaTexto"></td>
+	        </tr>
+	        <tr>
+	        	<td><b>Modalidad</b></td>
+	        	<td>
+					<input 	type="text" list="modalidadlist"name="tmodalidad" id="tmodalidad" class="CajaTexto" >							
+					<datalist id="modalidadlist" >
+						<option value="In Company">
+						<option value="Cursos Abiertos">
+						<option value="Solicitud">			           
+					</datalist>
+	        	</td>
+	        </tr>
+	        <tr>
+	        	<td><button class="boton" id="inscribirse">Inscribirse</button></td>
+	        	<td></td>
+	        </tr>
+ 		</table>
+ 		</fieldset> -->
+
+	
+</form>
+</div>
