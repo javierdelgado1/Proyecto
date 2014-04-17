@@ -13,8 +13,139 @@ function eventos() {
 	}
 	SERVICIOS.onclick=function(){		
 		$("#contenedor").load('formas/servicios.html' , function() {
-			$("input[name=tareas]").change(function(){
-				console.log($(this).val());
+			// $("input[name=tareas]").change(function(){
+			// 	console.log($(this).val());
+			// 	$("#cursos").empty();
+			// 	$.ajax
+			// 		({
+			// 			type: "POST",
+			// 			url: "Modelo/consultasPortafolio.php",
+			// 			data: {id:10, Areas:$(this).val()},
+			// 			async: false,
+			// 			dataType: "json",
+			// 			success:
+			// 			function (msg) 
+			// 			{				
+			// 				for(var i=0; i<msg[0].m; i++){								
+			// 					$("#cursos").append("<option value='"+msg[i].Curso+"'>");
+			// 				}
+			// 			},
+			// 		error:
+			// 		function (msg) {
+			// 			console.log( msg +"No se pudo realizar la conexion");}
+			// 		});
+			// });
+
+		$("#perforacion").click(function(){
+			$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:2, tipo:1},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{			
+							$('#tabla').html("");	
+							var table = $('<table></table>');	
+
+							var row=$('<tr></tr>');
+							$('#tabla').append(ListarTabla(msg, table, row));
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});		
+		});
+		$("#yacimiento").click(function(){
+			$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:2, tipo:2},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{			
+							$('#tabla').html("");	
+							var table = $('<table></table>');							
+							var row=$('<tr></tr>');
+							$('#tabla').append(ListarTabla(msg, table, row));
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});		
+		});
+		$("#administracion").click(function(){
+			$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:2, tipo:3},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{			
+							$('#tabla').html("");	
+							var table = $('<table></table>');							
+							var row=$('<tr></tr>');
+							$('#tabla').append(ListarTabla(msg, table, row));
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});		
+		});
+		$("#finanzas").click(function(){
+			$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:2, tipo:4},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{			
+							$('#tabla').html("");	
+							var table = $('<table></table>');							
+							var row=$('<tr></tr>');
+							$('#tabla').append(ListarTabla(msg, table, row));
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});		
+		});
+
+		$("#descargar").click(function(){
+			$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:11},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{			
+							$('#tabla').html("");	
+							var table = $('<table></table>');							
+							var row=$('<tr></tr>');
+							$('#tabla').append(ListarTabla(msg, table, row));
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});		
+		});
+		$("#participar").click(function(){
+			$("#tabla").load('formas/preinscripcion.html', function(){
+			$("input[name=tareas]").change(function(){				
 				$("#cursos").empty();
 				$.ajax
 					({
@@ -35,6 +166,28 @@ function eventos() {
 						console.log( msg +"No se pudo realizar la conexion");}
 					});
 			});
+			$("#inscribirse").click(function(){
+				if(validarFormulariodeinscripcion()){
+					$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPreinscripcion.php",
+						data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Correo:tcorreo.value,  Curso:tcurso.value, Modalidad:tmodalidad.value, Fecha:tFecha.value, Temas:tTemas.value},
+						async: false,
+						
+						success:
+						function (msg) 
+						{				
+							console.log(msg);
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});
+				}
+			});
+		});
+		});
 
 
 		});	
@@ -390,3 +543,30 @@ function validarFormularioFormasdepago(){
 		else
 			return false;
 	}
+
+	function ListarTabla(msg, table, row){			
+		table.addClass('CSSTableGenerator');
+	row.append($('<td></td>').html("<b>Curso</b>"));							
+	row.append($('<td></td>').html("<b>Desde</b>"));
+	row.append($('<td></td>').html("<b>Hasta</b>"));
+	row.append($('<td></td>').html("<b>Duracion</b>"));
+	row.append($('<td></td>').html("<b>Contenido</b>"));
+	table.append(row);					
+	
+	for(i=0; i<msg[0].m; i++){
+		var row2 = $('<tr></tr>');
+		var fila1 = $('<td></td>').text(msg[i].Curso);
+		var fila2 = $('<td></td>').text(msg[i].Desde);
+		var fila3 = $('<td></td>').text(msg[i].Hasta);
+		var fila4 = $('<td></td>').text(msg[i].Duracion);
+	    var fila6 = $('<td></td>').append('<button type="button" class="boton"  title="Ver contenido" >Ver</span></button>');
+	   
+		row2.append(fila1);
+		row2.append(fila2);
+		row2.append(fila3);
+		row2.append(fila4);									
+		row2.append(fila6);									
+	    table.append(row2);
+	}
+	return table;
+}

@@ -35,8 +35,38 @@
 		case 10:
 			BuscarCursosDeArea();
 			break;
+		case 11: 
+			ObtenerTodoslosCursos();
+			break;
 
 		default;
+	}
+	function ObtenerTodoslosCursos(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$tupla = "SELECT * FROM  portafolio";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['mensaje']=false;
+		$i=0;
+		$objeto[0]['m']=$resultado->num_rows;
+
+		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['id']=$db_resultado['id'];
+			$objeto[$i]['Curso']=$db_resultado['Curso'];
+
+			$objeto[$i]['Desde']=$db_resultado['Desde'];
+			$objeto[$i]['Hasta']=$db_resultado['Hasta'];
+
+			$date = new DateTime($objeto[$i]['Desde']);
+			$objeto[$i]['Desde']=$date->format('d-m-Y');
+			$date = new DateTime($objeto[$i]['Hasta']);
+			$objeto[$i]['Hasta']=$date->format('d-m-Y');
+			$objeto[$i]['Duracion']=$db_resultado['Duracion'];
+			$objeto[$i]['Archivo']=$db_resultado['Archivo'];
+			 $i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
 	}
 	function BuscarCursosDeArea(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
