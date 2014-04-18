@@ -7,7 +7,9 @@
 	<div class="contenedor">
 		<div class="well">
 			<div class="row">				
-			<div class="col-md-4"></div>			
+			<div class="col-md-4">
+				<div id="dates"></div>
+			</div>			
 			 <div class="col-md-8">
 			 	<form role="form" onsubmit="return false;">
 				   <div class="form-group">
@@ -25,5 +27,30 @@
 		</div>
 	</div>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	var Event = function(text, className) {
+    this.text = text;
+    this.className = className;
+};
+
+var events = {};
+events[new Date("05/18/2014")] = new Event("Valentines Day", "pink");
+events[new Date("02/18/2014")] = new Event("Payday", "green");
+
+console.dir(events);
+
+$("#dates").datepicker({
+    beforeShowDay: function(date) {
+        var event = events[date];
+        if (event) {
+            return [true, event.className, event.text];
+        }
+        else {
+            return [true, '', ''];tttttttttttttttttt
+        }
+    }
+});
+</script>
 </body>
 </html>
