@@ -63,7 +63,6 @@
 			$date = new DateTime($objeto[$i]['Hasta']);
 			$objeto[$i]['Hasta']=$date->format('d-m-Y');
 			$objeto[$i]['Duracion']=$db_resultado['Duracion'];
-			$objeto[$i]['Archivo']=$db_resultado['Archivo'];
 			 $i++;
 		}
 		$mysqli->close();
@@ -167,6 +166,8 @@
 		$ID=$_REQUEST['ID'];		
 		$tupla="DELETE FROM portafolio  WHERE id='$ID'";
 		$resultado = $mysqli->query($tupla);
+		$ubicacion = '../server/php/files/portafolio/'.$ID;
+		eliminarArchivos($ubicacion);
 		echo json_encode("true");
 	}
 	function actualizarCurso(){
@@ -199,8 +200,6 @@
 			$objeto[0]['Hasta']=$db_resultado['Hasta'];
 			$objeto[0]['Cupos']=$db_resultado['Cupos'];
 			$objeto[0]['Duracion']=$db_resultado['Duracion'];
-			$objeto[0]['Archivo']=$db_resultado['Archivo'];
-			 
 		}
 		$mysqli->close();
 		echo json_encode($objeto);
@@ -235,7 +234,6 @@
 			$date = new DateTime($objeto[$i]['Hasta']);
 			$objeto[$i]['Hasta']=$date->format('d-m-Y');
 			$objeto[$i]['Duracion']=$db_resultado['Duracion'];
-			$objeto[$i]['Archivo']=$db_resultado['Archivo'];
 			 $i++;
 		}
 		$mysqli->close();

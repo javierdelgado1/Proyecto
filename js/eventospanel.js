@@ -123,6 +123,7 @@ function eventosPanel() {
 						function (msg) 
 						{				
 							if(msg=="true"){
+								alertas.innerHTML="<div class='alert alert-success'>Curso Agregado!</div>";
 								limpiarFormularioAgregarPortafolio();
 							}
 						},
@@ -131,6 +132,12 @@ function eventosPanel() {
 						console.log( msg +"No se pudo realizar la conexion");}
 					});
 				}
+		  	}
+
+		  	tabAgregarCurso.onclick=function(){
+		  		VaciarFileInput();
+				fileupload.action = "server/php/PortafolioCursos.php";
+				mainInputFile();
 		  	}
 
 		  	inscritos.onclick=function(){
@@ -478,25 +485,26 @@ function eliminar(){
 		var id=$(this).attr('name');
 		$("#footereliminar").html("");
 		$("#footereliminar").append('<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="eliminardefinitivo btn btn-primary" name="'+id+'">Borrar</a>');
-		$('a.eliminardefinitivo').on('click',  function(){	
+		$('a.eliminardefinitivo').on('click',  function(){
 			var id=$(this).attr('name');
 			$.ajax
-		({
-			type: "POST",
-			url: "Modelo/consultasPortafolio.php",
-			data: {id:5, ID:id},
-			async: false,
-			dataType: "json",
-			success:
-			function (msg) 
-			{
-				alertas3.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";
-							
-							},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:5, ID:id},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{
+					alertas3.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";
+				},
+				error:
+				function (msg) {
+					console.log(msg);
+					console.dir("No se pudo realizar la conexion");}
 			});
+			$(this).attr("disabled", "true");
 		});
 	});
 }
@@ -509,21 +517,22 @@ function eliminarinscrito(){
 		$('a.eliminardefinitivo2').on('click',  function(){	
 			var id=$(this).attr('name');
 			$.ajax
-		({
-			type: "POST",
-			url: "Modelo/consultasPortafolio.php",
-			data: {id:9, ID:id},
-			async: false,
-			dataType: "json",
-			success:
-			function (msg) 
-			{
-				alertaseliminarinscrito.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";							
-							},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:9, ID:id},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{
+					alertaseliminarinscrito.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";							
+								},
+				error:
+				function (msg) {
+					console.log( msg +"No se pudo realizar la conexion");}
 			});
+			$(this).attr("disabled", "true");
 		});
 	});
 }
@@ -646,22 +655,23 @@ function eliminarcuenta(){
 		$('a.eliminardefinitivo2').on('click',  function(){	
 			var id=$(this).attr('name');
 			$.ajax
-		({
-			type: "POST",
-			url: "Modelo/consultasFormasdePago.php",
-			data: {id:5, ID:id},
-			async: false,
-			dataType: "json",
-			success:
-			function (msg) 
-			{
-				alertas3.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";	
-				listarCuentas();
-							},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
+			({
+				type: "POST",
+				url: "Modelo/consultasFormasdePago.php",
+				data: {id:5, ID:id},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{
+					alertas3.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";	
+					listarCuentas();
+								},
+				error:
+				function (msg) {
+					console.log( msg +"No se pudo realizar la conexion");}
 			});
+			$(this).attr("disabled", "true");
 		});
 	});
 }
@@ -817,24 +827,25 @@ function eliminarcomprobante(){
 		$('a.eliminardefinitivo2c').on('click',  function(){	
 			var id=$(this).attr('name');
 			$.ajax
-		({
-			type: "POST",
-			url: "Modelo/consultasFormasdePago.php",
-			data: {id:12, ID:id},
-			async: false,
-			dataType: "json",
-			success:
-			function (msg) 
-			{
-				alertas3c.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";	
-				listarComprobantesdepago();
-				EditarActualizarComprobantes();
-				eliminarcomprobante();
-							},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
+			({
+				type: "POST",
+				url: "Modelo/consultasFormasdePago.php",
+				data: {id:12, ID:id},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{
+					alertas3c.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";	
+					listarComprobantesdepago();
+					EditarActualizarComprobantes();
+					eliminarcomprobante();
+								},
+				error:
+				function (msg) {
+					console.log( msg +"No se pudo realizar la conexion");}
 			});
+			$(this).attr("disabled", "true");
 		});
 	});
 }
@@ -849,15 +860,12 @@ function VerAdjuntos(){
 }
 
 function VerContenido(){
-	console.log("Ver contenido init");
 	$('a.vercontenido').on('click',  function(){
 		var id=$(this).attr('name');
 		VaciarFileInput();
 		fileupload.action = "server/php/PortafolioVerAdjuntos.php?id="+id;
 		mainInputFile();
-		console.log("Ejecutado Boton id: "+id);
 	});
-	console.log("Ver contenido Fin");
 }
 function VaciarFileInput(){
 	// Eliminando visualmente los archivos cargados
