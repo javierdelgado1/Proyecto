@@ -17,8 +17,6 @@ function eventosPanel() {
 			});
 	}
 	$("#FormadePago").click(function (){
-		
-		//fileupload.action = "server/php/ComprobantesVerAdjuntos.php";
 		$("#contenedor").load('formas/configFormasdePago.html', function(){
 			$("#agregarCuenta").click(function(){
 				if(validarAgregarCuenta()){
@@ -108,12 +106,12 @@ function eventosPanel() {
 		
 	});
 	portafolio.onclick=function(){
+		VaciarFileInput();
 		fileupload.action = "server/php/PortafolioCursos.php";
+		mainInputFile();
 		$("#contenedor").load('formas/portafoliodecurso.html', function() {
 			agregarPortafolio.onclick=function(){
 				if(validarAgregarCurso()){
-					var archivos = document.getElementById("subir");
-					var archivo = archivos.files;
 					$.ajax
 					({
 						type: "POST",
@@ -180,9 +178,7 @@ function eventosPanel() {
 		  	}
 
   			ver.onclick=function(){
-  				console.log("ver");
 				perforacion.onclick=function(){
-					console.log("Perforacion");
 					$.ajax
 					({
 						type: "POST",
@@ -201,7 +197,8 @@ function eventosPanel() {
 					error:
 					function (msg) {
 						console.log( msg +"No se pudo realizar la conexion");}
-					});		
+					});
+					VerContenido();
 					EditarActualizar();
 					eliminar();
 				}
@@ -225,7 +222,7 @@ function eventosPanel() {
 					function (msg) {
 						console.log( msg +"No se pudo realizar la conexion");}
 					});
-					
+					VerContenido();
 					EditarActualizar();
 					eliminar();
 				}
@@ -249,6 +246,7 @@ function eventosPanel() {
 					function (msg) {
 						console.log( msg +"No se pudo realizar la conexion");}
 					});
+					VerContenido();
 					EditarActualizar();
 					eliminar();
 				}
@@ -272,6 +270,7 @@ function eventosPanel() {
 					function (msg) {
 						console.log( msg +"No se pudo realizar la conexion");}
 					});
+					VerContenido();
 					EditarActualizar();
 					eliminar();
 				}
@@ -315,8 +314,7 @@ function validarAgregarCuenta(){
 	else {return true;}
 }
 function validarAgregarCurso(){
-	var archivos = document.getElementById("subir");
-	var archivo = archivos.files;
+	var ArchivosSubidos = $('tr.template-download');
 	if(tareas.value==""){
 		alertas.innerHTML="<div class='alert alert-danger'>Elija un area</div>";
 		return false;
@@ -346,22 +344,19 @@ function validarAgregarCurso(){
         alertas.innerHTML="<div class='alert alert-danger'>Escriba la cantidad de cupos</div>";
 		return false;
 	}
-	else if(archivo.length==0){
-		alertas.innerHTML="<div class='alert alert-danger'>Debe seleccionar un archivo pdf del contenido del curso</div>";
-		return true;
+	else if(ArchivosSubidos.length == 0){
+		alertas.innerHTML="<div class='alert alert-danger'>Debe cargar al menos un archivo del contenido del curso</div>";
+		return false;
 	}
 	else {return true;}
 }
 
 function limpiarFormularioAgregarPortafolio(){
-	var archivos = document.getElementById("subir");
-	var archivo = archivos.files;
 	tareas.value="";
 	curso.value = "";
 	tdesde.value = "";
 	thasta.value = "";
 	tduracion.value = "" ;
-	archivos.value="";
 	tcupos.value="";
 }
 
@@ -504,6 +499,7 @@ function eliminar(){
 		});
 	});
 }
+
 function eliminarinscrito(){
 	$('a.eliminarinscrito').on('click',  function(){
 		var id=$(this).attr('name');
@@ -545,9 +541,9 @@ function ListarTabla(msg, table, row){
 		var fila2 = $('<td></td>').text(msg[i].Desde);
 		var fila3 = $('<td></td>').text(msg[i].Hasta);
 		var fila4 = $('<td></td>').text(msg[i].Duracion);
-	    var fila6 = $('<td></td>').append('<button type="button" class="btn btn-default btn-sm"  title="Ver contenido" > <span class="glyphicon glyphicon-eye-open"></span></button>');
+	    var fila6 = $('<td></td>').append('<a class="vercontenido btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#ModalSubirArchivo" title="Ver contenido" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-eye-open"></span></button>');
 	    fila6.append('<a  class="editar btn btn-default btn-sm" data-toggle="modal" data-target="#Modificar"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
-	    fila6.append('<a type="button" class="btn btn-default btn-sm eliminar" data-toggle="modal" data-target="#Eliminar"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');
+	    fila6.append('<a class="eliminar btn btn-default btn-sm" data-toggle="modal" type="button"  data-target="#Eliminar"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');
 
 		row2.append(fila1);
 		row2.append(fila2);
@@ -845,51 +841,30 @@ function eliminarcomprobante(){
 function VerAdjuntos(){
 	$('a.veradjuntos').on('click',  function(){
 		var id=$(this).attr('name');
-		console.log(id);
-		// Eliminando visualmente los archivos cargados
-		var trs = $('tr.template-download');
+		VaciarFileInput();
+		fileupload.action = "server/php/ComprobantesVerAdjuntos.php?id="+id;
+		mainInputFile();
+	});
+}
+
+function VerContenido(){
+	console.log("Ver contenido init");
+	$('a.vercontenido').on('click',  function(){
+		var id=$(this).attr('name');
+		VaciarFileInput();
+		fileupload.action = "server/php/PortafolioVerAdjuntos.php?id="+id;
+		mainInputFile();
+		console.log("Ejecutado Boton id: "+id);
+	});
+	console.log("Ver contenido Fin");
+}
+function VaciarFileInput(){
+	// Eliminando visualmente los archivos cargados
+	var trs = $('tr.template-download');
+	if (typeof trs != "undefined") {
 		for(var i = trs.length - 1; i > -1; i--)
 		{
 		    trs[i].outerHTML = "";
 		}
-		fileupload.action = "server/php/ComprobantesVerAdjuntos.php?id="+id;
-	   'use strict';
-
-	    // Initialize the jQuery File Upload widget:
-	    $('#fileupload').fileupload({
-
-	        // Uncomment the following to send cross-domain cookies:
-	        //xhrFields: {withCredentials: true},
-	        // Comendando original
-	        //url: 'server/php/'
-	        url: fileupload.attributes['action'].value
-	    });
-
-	    // Enable iframe cross-domain access via redirect option:
-	    $('#fileupload').fileupload(
-	        'option',
-	        'redirect',
-	        window.location.href.replace(
-	            /\/[^\/]*$/,
-	            '/cors/result.html?%s'
-	        )
-	    );
-
-
-	    // Load existing files:
-	    $('#fileupload').addClass('fileupload-processing');
-
-	    $.ajax({
-	        // Uncomment the following to send cross-domain cookies:
-	        //xhrFields: {withCredentials: true},
-	        url: $('#fileupload').fileupload('option', 'url'),
-	        dataType: 'json',
-	        context: $('#fileupload')[0]
-	    }).always(function () {
-	        $(this).removeClass('fileupload-processing');
-	    }).done(function (result) {
-	        $(this).fileupload('option', 'done')
-	            .call(this, $.Event('done'), {result: result});
-	    });
-	});
+	}
 }

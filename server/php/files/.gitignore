@@ -1,0 +1,7 @@
+*
+!.gitignore
+!.htaccess
+!comprobantes/
+!protafolio/
+!tempcomprobantes/
+!tempportafolio/*

@@ -15,7 +15,7 @@ require('UploadHandler.php');
 $id = "";
 if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])){
     session_start();
-    $_SESSION['idComprobante'] = $_REQUEST['id'];
+    $_SESSION['idPortafolio'] = $_REQUEST['id'];
 }
 else{
     return;
@@ -24,14 +24,14 @@ else{
 class CustomUploadHandler extends UploadHandler {
     protected function get_user_id() {
         @session_start();
-        return $_SESSION['idComprobante'];
+        return $_SESSION['idPortafolio'];
     }
 
     function __construct($options = null, $initialize = true, $error_messages = null) {
         $this->options = array(
-            'script_url' => $this->get_full_url().'/ComprobantesVerAdjuntos.php?id='.$_SESSION['idComprobante'],
-            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/comprobantes/',
-            'upload_url' => $this->get_full_url().'/files/comprobantes/',
+            'script_url' => $this->get_full_url().'/PortafolioVerAdjuntos.php?id='.$_SESSION['idPortafolio'],
+            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/portafolio/',
+            'upload_url' => $this->get_full_url().'/files/portafolio/',
             'user_dirs' => true,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
