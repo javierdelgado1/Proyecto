@@ -1,3 +1,6 @@
+function abrirCalendario() { 
+	open('calendario.php','','top=50,left=50,width=850,height=550') ; 
+} 
 function eventos() {
 	$("#INICIO2").click(function(){
 		$("#contenedor").load('formas/inicio.html');	
