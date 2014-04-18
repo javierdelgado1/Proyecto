@@ -2,6 +2,34 @@ function abrirCalendario() {
 	open('calendario.php','','top=50,left=50,width=850,height=550') ; 
 } 
 function eventos() {
+
+	  $("#categoria1").change(function(){
+      $.ajax
+          ({
+            type: "POST",
+            url: "Modelo/consultasPortafolio.php",
+            data: {id:10, Areas: $("#categoria1").val()},
+            async: false,
+            dataType: "json",
+            success:
+            function (msg) 
+            {       
+               
+              for(var i=0; i<msg[0].m; i++){                
+                curso1.options[i]= new Option (msg[i].Curso);
+                curso1.options[i].text = msg[i].Curso+"";
+                curso1.options[i].value = msg[i].Curso+"";
+
+                console.log(msg[i].Curso);
+              }
+            },
+          error:
+          function (msg) {
+            console.log( msg +"No se pudo realizar la conexion");}
+          });
+    });
+
+
 	$("#INICIO2").click(function(){
 		$("#contenedor").load('formas/inicio.html');	
 		$('#girar').fadeIn();
