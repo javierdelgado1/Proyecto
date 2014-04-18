@@ -275,7 +275,7 @@ msgstr "Desconectar"
 
 #: includes/calendar.php:457 includes/login.php:57 includes/login.php:68
 msgid "Log in"
-msgstr "Login"
+msgstr "Iniciar Sesión"
 
 #: includes/calendar.php:475
 msgid "Add Event"
