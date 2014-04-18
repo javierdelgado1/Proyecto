@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es">
+<?php include 'calendario/includes/embed_setup.php'; ?>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>GlobalSys</title>   
@@ -14,10 +15,7 @@
     <!-- CSS adjustments for browsers with JavaScript disabled -->
 
     <noscript><link rel="stylesheet" href="css/jquery.fileupload-noscript.css"></noscript>
-    <noscript><link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css"></noscript>
-    <style>
-
-    </style>
+    <noscript><link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css"></noscript
   </head>
   <body>
 <!--   <div id="submenu">*Portafolios de Cursos *Registro *Descarga</div> -->
@@ -67,25 +65,18 @@
 
      </div>
      <div id="programaciondecursos_inputs">
-          <select>
-            <option>Selecion por Categoria</option>
-            <option>Opcion 1</option>
-            <option>Opcion 2</option>
-            <option>Opcion 3</option>
-            <option>Opcion 4</option>
-
+          <select id="categoria1" style="width: 180px;">
+            <option>Selecion por Categoria</option> 
+            <option value="Perforacion">Perforacion</option> 
+            <option value="Yacimiento">Yacimiento</option> 
+            <option value="Administracion">Administracion</option> 
+            <option value="Finanzas">Finanzas</option> 
           </select>
-          <select>
+          <select id="curso1" style="width: 180px;">
             <option>Selecion por Categoria</option>
-            <option>Opcion A</option>
-            <option>Opcion B</option>
-            <option>Opcion C</option>
-            <option>Opcion D</option>
-            <option>Opcion E</option>
-
-          </select>
+         </select>
           <br>
-          <a onClick="abrirCalendario();">
+          <a href="#" data-toggle="modal" data-target="#ModalCalendario">
             <label class="fuente" style="color: #C2C3C7;">TODOS LOS CURSOS</label>
           </a>
 
@@ -263,6 +254,20 @@
         </div>         
     </div>
 
+    <!-- MODAL CALENDARIO -->
+    <div class="modal fade bs-example-modal-lg" id="ModalCalendario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <?php include 'calendario/includes/embed.php'; ?>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+     
       <!-- Modal INPUT FILE -->
     <div class="modal fade" id="ModalSubirArchivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -414,14 +419,43 @@
     </script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript">var jQuery_1_9_2 = $.noConflict(true);</script>
+    <script type="text/javascript" src="js/dropdows.js"></script>
     <link rel="stylesheet" type="text/css" href="css/dropdown.css">
+
     <script  src="js/efectos.js" language="JavaScript"></script>
     <script  src="js/eventos.js" language="JavaScript"></script>
     <script type="text/javascript">
       efectos();
       eventos();
     </script>
+      <script type="text/javascript">
+    $("#categoria1").change(function(){
+      $.ajax
+          ({
+            type: "POST",
+            url: "Modelo/consultasPortafolio.php",
+            data: {id:10, Areas: $("#categoria1").val()},
+            async: false,
+            dataType: "json",
+            success:
+            function (msg) 
+            {       
+               
+              for(var i=0; i<msg[0].m; i++){                
+                curso1.options[i]= new Option (msg[i].Curso);
+                curso1.options[i].text = msg[i].Curso+"";
+                curso1.options[i].value = msg[i].Curso+"";
 
+                console.log(msg[i].Curso);
+              }
+            },
+          error:
+          function (msg) {
+            console.log( msg +"No se pudo realizar la conexion");}
+          });
+    });
+      </script>
       <!-- SCRIPT FOR INPUT FILE -->
     <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
     <script src="js/vendor/jquery.ui.widget.js"></script>
