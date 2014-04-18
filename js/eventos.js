@@ -1,5 +1,5 @@
 function abrirCalendario() { 
-	open('calendario.php','','top=200,left=200,width=500,height=500') ; 
+	open('calendario.php','','top=50,left=50,width=850,height=550') ; 
 } 
 function eventos() {
 	$("#INICIO2").click(function(){
