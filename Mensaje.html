@@ -1,56 +1,37 @@
+
+
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Enviar Mensaje</title>
-</head>
-<body>
-	<div class="contenedor">
-		<div class="well">
-			<div class="row">				
-			<div class="col-md-4">
-				<div id="dates"></div>
-			</div>			
-			 <div class="col-md-8">
-			 	<form role="form" onsubmit="return false;">
-				   <div class="form-group">
-				    <label >Telefono</label>
-				    <input type="text" class="form-control" id="curso" >
-				  </div>
-				  <div class="form-group">
-				    <label >Mensaje</label>
-				    <textarea class="form-control" id="Mensaje"></textarea>
-				  </div>
-				</form>
-			 </div>	
+    <head>
+        <title>bootstrap datepicker examples</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Bootstrap CSS and bootstrap datepicker CSS used for styling the demo pages-->
+        <link rel="stylesheet" href="css/datepicker.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+    </head>
+    <body>
+        <div class="container"  id="example1">
+           
+        </div>
+        <!-- Load jQuery and bootstrap datepicker scripts -->
+		
+		
+		<script type="text/javascript" src="include/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script src="js/bootstrap-datepicker.js"></script>		
 
-			</div>
-		</div>
-	</div>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script type="text/javascript">
-	var Event = function(text, className) {
-    this.text = text;
-    this.className = className;
-};
 
-var events = {};
-events[new Date("05/18/2014")] = new Event("Valentines Day", "pink");
-events[new Date("02/18/2014")] = new Event("Payday", "green");
-
-console.dir(events);
-
-$("#dates").datepicker({
-    beforeShowDay: function(date) {
-        var event = events[date];
-        if (event) {
-            return [true, event.className, event.text];
-        }
-        else {
-            return [true, '', ''];tttttttttttttttttt
-        }
-    }
-});
-</script>
-</body>
+        <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+                
+                $('#example1').datepicker('setDate', new Date(2014, 2, 5),  new Date(2014, 2, 6));
+                $('#example1').click(function(){
+                	 console.log( $('#example1').datepicker( "getDate" ));
+                })  
+            
+            });
+        </script>
+    </body>
 </html>
+
