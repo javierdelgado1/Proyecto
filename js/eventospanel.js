@@ -358,6 +358,7 @@ function limpiarFormularioAgregarPortafolio(){
 	thasta.value = "";
 	tduracion.value = "" ;
 	tcupos.value="";
+	VaciarFileInput();
 }
 
 function EditarActualizar(){
