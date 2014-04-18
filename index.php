@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
+<?php include 'calendario/includes/embed_setup.php'; ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>GlobalSys</title>   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="css/bootstrap.css">  -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
     <link rel="stylesheet" type="text/css" href="css/principal.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrapAdaptationfileupload.css">
     <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
@@ -85,7 +86,9 @@
 
           </select>
           <br>
-          <label class="fuente" style="color: #C2C3C7;"><label>TODOS LOS CURSOS</label></label>
+          <a href="#" data-toggle="modal" data-target="#ModalCalendario">
+            <label class="fuente" style="color: #C2C3C7;">TODOS LOS CURSOS</label>
+          </a>
 
      </div>
 
@@ -260,11 +263,24 @@
           </div>
         </div>         
     </div>
-  
+
+    <!-- MODAL CALENDARIO -->
+    <div class="modal fade bs-example-modal-lg" id="ModalCalendario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <?php include 'calendario/includes/embed.php'; ?>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
      
       <!-- Modal INPUT FILE -->
-    <div class="modal fade " id="ModalSubirArchivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog ">
+    <div class="modal fade" id="ModalSubirArchivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -412,7 +428,8 @@
     {% } %}
     </script>
 
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript">var jQuery_1_9_2 = $.noConflict(true);</script>
     <script type="text/javascript" src="js/dropdows.js"></script>
     <link rel="stylesheet" type="text/css" href="css/dropdown.css">
 
@@ -454,6 +471,7 @@
     <script src="js/jquery.fileupload-ui.js"></script>
     <!-- The main application script -->
     <script src="js/main.js"></script>
+
 
 
   </body>
