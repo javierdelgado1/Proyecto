@@ -18,8 +18,7 @@ function eventosPanel() {
 	}
 	$("#FormadePago").click(function (){
 		
-		fileupload.action = "server/php/ComprobantesVerAdjuntos.php";
-		console.log(fileupload);
+		//fileupload.action = "server/php/ComprobantesVerAdjuntos.php";
 		$("#contenedor").load('formas/configFormasdePago.html', function(){
 			$("#agregarCuenta").click(function(){
 				if(validarAgregarCuenta()){
@@ -59,9 +58,9 @@ function eventosPanel() {
 			});
 			$("#Pagosrealizados").click(function(){
 				listarComprobantesdepago();
-				VerAdjuntos();
 				EditarActualizarComprobantes();
 				eliminarcomprobante();
+				VerAdjuntos();
 			});
 
 
@@ -109,6 +108,7 @@ function eventosPanel() {
 		
 	});
 	portafolio.onclick=function(){
+		fileupload.action = "server/php/PortafolioCursos.php";
 		$("#contenedor").load('formas/portafoliodecurso.html', function() {
 			agregarPortafolio.onclick=function(){
 				if(validarAgregarCurso()){
@@ -812,36 +812,6 @@ function EditarActualizarComprobantes(){
 	});
 }
 
-function VerAdjuntos(){
-	$('a.veradjuntos').on('click',  function(){
-		var id=$(this).attr('name');
-		$("#footereliminarComprobante").html("");
-		$("#footereliminarComprobante").append('<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="eliminardefinitivo2c btn btn-primary" name="'+id+'">Borrar</a>');
-		$('a.eliminardefinitivo2c').on('click',  function(){	
-			var id=$(this).attr('name');
-			$.ajax
-		({
-			type: "POST",
-			url: "Modelo/consultasFormasdePago.php",
-			data: {id:120, ID:id},
-			async: false,
-			dataType: "json",
-			success:
-			function (msg) 
-			{
-				alertas3c.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";	
-				listarComprobantesdepago();
-				EditarActualizarComprobantes();
-				eliminarcomprobante();
-							},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
-			});
-		});
-	});
-}
-
 function eliminarcomprobante(){
 	$('a.eliminarcomprobante').on('click',  function(){
 		var id=$(this).attr('name');
@@ -869,5 +839,57 @@ function eliminarcomprobante(){
 				console.log( msg +"No se pudo realizar la conexion");}
 			});
 		});
+	});
+}
+
+function VerAdjuntos(){
+	$('a.veradjuntos').on('click',  function(){
+		var id=$(this).attr('name');
+		console.log(id);
+		// Eliminando visualmente los archivos cargados
+		var trs = $('tr.template-download');
+		for(var i = trs.length - 1; i > -1; i--)
+		{
+		    trs[i].outerHTML = "";
+		}
+		fileupload.action = "server/php/ComprobantesVerAdjuntos.php?id="+id;
+	   'use strict';
+
+	    // Initialize the jQuery File Upload widget:
+	    $('#fileupload').fileupload({
+
+	        // Uncomment the following to send cross-domain cookies:
+	        //xhrFields: {withCredentials: true},
+	        // Comendando original
+	        //url: 'server/php/'
+	        url: fileupload.attributes['action'].value
+	    });
+
+	    // Enable iframe cross-domain access via redirect option:
+	    $('#fileupload').fileupload(
+	        'option',
+	        'redirect',
+	        window.location.href.replace(
+	            /\/[^\/]*$/,
+	            '/cors/result.html?%s'
+	        )
+	    );
+
+
+	    // Load existing files:
+	    $('#fileupload').addClass('fileupload-processing');
+
+	    $.ajax({
+	        // Uncomment the following to send cross-domain cookies:
+	        //xhrFields: {withCredentials: true},
+	        url: $('#fileupload').fileupload('option', 'url'),
+	        dataType: 'json',
+	        context: $('#fileupload')[0]
+	    }).always(function () {
+	        $(this).removeClass('fileupload-processing');
+	    }).done(function (result) {
+	        $(this).fileupload('option', 'done')
+	            .call(this, $.Event('done'), {result: result});
+	    });
 	});
 }

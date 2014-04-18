@@ -120,7 +120,7 @@ if(!empty($_SESSION["{$phpc_prefix}uid"])) {
 	$phpc_user = $phpcdb->get_user($_SESSION["{$phpc_prefix}uid"]);
 } else {
 	$anonymous = array('uid' => 0,
-			'username' => 'anonymous',
+			'username' => 'Invitado',
 			'password' => '',
 			'admin' => false,
 			'password_editable' => false,

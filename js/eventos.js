@@ -8,7 +8,7 @@ function eventos() {
 	});
 	INICIO.onclick=function(){		
 		$("#contenedor").load('formas/inicio.html');	
-		$('#girar').fadeIn();		
+		$('#girar').fadeIn();
 	}
 	LAEMPRESA.onclick=function(){		
 		$("#contenedor").load('formas/laempresa.html');	

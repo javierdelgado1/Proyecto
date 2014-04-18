@@ -12,12 +12,20 @@
 
 error_reporting(E_ALL | E_STRICT);
 require('UploadHandler.php');
+$id = "";
+if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])){
+    $id = $_REQUEST['id'];
+}
+else{
+    return;
+}
+    
 class CustomUploadHandler extends UploadHandler {
-    function __construct($options = null, $initialize = true, $error_messages = null) {
+    function __construct($options = null, $initialize = true, $error_messages = null, $id = "") {
         $this->options = array(
-            'script_url' => $this->get_full_url().'/PortafolioCursos.php',
-            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/tempportafolio/',
-            'upload_url' => $this->get_full_url().'/files/tempportafolio/',
+            'script_url' => $this->get_full_url().'/ComprobantesVerAdjuntos.php?id='.$id,
+            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/comprobantes/'.$id.'/',
+            'upload_url' => $this->get_full_url().'/files/comprobantes/'.$id.'/',
             'user_dirs' => false,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
@@ -132,6 +140,4 @@ class CustomUploadHandler extends UploadHandler {
     }
 }
 
-$upload_handler = new CustomUploadHandler(array(
-    'user_dirs' => true
-));
+$upload_handler = new CustomUploadHandler(null,true,null,$id);

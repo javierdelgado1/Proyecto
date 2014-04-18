@@ -1314,7 +1314,7 @@ msgstr "consulta SQL"
 
 #: includes/phpcevent.class.php:43
 msgid "anonymous"
-msgstr "anónimo"
+msgstr "anonimo"
 
 #: includes/phpcevent.class.php:45
 msgid "unknown"
