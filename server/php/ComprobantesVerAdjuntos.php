@@ -14,19 +14,25 @@ error_reporting(E_ALL | E_STRICT);
 require('UploadHandler.php');
 $id = "";
 if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])){
-    $id = $_REQUEST['id'];
+    session_start();
+    $_SESSION['idComprobante'] = $_REQUEST['id'];
 }
 else{
     return;
 }
     
 class CustomUploadHandler extends UploadHandler {
-    function __construct($options = null, $initialize = true, $error_messages = null, $id = "") {
+    protected function get_user_id() {
+        @session_start();
+        return $_SESSION['idComprobante'];
+    }
+
+    function __construct($options = null, $initialize = true, $error_messages = null) {
         $this->options = array(
-            'script_url' => $this->get_full_url().'/ComprobantesVerAdjuntos.php?id='.$id,
-            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/comprobantes/'.$id.'/',
-            'upload_url' => $this->get_full_url().'/files/comprobantes/'.$id.'/',
-            'user_dirs' => false,
+            'script_url' => $this->get_full_url().'/ComprobantesVerAdjuntos.php?id='.$_SESSION['idComprobante'],
+            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/comprobantes/',
+            'upload_url' => $this->get_full_url().'/files/comprobantes/',
+            'user_dirs' => true,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
             // Set the following option to 'POST', if your server does not support
@@ -140,4 +146,4 @@ class CustomUploadHandler extends UploadHandler {
     }
 }
 
-$upload_handler = new CustomUploadHandler(null,true,null,$id);
+$upload_handler = new CustomUploadHandler();

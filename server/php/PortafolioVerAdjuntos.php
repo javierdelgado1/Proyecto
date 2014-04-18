@@ -16,7 +16,6 @@ $id = "";
 if (isset($_REQUEST['id']) && is_numeric($_REQUEST['id'])){
     session_start();
     $_SESSION['idPortafolio'] = $_REQUEST['id'];
-    //$id = $_REQUEST['id'];
 }
 else{
     return;
@@ -28,9 +27,9 @@ class CustomUploadHandler extends UploadHandler {
         return $_SESSION['idPortafolio'];
     }
 
-    function __construct($options = null, $initialize = true, $error_messages = null, $id = "") {
+    function __construct($options = null, $initialize = true, $error_messages = null) {
         $this->options = array(
-            'script_url' => $this->get_full_url().'/PortafolioVerAdjuntos.php',
+            'script_url' => $this->get_full_url().'/PortafolioVerAdjuntos.php?id='.$_SESSION['idPortafolio'],
             'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/portafolio/',
             'upload_url' => $this->get_full_url().'/files/portafolio/',
             'user_dirs' => true,
@@ -147,4 +146,4 @@ class CustomUploadHandler extends UploadHandler {
     }
 }
 
-$upload_handler = new CustomUploadHandler(null,true,null,$id);
+$upload_handler = new CustomUploadHandler();
