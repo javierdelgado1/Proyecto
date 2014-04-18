@@ -17,8 +17,6 @@ function eventosPanel() {
 			});
 	}
 	$("#FormadePago").click(function (){
-		
-		//fileupload.action = "server/php/ComprobantesVerAdjuntos.php";
 		$("#contenedor").load('formas/configFormasdePago.html', function(){
 			$("#agregarCuenta").click(function(){
 				if(validarAgregarCuenta()){
