@@ -17,6 +17,9 @@ function eventosPanel() {
 			});
 	}
 	$("#FormadePago").click(function (){
+		
+		fileupload.action = "server/php/ComprobantesVerAdjuntos.php";
+		console.log(fileupload);
 		$("#contenedor").load('formas/configFormasdePago.html', function(){
 			$("#agregarCuenta").click(function(){
 				if(validarAgregarCuenta()){
@@ -60,6 +63,7 @@ function eventosPanel() {
 				EditarActualizarComprobantes();
 				eliminarcomprobante();
 			});
+
 
 		});
 
@@ -106,7 +110,7 @@ function eventosPanel() {
 	});
 	portafolio.onclick=function(){
 		$("#contenedor").load('formas/portafoliodecurso.html', function() {
-			  agregarPortafolio.onclick=function(){
+			agregarPortafolio.onclick=function(){
 				if(validarAgregarCurso()){
 					var archivos = document.getElementById("subir");
 					var archivo = archivos.files;
@@ -730,7 +734,7 @@ function ListarTabladeComprobantes(msg, table, row){
 		var fila2 = $('<td></td>').text(msg[i].Apellido);
 		var fila3 = $('<td></td>').text(msg[i].Telefono);
 		var fila4 = $('<td></td>').text(msg[i].Correo);
-		var fila6 = $('<td></td>').append('<a type="button" class="btn btn-default btn-sm veradjuntos" data-toggle="modal" data-target="#ModalVerAdjuntos"  title="Adjuntos" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-paperclip"></span></a>');
+		var fila6 = $('<td></td>').append('<a type="button" class="btn btn-default btn-sm veradjuntos" data-toggle="modal" data-target="#ModalSubirArchivo"  title="Adjuntos" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-paperclip"></span></a>');
 	    fila6.append('<a type="button" class="btn btn-default btn-sm editarcomprobante" data-toggle="modal" data-target="#ModificarComprobante"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
 	    fila6.append('<a type="button" class="btn btn-default btn-sm eliminarcomprobante" data-toggle="modal" data-target="#EliminarComprobante"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');
 	    
@@ -811,7 +815,6 @@ function EditarActualizarComprobantes(){
 function VerAdjuntos(){
 	$('a.veradjuntos').on('click',  function(){
 		var id=$(this).attr('name');
-		console.log(id);
 		$("#footereliminarComprobante").html("");
 		$("#footereliminarComprobante").append('<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="eliminardefinitivo2c btn btn-primary" name="'+id+'">Borrar</a>');
 		$('a.eliminardefinitivo2c').on('click',  function(){	
@@ -820,7 +823,7 @@ function VerAdjuntos(){
 		({
 			type: "POST",
 			url: "Modelo/consultasFormasdePago.php",
-			data: {id:12, ID:id},
+			data: {id:120, ID:id},
 			async: false,
 			dataType: "json",
 			success:
