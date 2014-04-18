@@ -11,9 +11,8 @@
 
 /* global $, window */
 
-$(function () {
+$(function mainInputFile() {
     'use strict';
-
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
 
@@ -50,6 +49,8 @@ $(function () {
         $(this).fileupload('option', 'done')
             .call(this, $.Event('done'), {result: result});
     });
-
+    window.mainInputFile=mainInputFile;
 
 });
+
+

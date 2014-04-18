@@ -1,5 +1,6 @@
 <?php
 	include("conector.php");
+	include("funcionesGlobales.php");
 
 	$id=$_REQUEST['id'];
 
@@ -122,22 +123,6 @@
 		echo json_encode($objeto);
 	}
 
-
-	function moverArchivos($ubicacion,$destino){
-		// Moviendo desde la ubicacion al destino
-        if(!file_exists($destino))
-        {
-        	mkdir($destino,  0775);
-        }
-		if ($gestor = opendir($ubicacion)) {
-		    while (false !== ($entrada = readdir($gestor))) {
-		        if ($entrada != "." && $entrada != ".." && !is_dir($ubicacion.'/'.$entrada)) {
-		            rename ($ubicacion.'/'.$entrada,$destino.'/'.$entrada);
-		        }
-		    }
-		    closedir($gestor);
-		}
-	}
 
 	function ComprobantedePago(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);

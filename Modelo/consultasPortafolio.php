@@ -1,5 +1,6 @@
 <?php
 	include("conector.php");
+	include("funcionesGlobales.php");
 
 	$id=$_REQUEST['id'];
 
@@ -252,7 +253,11 @@
 		$cupos=$_REQUEST['cupos'];
 		$tupla = "INSERT INTO portafolio (`Area`, `Curso`, `Desde`, `Hasta`, `Duracion`, `Cupos`) VALUES ('$area','$curso','$desde','$hasta','$duracion','$cupos')";
 		$resultado = $mysqli->query($tupla);
-
+		$id = $mysqli->insert_id;
+		session_start();
+		$ubicacion = '../server/php/files/tempportafolio/'.session_id();
+		$destino = '../server/php/files/portafolio/'.$id;
+		moverArchivos($ubicacion,$destino);
 		echo json_encode("true");
 	}
 
