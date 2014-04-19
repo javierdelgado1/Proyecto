@@ -63,7 +63,7 @@
 			$date = new DateTime($objeto[$i]['Hasta']);
 			$objeto[$i]['Hasta']=$date->format('d-m-Y');
 			$objeto[$i]['Duracion']=$db_resultado['Duracion'];
-			 $i++;
+			$i++;
 		}
 		$mysqli->close();
 		echo json_encode($objeto);
@@ -234,7 +234,7 @@
 			$date = new DateTime($objeto[$i]['Hasta']);
 			$objeto[$i]['Hasta']=$date->format('d-m-Y');
 			$objeto[$i]['Duracion']=$db_resultado['Duracion'];
-			 $i++;
+			$i++;
 		}
 		$mysqli->close();
 		echo json_encode($objeto);

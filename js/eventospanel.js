@@ -876,4 +876,11 @@ function VaciarFileInput(){
 		    trs[i].outerHTML = "";
 		}
 	}
+	trs = $('tr.template-upload');
+	if (typeof trs != "undefined") {
+		for(var i = trs.length - 1; i > -1; i--)
+		{
+		    trs[i].outerHTML = "";
+		}
+	}
 }
