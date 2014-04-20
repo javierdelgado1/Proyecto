@@ -873,8 +873,8 @@ a:link
 .alert {
 	padding: 5px;
 	margin-bottom: 5px;
-	width: 280px;
-	height: 20px;
+	width: 97%;
+	height: 20%;
 	border: 1px solid transparent;
 	border-radius: 4px;
 }

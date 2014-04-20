@@ -252,7 +252,7 @@ function eventos() {
 
 					var publicaciones="";
 					for (var i = 0; i <msg[0].m; i++) {
-						publicaciones+='<div class="noticias"><h2><i id="tituloNoticia">'+msg[i].Titulo+'</i> <small style="color: #ECF0FF; font-size: 11px;" > Publicado:'+msg[i].Fecha + '</small></h2>'+msg[i].Cuerpo+' <br></div><br>';
+						publicaciones+='<div class="noticias"><h2 class="alert alert-info"><i id="tituloNoticia">'+msg[i].Titulo+'</i> </h2><small style="color: #ECF0FF; font-size: 11px;" > Publicado:'+msg[i].Fecha + '</small>'+msg[i].Cuerpo+' <br></div><br>';
 					}
 					noticias.innerHTML=publicaciones;
 				},
