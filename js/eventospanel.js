@@ -16,6 +16,15 @@ function eventosPanel() {
 		        function (msg) {console.log(msg +"No se pudo realizar la conexion");}
 			});
 	}
+
+	$("#Noticias").click(function(){
+		$("#contenedor").html("");		
+		$("#contenedor").append('<iframe src="editor.html" width="100%"  height="600px;" style="overflow-y:auto;" frameBorder="0"></iframe>');
+		$("#publicar").click(function(){
+			console.log("sdfsdfsdfdfsdf");
+		});
+
+	});
 	$("#FormadePago").click(function (){
 		$("#contenedor").load('formas/configFormasdePago.html', function(){
 			$("#agregarCuenta").click(function(){

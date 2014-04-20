@@ -3,50 +3,81 @@
     <head>
         <title>bootstrap datepicker examples</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Bootstrap CSS and bootstrap datepicker CSS used for styling the demo pages-->
-        <link rel="stylesheet" href="css/datepicker.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
+       
+        <link rel="stylesheet" href="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
     </head>
     <body>
-        <div class="container"  id="example1">
-           
-        </div>
-        <!-- Load jQuery and bootstrap datepicker scripts -->
+        <div class="container"  id="example1">           
+        </div>    
 		
 		
 		<script type="text/javascript" src="include/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script src="js/bootstrap-datepicker.js"></script>		
+		<script src="js/bootstrap-datepicker.js"></script>	
+		<script src="js/bootstrap-datepicker.es.js"></script>		
+	
 
-        <script type="text/javascript">
-            // When the document is ready
+        <script type="text/javascript">            
             $(document).ready(function () {
+
+
                 var array = ["2014-04-15","2014-04-16","2014-04-17"];
+                function buscarCursos(fecha){
+                	console.log("Fecha " + fecha);
+                $.ajax
+				({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:12, fecha:fecha},
+				async: false,	
+				dataType: "json",		
+				success:
+				function (msg) 
+				{	
+					console.log("m "+ msg[0].m);
+					for (var i =0; i < msg[0].m; i++) {
+						console.log("Curso " + msg[i].Curso);						
+						console.log("Año: " + msg[i].Desde[0]);
+						console.log("Mes: " + msg[i].Desde[1]);
+						console.log("Dia: " + msg[i].Desde[2]);						
+					}
+				},
+				error:
+				function (msg) {console.log(msg +"No se pudo realizar la conexion");}
+				});		
+        	}
+calendario();
+			function calendario(){
                 $('#example1').datepicker({
 				    language: "es",
+				    format: "mm/dd/yyyy",
 				    todayHighlight: true,
+				    
 				    beforeShowDay: function (date){
+				    	console.log(date.getYear());
 				      if (date.getMonth() == (new Date()).getMonth()){
-				      	console.log(date.getDate());
+
+				     /* buscarCursos(date.getYear()+"-"+date.getMonth()+"-"+date.getDate());*/
 				        switch (date.getDate()){
-				          case 4:
-				            return {
-				              tooltip: 'Example tooltip',
-				              classes: 'active'
-				            };
-				          case 8:
-				            return false;
-				          case 12:
-				            return "green";
+				          case 1 :
+				          			if(date.getDate()==01){
+				          				console.log(date.getDate());
+				          		 	return {
+							              tooltip: 'Curso Tierra',
+							              classes: 'active'
+							            };
+				          		 }
+				          case 2 :
+				          case 3 :
+				          case 4 :
+				        
 				        }
 				    }
 				}
-				});
-                $('#example1').click(function(){
-                	 console.log( $('#example1').datepicker( "getDate" ));
-                })  
-            
-            });
+				});             
+        	}
+        });
 
         </script>
     </body>

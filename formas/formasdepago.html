@@ -1,5 +1,5 @@
 
-    <div style="position:absolute; left:10px; ">
+    <div style="position:absolute; left:10px; padding-bottom:5px;">
 	<h2>Formas de pago - <small>Cuentas Bancarias</small></h2>
 	<div style="color: #ECF0FF;" id="cuentas">
 		<h4>
@@ -12,6 +12,7 @@
 	<div class="alert alert-info" id="alertas">
 		<b>Todos los campos con (*) son requeridos.</b>	
 	</div>
+	<fieldset>
 	<table>
 		<tr>
 			<td>
@@ -124,11 +125,19 @@
 			<td>
 				<b>Escaneo del Recibo</b>
 				<!--<input type="file" name="trecibo" id="trecibo" class="CajaTexto">-->
-				<a class="btn btn-sm boton" href="#" data-toggle="modal" data-target="#ModalSubirArchivo">Cargar Archivos</a>
+				
+			</td>
+			<td>
+				*
+			</td>
+			<td align="left">
+				<input  type="submit" class="boton" href="#" data-toggle="modal" data-target="#ModalSubirArchivo" value="Cargar Archivos" />
+			</td>
+			<td></td>
+			<td>
+				<input type="submit" value="Confirmar Pago" class="boton" id="enviarformadepago"/>
 			</td>
 		</tr>
-		<tr>
-			<td><input type="submit" value="Enviar Datos de Confirmacion" class="boton" id="enviarformadepago"/></td>
-		</tr>
 	</table>
+	</fieldset>
 </div>

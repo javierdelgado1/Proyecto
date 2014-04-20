@@ -758,8 +758,8 @@ a:link
 #INICIO{
 	position: absolute;
 	padding-top: 20px;
-	border-left: 1px solid gray;
-	border-right:  1px solid gray;
+	border-left: 1px solid rgb(168, 168, 168);;
+	border-right:  1px solid rgb(168, 168, 168);;
 	width: 90px;
 	height: 43px;
 }
@@ -774,8 +774,8 @@ a:link
 #LAEMPRESA{
 	position: absolute;
 	padding-top: 20px;
-	border-left: 1px solid gray;
-	border-right:  1px solid gray;
+	border-left: 1px solid rgb(168, 168, 168);;
+	border-right:  1px solid rgb(168, 168, 168);;
 	width: 90px;
 	height: 45px;
 }
@@ -790,8 +790,8 @@ a:link
 #CLIENTES{
 	position: absolute;
 	padding-top: 20px;
-	border-left: 1px solid gray;
-	border-right:  1px solid gray;
+	border-left: 1px solid rgb(168, 168, 168);;
+	border-right:  1px solid rgb(168, 168, 168);;
 	width: 90px;
 	height: 45px;
 }
@@ -805,8 +805,8 @@ a:link
 #VALORES{
 	position: absolute;
 	padding-top: 20px;
-	border-left: 1px solid gray;
-	border-right:  1px solid gray;
+	border-left: 1px solid rgb(168, 168, 168);;
+	border-right:  1px solid rgb(168, 168, 168);;
 	width: 90px;
 	height: 45px;
 }
@@ -819,8 +819,8 @@ a:link
 #BLOG{
 	position: absolute;
 	padding-top: 20px;
-	border-left: 1px solid gray;
-	border-right:  1px solid gray;
+	border-left: 1px solid rgb(168, 168, 168);;
+	border-right:  1px solid rgb(168, 168, 168);;
 	width: 90px;
 	height: 45px;	
 }
@@ -834,8 +834,8 @@ a:link
 #CONTACTO{
 	position: absolute;
 	padding-top: 20px;
-	border-left: 1px solid gray;
-	border-right:  1px solid gray;
+	border-left: 1px solid rgb(168, 168, 168);;
+	border-right:  1px solid rgb(168, 168, 168);;
 	width: 90px;
 	height: 45px;
 }
@@ -849,8 +849,8 @@ a:link
 #SERVICIOS{
 	position: absolute;
 	padding-top: 20px;
-	border-left: 1px solid gray;
-	border-right:  1px solid gray;
+	border-left: 1px solid rgb(168, 168, 168);;
+	border-right:  1px solid rgb(168, 168, 168);;
 	width: 90px;
 	height: 45px;
 }
@@ -971,3 +971,28 @@ a:link
 	background-color: #555;
 }*/
 
+
+.noticias{
+	padding-left: 5px;
+	width: 670px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	background: #9C9C9C;
+	border-top: 1px solid rgb(168, 168, 168);
+	border-left: 1px solid  rgb(168, 168, 168);
+	border-bottom: 1px solid rgb(168, 168, 168) ;
+	border-right: 1px solid rgb(168, 168, 168);
+}
+
+fieldset{
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-top: 1px solid rgb(168, 168, 168);
+	border-left: 1px solid  rgb(168, 168, 168);
+	border-bottom: 1px solid rgb(168, 168, 168) ;
+	border-right: 1px solid rgb(168, 168, 168);
+}

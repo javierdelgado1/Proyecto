@@ -39,8 +39,28 @@
 		case 11: 
 			ObtenerTodoslosCursos();
 			break;
-
+		case 12 :
+			ObtenerFechasdeCurso();
+			break;
 		default;
+	}
+	function ObtenerFechasdeCurso(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		
+		$Fecha=substr("114-03",1);
+		$tupla = "SELECT Desde, Curso FROM  portafolio  WHERE Desde like  '%$Fecha%'";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['mensaje']=false;
+		$i=0;
+		$objeto[0]['m']=$resultado->num_rows;
+		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['Curso']=$db_resultado['Curso'];
+			$objeto[$i]['Desde']=explode("-", $db_resultado['Desde']);
+			$i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
 	}
 	function ObtenerTodoslosCursos(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);

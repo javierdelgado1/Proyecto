@@ -233,7 +233,28 @@ function eventos() {
 		$('#girar').fadeOut();
 	}
 	BLOG.onclick=function(){		
-		$("#contenedor").load('formas/blog.html');	
+		$("#contenedor").load('formas/blog.html', function(){
+				$.ajax
+				({
+				type: "POST",
+				url: "Modelo/consultasNoticias.php",
+				data: {id:2},
+				async: false,
+				dataType: "json",									
+				success:
+				function (msg) 
+				{	
+
+					var publicaciones="";
+					for (var i = 0; i <msg[0].m; i++) {
+						publicaciones+='<div class="noticias"><h2><i id="tituloNoticia">'+msg[i].Titulo+'</i> <small style="color: #ECF0FF; font-size: 11px;" > Publicado:'+msg[i].Fecha + '</small></h2>'+msg[i].Cuerpo+' <br></div><br>';
+					}
+					noticias.innerHTML=publicaciones;
+				},
+				error:
+				function (msg) {console.log(msg +"No se pudo realizar la conexion");}
+				});		
+		});	
 		$('#girar').fadeOut();
 	}
 	CONTACTO.onclick=function(){		
