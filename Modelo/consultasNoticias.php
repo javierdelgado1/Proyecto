@@ -15,9 +15,45 @@
 		case 3:
 			eliminarNoticias();
 			break;
+		case 4:
+			obtenernoticia();
+			break;
+		case 5:
+			actualizar();
+			break;
+
 
 		
 		default;
+	}
+	function actualizar(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$ID=$_REQUEST['ID'];		
+		$titulo=$_REQUEST['titulo'];
+		$cuerpo=$_REQUEST['cuerpo'];
+		$tupla="UPDATE  noticias set Titulo='$titulo', Cuerpo='$cuerpo' WHERE  id='$ID'";
+		$resultado = $mysqli->query($tupla);
+		$mysqli->close();	
+		echo json_encode("true");
+
+	}
+	function obtenernoticia(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$ID=$_REQUEST['ID'];		
+		$tupla="SELECT * FROM noticias  WHERE id='$ID'";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['mensaje']=false;		
+		$objeto[0]['m']=$resultado->num_rows;
+		if($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[0]['id']=$db_resultado['id'];
+			$objeto[0]['Titulo']=$db_resultado['Titulo'];
+			$objeto[0]['Cuerpo']=$db_resultado['Cuerpo'];
+			$objeto[0]['Fecha']=$db_resultado['Fecha'];			
+			
+		}
+		$mysqli->close();	
+		echo json_encode($objeto);
 	}
 	function eliminarNoticias(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);

@@ -40,14 +40,15 @@
             else {
                 alertas.innerHTML='<div class="alert alert-danger">Llene todos los campos</div>';            
             }
-      });      
+      });
+
+
     });  
   </script>
 
   <style type="text/css">
       body {
             background:  #f5f5f5;
-
            }
   </style>
 </head>
@@ -74,7 +75,23 @@
     </div>
     <div class="tab-pane"  id="EditarNoticias">
        
-        <div id="noticias"></div>
+        <div id="noticias">
+          <div id="panel1"></div>
+          <div id="panel2" style="display: none;">
+            <div id="alertas3">
+            <div class="alert alert-info">Llene todos los campos</div>
+        </div>
+        <form  onsubmit="return false;" >
+              <div class="form-group">
+                <label>Titulo</label>
+                <input type="text" id="tTitulo2" name="tTitulo2" class="form-control">         
+              </div>
+              <textarea class="summernote" id="editordetexto"></textarea>
+              <div id="formulario" ></div>
+        </form>
+
+          </div>
+        </div>
          <script type="text/javascript">
             listar();
 
@@ -82,16 +99,14 @@
                 row.append($('<td></td>').html("<b>Titulo</b>"));                           
                 row.append($('<td></td>').html("<b>Fecha</b>"));
                 row.append($('<td></td>').html("<b>opciones</b>"));
-                table.append(row);                  
-              
+                table.append(row);            
                 for(i=0; i<msg[0].m; i++){
                      console.log(msg[i].Titulo);
                     var row2 = $('<tr></tr>');  
                     var fila1 = $('<td></td>').text(msg[i].Titulo);
                     var fila2 = $('<td></td>').text(msg[i].Fecha);
-                    var fila6 = $('<td></td>').append('<a type="button" class="btn btn-default btn-sm editarcomprobante" data-toggle="modal" data-target="#ModificarComprobante"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
-                    fila6.append('<a type="button" class="btn btn-default btn-sm eliminar" data-toggle="modal" data-target="#eliminar"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');
-                    
+                    var fila6 = $('<td></td>').append('<a type="button" class="btn btn-default btn-sm editar" data-toggle="modal" data-target="#ModificarComprobante"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
+                    fila6.append('<a type="button" class="btn btn-default btn-sm eliminar" data-toggle="modal" data-target="#eliminar"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');                    
                     row2.append(fila1);
                     row2.append(fila2);                                        
                     row2.append(fila6);                                 
@@ -102,8 +117,7 @@
             function eliminar(){
                 $('a.eliminar').on('click',  function(){
                     console.log("eliminar");
-                    var id=$(this).attr('name'); 
-                       
+                    var id=$(this).attr('name');                        
                         $.ajax
                         ({
                             type: "POST",
@@ -113,18 +127,80 @@
                             dataType: "json",
                             success:
                             function (msg) 
-                            {
-                                    
+                            {                                    
                                 listar();
-                                eliminar(); 
-                                            
+                                eliminar();                                             
                             },
                             error:
                             function (msg) {
                                 console.log( msg +"No se pudo realizar la conexion");}
                             });
-                        });
+                        });                    
+            }
+
+            function  editar() {
+                  $('a.editar').on('click',  function(){
+                    console.log("editar");
+                  $("#panel1").hide();
+                  $("#panel2").fadeIn();          
+                                    
+                    var id=$(this).attr('name');                        
+                        $.ajax
+                        ({
+                            type: "POST",
+                            url: "Modelo/consultasNoticias.php",
+                            data: {id:4, ID:id},
+                            async: false,
+                            dataType: "json",
+                            success:
+                            function (msg) 
+                            {                              
+                                    tTitulo2.value=msg[0].Titulo;
+                                    $('#editordetexto').code(msg[0].Cuerpo);  
+                                    $("#formulario").html("");
+                                    $("#formulario").append('<a  class="btn btn-default publicar2"  name="'+msg[0].id+'">Publicar</a>');
+                                    publicar();
+                            },
+                            error:
+                            function (msg) {
+                                console.log( msg +"No se pudo realizar la conexion");}
+                            });
+                        }); 
+
+           
+            }
+
+            function publicar(){
+                 $('a.publicar2').on('click',  function(){
+                      var id=$(this).attr('name');
                     
+                          if(tTitulo2.value!=""&&$('#editordetexto').code()!="")
+                             {
+                                  $.ajax
+                                  ({
+                                  type: "POST",
+                                  url: "Modelo/consultasNoticias.php",
+                                  data: {id:5, ID:id, titulo:tTitulo2.value, cuerpo:$('#editordetexto').code()},
+                                  async: false,           
+                                  success:
+                                  function (msg) 
+                                  {                           
+                                      tTitulo2.value="";                       
+                                      $('#editordetexto').code("");
+                                      alertas3.innerHTML='<div class="alert alert-success">Se ha publicado una noticia</div>';
+                                      $("#panel1").fadeIn();
+                                      $("#panel2").hide();
+
+                                    },
+                                      error:
+                                      function (msg) {console.log(msg +"No se pudo realizar la conexion");}
+                                  });
+
+                             }
+                          else {
+                              alertas3.innerHTML='<div class="alert alert-danger">Llene todos los campos</div>';            
+                          }
+                    });   
             }
             function listar(){
                 $.ajax
@@ -137,12 +213,13 @@
                     success:
                     function (msg) 
                     {   
-                        $('#noticias').html("");
-                        $('#noticias').html("<h1>Noticias</h1>")
+                        $('#panel1').html("");
+                        $('#panel1').html("<h1>Noticias</h1>")
                         var table = $('<table></table>').addClass('table table-hover');                         
                         var row=$('<tr></tr>');
-                        $('#noticias').append(ListarTabladeNoticias(msg, table, row));    
+                        $('#panel1').append(ListarTabladeNoticias(msg, table, row));    
                         eliminar(); 
+                        editar();
                      },
                         error:
                         function (msg) {console.log(msg +"No se pudo realizar la conexion");}
