@@ -1,7 +1,7 @@
 *
 !.gitignore
 !.htaccess
-!comprobantes/
-!protafolio/
-!tempcomprobantes/
-!tempportafolio/*
+!comprobantes
+!portafolio
+!tempcomprobantes
+!tempportafolio

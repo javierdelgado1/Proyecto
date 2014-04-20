@@ -18,7 +18,7 @@ class CustomUploadHandler extends UploadHandler {
             'script_url' => $this->get_full_url().'/FormasPago.php',
             'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/tempcomprobantes/',
             'upload_url' => $this->get_full_url().'/files/tempcomprobantes/',
-            'user_dirs' => false,
+            'user_dirs' => true,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
             // Set the following option to 'POST', if your server does not support
@@ -132,6 +132,4 @@ class CustomUploadHandler extends UploadHandler {
     }
 }
 
-$upload_handler = new CustomUploadHandler(array(
-    'user_dirs' => true
-));
+$upload_handler = new CustomUploadHandler();

@@ -133,7 +133,6 @@ CREATE TABLE IF NOT EXISTS `portafolio` (
   `Desde` date NOT NULL,
   `Hasta` date NOT NULL,
   `Duracion` varchar(25) NOT NULL,
-  `Archivo` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
@@ -141,15 +140,15 @@ CREATE TABLE IF NOT EXISTS `portafolio` (
 -- Volcado de datos para la tabla `portafolio`
 --
 
-INSERT INTO `portafolio` (`id`, `Area`, `Curso`, `Cupos`, `Desde`, `Hasta`, `Duracion`, `Archivo`) VALUES
-(10, 'Perforacion', 'Tierra', 40, '2014-04-13', '2014-04-30', '4 horas', ''),
-(11, 'Perforacion', 'Tierra 2', 50, '2014-04-13', '2014-04-30', '5 Horas', ''),
-(12, 'Yacimiento', 'Curso 1 Yacimiento', 40, '2014-04-13', '2014-04-26', '10 horas', ''),
-(13, 'Yacimiento', 'Curso 2 Yacimiento', 23423, '2014-04-13', '2014-04-30', '5 Horas', ''),
-(14, 'Administracion', 'Curso 1 Administracion', 23423424, '2014-04-13', '2014-04-30', '60 dias', ''),
-(15, 'Administracion', 'Curso 2 Administracion', 34, '2014-04-13', '2014-04-30', '59 Horas ', ''),
-(16, 'Finanzas', 'Curso 1 F', 324234, '2014-04-13', '2014-04-30', '3 horas', ''),
-(17, 'Finanzas', 'Curso 2 Fi', 234234, '2014-04-05', '2014-04-30', '3 horas ', '');
+INSERT INTO `portafolio` (`id`, `Area`, `Curso`, `Cupos`, `Desde`, `Hasta`, `Duracion`) VALUES
+(10, 'Perforacion', 'Tierra', 40, '2014-04-13', '2014-04-30', '4 horas'),
+(11, 'Perforacion', 'Tierra 2', 50, '2014-04-13', '2014-04-30', '5 Horas'),
+(12, 'Yacimiento', 'Curso 1 Yacimiento', 40, '2014-04-13', '2014-04-26', '10 horas'),
+(13, 'Yacimiento', 'Curso 2 Yacimiento', 23423, '2014-04-13', '2014-04-30', '5 Horas'),
+(14, 'Administracion', 'Curso 1 Administracion', 23423424, '2014-04-13', '2014-04-30', '60 dias'),
+(15, 'Administracion', 'Curso 2 Administracion', 34, '2014-04-13', '2014-04-30', '59 Horas '),
+(16, 'Finanzas', 'Curso 1 F', 324234, '2014-04-13', '2014-04-30', '3 horas'),
+(17, 'Finanzas', 'Curso 2 Fi', 234234, '2014-04-05', '2014-04-30', '3 horas ');
 
 -- --------------------------------------------------------
 
