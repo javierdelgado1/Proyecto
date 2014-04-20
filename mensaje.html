@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container"  id="example1">           
-        </div>    
+        </div>
 		
 		
 		<script type="text/javascript" src="include/jquery-1.9.1.js"></script>
@@ -20,65 +20,71 @@
 
         <script type="text/javascript">            
             $(document).ready(function () {
-
-
                 var array = ["2014-04-15","2014-04-16","2014-04-17"];
-                function buscarCursos(fecha){
-                	console.log("Fecha " + fecha);
-                $.ajax
-				({
-				type: "POST",
-				url: "Modelo/consultasPortafolio.php",
-				data: {id:12, fecha:fecha},
-				async: false,	
-				dataType: "json",		
-				success:
-				function (msg) 
-				{	
-					console.log("m "+ msg[0].m);
-					for (var i =0; i < msg[0].m; i++) {
-						console.log("Curso " + msg[i].Curso);						
-						console.log("Año: " + msg[i].Desde[0]);
-						console.log("Mes: " + msg[i].Desde[1]);
-						console.log("Dia: " + msg[i].Desde[2]);						
-					}
-				},
-				error:
-				function (msg) {console.log(msg +"No se pudo realizar la conexion");}
-				});		
-        	}
-calendario();
-			function calendario(){
-                $('#example1').datepicker({
-				    language: "es",
-				    format: "mm/dd/yyyy",
-				    todayHighlight: true,
-				    
-				    beforeShowDay: function (date){
-				    	console.log(date.getYear());
-				      if (date.getMonth() == (new Date()).getMonth()){
+                var eventos;
+                var contador = 0;
+                var globaldesde = 0;
+                function buscarCursos(desde,hasta){
+	                $.ajax
+					({
+					type: "POST",
+					url: "Modelo/consultasPortafolio.php",
+					data: {id:12, desde:desde, hasta:hasta},
+					async: false,	
+					dataType: "json",		
+					success:
+					function (msg) 
+					{	
+						eventos = msg;
+					},
+					error:
+					function (msg) {
+						console.dir(msg);
+						console.log("No se pudo realizar la conexion");}
+					});		
+	        	}
+				calendario();
+				function calendario(){
+	                $('#example1').datepicker({
+					    language: "es",
+					    format: "dd/mm/yyyy",
+					    todayHighlight: true,
+					    
+					    beforeShowDay: function (date){
+					    	if(contador == 0){
+					    		auxDesde = date.getTime();
+					    		if(globaldesde != auxDesde){
+						    		globaldesde = auxDesde;
+						    		hasta = new Date(date);
+					    			hasta = hasta.setMonth(hasta.getMonth()+2);
+						    		buscarCursos(globaldesde/1000,hasta/1000);
+						    	}
+					    	}
+					    	contador = (contador+1)%42;
 
-				     /* buscarCursos(date.getYear()+"-"+date.getMonth()+"-"+date.getDate());*/
-				        switch (date.getDate()){
-				          case 1 :
-				          			if(date.getDate()==01){
-				          				console.log(date.getDate());
-				          		 	return {
-							              tooltip: 'Curso Tierra',
-							              classes: 'active'
-							            };
-				          		 }
-				          case 2 :
-				          case 3 :
-				          case 4 :
-				        
-				        }
-				    }
-				}
-				});             
-        	}
-        });
-
+							var evento;
+							var infoEvento = "";
+							for(var i = eventos.length-1; i > -1; i--){
+								evento = new Date(eventos[i].Desde[0],eventos[i].Desde[1]-1,eventos[i].Desde[2]);
+								if(evento.getTime() == date.getTime()){
+									infoEvento +=
+									"Curso: " + eventos[i].Curso +  
+									"\n\tArea: "+  eventos[i].Area +
+									"\n\tCupos: "+  eventos[i].Cupos +
+									"\n\tDuración: "+  eventos[i].Duracion +
+									'\n\tFecha finalización: '+ eventos[i].Hasta[2]+"/"+eventos[i].Hasta[1]+"/"+eventos[i].Hasta[0]+'\n\n';
+								}
+							}
+							if(infoEvento != ""){
+								return {
+									tooltip: infoEvento,
+									classes: 'active'
+				            	};
+			            	}
+						}
+					});             
+	        	}
+        	});
         </script>
     </body>
 </html>
