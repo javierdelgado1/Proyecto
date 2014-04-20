@@ -46,17 +46,20 @@
 	}
 	function ObtenerFechasdeCurso(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
-		
-		$Fecha=substr("114-03",1);
-		$tupla = "SELECT Desde, Curso FROM  portafolio  WHERE Desde like  '%$Fecha%'";
+		$desde=$_REQUEST['desde'];
+		$hasta=$_REQUEST['hasta'];
+		$tupla = "SELECT * FROM portafolio WHERE (UNIX_TIMESTAMP(Desde) BETWEEN $desde AND $hasta)";
 		$resultado = $mysqli->query($tupla);
-		$objeto[0]['mensaje']=false;
 		$i=0;
-		$objeto[0]['m']=$resultado->num_rows;
+		$objeto = array();
 		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
 		{
+			$objeto[$i]['Area']=$db_resultado['Area'];
 			$objeto[$i]['Curso']=$db_resultado['Curso'];
+			$objeto[$i]['Cupos']=$db_resultado['Cupos'];
 			$objeto[$i]['Desde']=explode("-", $db_resultado['Desde']);
+			$objeto[$i]['Hasta']=explode("-", $db_resultado['Hasta']);
+			$objeto[$i]['Duracion']=$db_resultado['Duracion'];
 			$i++;
 		}
 		$mysqli->close();
