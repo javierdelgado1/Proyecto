@@ -297,11 +297,36 @@ function eventosPanel() {
 		$("#contenedor").load('formas/participante.html');	
 	}
 	facilitador.onclick=function(){
-		$("#contenedor").load('formas/facilitador.html');	
+		$("#contenedor").load('formas/configFacilitador.html', function (){			
+			listarfacilitadores();
+		});	
 	}
 
 }
 
+function listarfacilitadores(){
+			$.ajax
+				({
+					type: "POST",
+					url: "Modelo/consultasFacilitador.php",
+					data: {id:2 },
+					async: false,
+					dataType: "json",
+					success:
+					function (msg) 
+					{				
+						$('#Facilitador').html("");
+						var table = $('<table></table>').addClass('table table-hover');							
+						var row=$('<tr></tr>');							
+						$('#Facilitador').append(ListarTablaFacilitador(msg, table, row));
+					},
+				error:
+				function (msg) {
+					console.log( msg +"No se pudo realizar la conexion");}
+				});
+			EditarActualizarFacilitador();
+			eliminarFacilitador();
+}
 function validarAgregarCuenta(){
 	if(tbanco.value==""){
 		alertas.innerHTML="<div class='alert alert-danger'>Elija un Banco</div>";
@@ -574,6 +599,117 @@ function ListarTabla(msg, table, row){
 	return table;
 }
 
+function ListarTablaFacilitador(msg, table, row){			
+	row.append($('<td></td>').html("<b>Nombre</b>"));							
+	row.append($('<td></td>').html("<b>Apellido</b>"));
+	row.append($('<td></td>').html("<b>Telefono</b>"));
+	row.append($('<td></td>').html("<b>Correo</b>"));
+	row.append($('<td></td>').html("<b>opciones</b>"));
+	table.append(row);					
+	
+	for(i=0; i<msg[0].m; i++){
+		var row2 = $('<tr></tr>');
+		var fila1 = $('<td></td>').text(msg[i].Nombre);
+		var fila2 = $('<td></td>').text(msg[i].Apellido);
+		var fila3 = $('<td></td>').text(msg[i].Telefono);
+		var fila4 = $('<td></td>').text(msg[i].Correo);
+	    var fila6 = $('<td></td>').append('<a class="verCV btn btn-default btn-sm" type="button" data-toggle="modal" data-target="#ModalSubirArchivo" title="Ver contenido" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-eye-open"></span></button>');
+	    fila6.append('<a  class="editarFacilitador btn btn-default btn-sm" data-toggle="modal" data-target="#Modificar"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
+	    fila6.append('<a class="eliminarFacilitador btn btn-default btn-sm" data-toggle="modal" type="button"  data-target="#Eliminar"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');
+
+		row2.append(fila1);
+		row2.append(fila2);
+		row2.append(fila3);
+		row2.append(fila4);									
+		row2.append(fila6);									
+	    table.append(row2);
+	}
+	return table;
+}
+
+function EditarActualizarFacilitador(){
+	$('a.editarFacilitador').on('click',  function(){
+	var id=$(this).attr('name');
+	alertas2.innerHTML="";	
+	$.ajax
+	({
+		type: "POST",
+		url: "Modelo/consultasFacilitador.php",
+		data: {id:4, ID:id},
+		async: false,
+		dataType: "json",
+		success:
+		function (msg) 
+		{
+			tnombre.value=msg[0].Nombre;
+			tapellido.value=msg[0].Apellido;
+			ttelefono.value=msg[0].Telefono;
+			tcorreo.value=msg[0].Correo;
+			tareas2.value=msg[0].Area;
+			tcurso.value=msg[0].Curso;		
+			$("#footermodificar").html("");
+			$("#footermodificar").append(' <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="actualizarfacilitador btn btn-primary" name="'+id+'">Actualizar</a>');
+		},
+		error:
+		function (msg) {
+			console.log( msg +"No se pudo realizar la conexion");}
+		});
+
+		$('a.actualizarfacilitador').on('click',  function(){
+			var id=$(this).attr('name');		
+			console.log("ActualizarFacilitador"+id);
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasFacilitador.php",
+				data: {id:3, ID:id, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:ttelefono.value, Areas:tareas2.value, Curso:tcurso.value, Correo:tcorreo.value},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{
+
+					if(msg=="true")
+					alertas2.innerHTML="<div class='alert alert-success'>Se ha Actualizado</div>";
+				},
+				error:
+				function (msg) {
+					console.log( msg +"No se pudo realizar la conexion");}
+				});
+		});
+
+	});
+}
+
+function eliminarFacilitador(){
+	$('a.eliminarFacilitador').on('click',  function(){
+		var id=$(this).attr('name');
+		console.log("Eliminar Facilitador" + id);
+		$("#footereliminar").html("");
+		$("#footereliminar").append('<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="eliminardefinitivo2 btn btn-primary" name="'+id+'">Borrar</a>');
+		$('a.eliminardefinitivo2').on('click',  function(){	
+			var id=$(this).attr('name');
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasFacilitador.php",
+				data: {id:5, ID:id},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{
+					alertas3.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";	
+					listarfacilitadores();
+				},
+				error:
+				function (msg) {
+					console.log( msg +"No se pudo realizar la conexion");}
+			});
+			$(this).attr("disabled", "true");
+		});
+	});
+}
 
 function ListarTabladeCuentas(msg, table, row){			
 	row.append($('<td></td>').html("<b>Banco</b>"));							

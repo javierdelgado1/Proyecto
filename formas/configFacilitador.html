@@ -1,0 +1,76 @@
+<h1>Facilitador</h1>
+	<div  id="Facilitador">
+	</div>
+
+
+	<div class="modal fade " id="Modificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Modificar Curso</h4>
+	      </div>
+	      <div class="modal-body">
+	  		<form role="form" onsubmit="return false;">
+			  
+			  <div class="form-group">
+			    <label >Nombre</label>
+			    <input type="text" class="form-control" id="tnombre" >
+			  </div>
+			  <div class="form-group">
+			    <label >Apellido</label>
+			    <input type="text" class="form-control" id="tapellido"  >
+			  </div>
+			  <div class="form-group">
+			    <label >Telefono</label>
+			    <input type="text" class="form-control" id="ttelefono" >
+			  </div>
+			    <div class="form-group">
+			    <label >Correo</label>
+			    <input type="text" class="form-control" id="tcorreo" >
+			  </div>
+			  <div class="form-group">
+			     <label>Seleccione un área </label>
+			          <input list="Areas" id="tareas2" name="tareas2" class="form-control">
+			          <datalist id="Areas">
+			            <option value="Perforacion">
+			            <option value="Yacimiento">
+			            <option value="Administracion">
+			            <option value="Finanzas">
+			          </datalist>
+			  </div>			  
+  			    <div class="form-group">
+			    <label >Curso</label>
+			    <input  list="cursos" name="tcurso" id="tcurso" class="form-control">
+				<datalist id="cursos">            
+				</datalist>
+			  </div>
+			</form>    
+	      </div>
+	      <div id="alertas2"></div>
+	      <div class="modal-footer" id="footermodificar">
+	        
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade " id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Eliminar Curso</h4>
+	      </div>
+	      <div class="modal-body">
+			   <div id="alertas3"><div class="alert alert-warning">¿Está seguro que desea eliminar?</div></div> 
+	      </div>
+	      
+	      <div class="modal-footer" id="footereliminar">
+	        
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>

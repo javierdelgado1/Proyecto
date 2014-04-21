@@ -49,7 +49,10 @@
 			$objeto[0]['id']=$db_resultado['id'];
 			$objeto[0]['Titulo']=$db_resultado['Titulo'];
 			$objeto[0]['Cuerpo']=$db_resultado['Cuerpo'];
-			$objeto[0]['Fecha']=$db_resultado['Fecha'];			
+
+			
+			$date = new DateTime($db_resultado['Fecha']);
+			$objeto[0]['Fecha']=$date->format('d-m-Y');			
 			
 		}
 		$mysqli->close();	
@@ -77,7 +80,9 @@
 			$objeto[$i]['id']=$db_resultado['id'];
 			$objeto[$i]['Titulo']=$db_resultado['Titulo'];
 			$objeto[$i]['Cuerpo']=$db_resultado['Cuerpo'];
-			$objeto[$i]['Fecha']=$db_resultado['Fecha'];			
+				
+			$date = new DateTime($db_resultado['Fecha']);
+			$objeto[$i]['Fecha']=$date->format('d-m-Y');					
 			$i++;
 		}
 		$mysqli->close();

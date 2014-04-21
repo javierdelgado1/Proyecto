@@ -1,1 +1,57 @@
+
+<div style="position:absolute; left:10px; padding-bottom:5px; width:690px;">
 <h1>Facilitador</h1>
+	<div style="width: 600px; color: #ECF0FF;">
+		<h4>			
+				<small><b>Para su incorporación al programa de facilitadores,  solo debes rellenar el formulario.</b>
+				</small>
+		</h4>
+	</div>
+<div class="alert alert-info" id="alertas">
+		<b>Todos los campos con (*) son requeridos.</b>	
+	</div>
+<form onsubmit="return false;">
+	<fieldset> 
+ 		<legend>Formulario</legend>
+		<table>
+			<tr>
+				<td><b>Nombre</b></td>
+				<td><input 	type="text" name="tnombre" id="tnombre" class="CajaTexto"></td>	
+				<td><b>Area</b></td>
+	 			<td>	
+					<input list="Areas" id="tareas" name="tareas"  class="CajaTexto" >
+					<datalist id="Areas" >
+						<option value="Perforacion">
+						<option value="Yacimiento">
+						<option value="Administracion">
+						<option value="Finanzas">            
+					</datalist>
+		        </td>			
+			</tr>
+			<tr>
+				<td><b>Apellido</b></td>
+				<td><input 	type="text" name="tapellido" id="tapellido" class="CajaTexto"></td>
+				<td><b>Curso</b></td>
+	        	<td>
+					<input  list="cursos" name="tcurso" id="tcurso" class="CajaTexto">
+					<datalist id="cursos">            
+					</datalist>	        		
+	        	</td>
+			</tr>
+			<tr>
+				<td><b>Telefono</b></td>
+				<td><input 	type="text" name="tTelefono" id="tTelefono" class="CajaTexto"></td>
+				<td><b>Correo Electrónico</b></td>
+				<td><input 	type="text" name="tcorreo" id="tcorreo" class="CajaTexto"></td>
+			</tr>		
+			<tr>
+				
+				<td><b>Subir CV</b></td>
+				<td><button class="boton" id="SubirCv">Subir</button></td>
+				<td></td>
+				<td><button class="boton" id="RegistrarFacilitador">Registrarse</button></td>
+			</tr>
+		</table>			
+	</fieldset>	
+</form>
+</div>
