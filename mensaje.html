@@ -1,91 +1,260 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>bootstrap datepicker examples</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
-        <link rel="stylesheet" href="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
-    </head>
-    <body>
-        <div class="container"  id="example1">           
-        </div>
-		
-		
-		<script type="text/javascript" src="include/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script src="js/bootstrap-datepicker.js"></script>	
-		<script src="js/bootstrap-datepicker.es.js"></script>		
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calendario</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+	<style>	
+		body{
+			padding: 10px;
+		}	
+		.datepicker table tr td, .datepicker table tr th {
+			padding: 20px 20px;
+			font-size: 25px;
+		}
+		.Perforacion {
+			color: #ffffff !important;
+			background-color: #3276b1;
+			border-color: #285e8e;
+		}
+		.Perforacion:hover{
+			background-color: #428bca !important;
+		}
+		.Yacimiento {
+			color: #ffffff !important;
+			background-color: #3276b1;
+			border-color: #285e8e;
+		}
+		.Yacimiento:hover{
+			background-color: #428bca !important;
+		}
+		.Administracion {
+			color: #ffffff !important;
+			background-color: #3276b1;
+			border-color: #285e8e;
+		}
+		.Administracion:hover{
+			background-color: #428bca !important;
+		}
+		.Finanzas {
+			color: #ffffff !important;
+			background-color: #3276b1;
+			border-color: #285e8e;
+		}
+		.Finanzas:hover{
+			background-color: #428bca !important;
+		}		
+		.multiple {
+			color: #ffffff !important;
+			background-color: #3276b1;
+			border-color: #285e8e;
+		}
+		.multiple:hover{
+			background-color: #428bca !important;
+		}
+		.otros {
+			color: #ffffff !important;
+			background-color: #3276b1;
+			border-color: #285e8e;
+		}
+		.otros:hover{
+			background-color: #428bca !important;
+		}
+
+
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Mostrar: </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+        	<label class="checkbox-inline"><input type="checkbox" id="checkboxEnLinea1" checked="true" > Todos</label>
+			<label class="checkbox-inline"><input type="checkbox" id="checkboxEnLinea2"> Perforación</label>
+			<label class="checkbox-inline"><input type="checkbox" id="checkboxEnLinea3" onClick="updateCalendario();"> Yacimiento</label>
+			<label class="checkbox-inline"><input type="checkbox" id="checkboxEnLinea4" onClick="updateCalendario();"> Administracion</label>
+			<label class="checkbox-inline"><input type="checkbox" id="checkboxEnLinea5" onClick="updateCalendario();"> Finanzas</label>
+			<label class="checkbox-inline"><input type="checkbox" id="checkboxEnLinea6" onClick="updateCalendario();"> Otras áreas</label>
+		</li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+	<div class="container">
+	  <div class="row" >
+	    <div class="span8 offset2" id="calendario"></div>
+	  </div>
+	</div>
+
+
+
+	<div class="panel panel-info">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">Cursos próximos a dictar</div>
+	  <div class="panel-body">
+	    <p>...</p>
+	  </div>
+
+	</div>
 	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>	
+	<script src="js/bootstrap-datepicker.es.js"></script>
+    <script type="text/javascript">     
+        $(document).ready(function () {
+            var eventos;
+            var contador = 0;
+            var globaldesde = 0;
+		    function updateCalendario(){
+		    	console.log("uc");
+		    	$('.calendario').datepicker('show');
+		    }
+		    checkboxEnLinea1.onclick=function(){
+				updateCalendario();
+			}
+			checkboxEnLinea2.onclick=function(){
+				updateCalendario();
+			}
+			checkboxEnLinea3.onclick=function(){
+				updateCalendario();
+			}
+			checkboxEnLinea4.onclick=function(){
+				updateCalendario();
+			}
+			checkboxEnLinea5.onclick=function(){
+				updateCalendario();
+			}
+			checkboxEnLinea6.onclick=function(){
+				updateCalendario();
+			}
+            function buscarCursos(desde,hasta){
+                $.ajax
+				({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:12, desde:desde, hasta:hasta},
+				async: false,	
+				dataType: "json",		
+				success:
+				function (msg) 
+				{	
+					eventos = msg;
+				},
+				error:
+				function (msg) {
+					console.dir(msg);
+					console.log("No se pudo realizar la conexion");}
+				});		
+        	}
+			calendario();
+			function calendario(){
+                $('#calendario').datepicker({
+				    language: "es",
+				    format: "dd/mm/yyyy",
+				    todayHighlight: true,
+				    
 
-        <script type="text/javascript">            
-            $(document).ready(function () {
-                var array = ["2014-04-15","2014-04-16","2014-04-17"];
-                var eventos;
-                var contador = 0;
-                var globaldesde = 0;
-                function buscarCursos(desde,hasta){
-	                $.ajax
-					({
-					type: "POST",
-					url: "Modelo/consultasPortafolio.php",
-					data: {id:12, desde:desde, hasta:hasta},
-					async: false,	
-					dataType: "json",		
-					success:
-					function (msg) 
-					{	
-						eventos = msg;
-					},
-					error:
-					function (msg) {
-						console.dir(msg);
-						console.log("No se pudo realizar la conexion");}
-					});		
-	        	}
-				calendario();
-				function calendario(){
-	                $('#example1').datepicker({
-					    language: "es",
-					    format: "dd/mm/yyyy",
-					    todayHighlight: true,
-					    
-					    beforeShowDay: function (date){
-					    	if(contador == 0){
-					    		auxDesde = date.getTime();
-					    		if(globaldesde != auxDesde){
-						    		globaldesde = auxDesde;
-						    		hasta = new Date(date);
-					    			hasta = hasta.setMonth(hasta.getMonth()+2);
-						    		buscarCursos(globaldesde/1000,hasta/1000);
-						    	}
+				    beforeShowDay: function (date){
+				    	if(contador == 0){
+				    		auxDesde = date.getTime();
+				    		if(globaldesde != auxDesde){
+					    		globaldesde = auxDesde;
+					    		hasta = new Date(date);
+				    			hasta = hasta.setMonth(hasta.getMonth()+2);
+					    		buscarCursos(globaldesde/1000,hasta/1000);
 					    	}
-					    	contador = (contador+1)%42;
+				    	}
+				    	contador = (contador+1)%42;
 
-							var evento;
-							var infoEvento = "";
-							for(var i = eventos.length-1; i > -1; i--){
-								evento = new Date(eventos[i].Desde[0],eventos[i].Desde[1]-1,eventos[i].Desde[2]);
-								if(evento.getTime() == date.getTime()){
+						var evento;
+						var infoEvento = "";
+						var classes = "";
+						for(var i = eventos.length-1; i > -1; i--)
+						{
+							evento = new Date(eventos[i].Desde[0],eventos[i].Desde[1]-1,eventos[i].Desde[2]);
+							if(evento.getTime() == date.getTime())
+							{
+								if(checkboxEnLinea1.checked 
+									|| checkboxEnLinea2.checked && eventos[i].Area == "Perforación"
+									|| checkboxEnLinea3.checked && eventos[i].Area == "Yacimiento"
+									|| checkboxEnLinea4.checked && eventos[i].Area == "Administracion"
+									|| checkboxEnLinea5.checked && eventos[i].Area == "Finanzas"
+									|| (checkboxEnLinea6.checked 
+										&& eventos[i].Area != "Perforación"
+										&& eventos[i].Area != "Yacimiento"
+										&& eventos[i].Area != "Administracion"
+										&& eventos[i].Area != "Finanzas"
+										)
+									)
+								{
 									infoEvento +=
 									"Curso: " + eventos[i].Curso +  
 									"\n\tArea: "+  eventos[i].Area +
 									"\n\tCupos: "+  eventos[i].Cupos +
 									"\n\tDuración: "+  eventos[i].Duracion +
 									'\n\tFecha finalización: '+ eventos[i].Hasta[2]+"/"+eventos[i].Hasta[1]+"/"+eventos[i].Hasta[0]+'\n\n';
+
+									if(classes == ""){
+										classes = eventos[i].Area;
+										switch(classes){
+											case "Yacimiento":
+												break;
+											case "Perforacion":
+												break;
+											case "Administracion":
+												break;
+											case "Finanzas":
+												break;
+											default:
+												classes = "otros";
+												break;
+										}
+									} else { classes = "multiple"; }
 								}
 							}
-							if(infoEvento != ""){
-								return {
-									tooltip: infoEvento,
-									classes: 'active'
-				            	};
-			            	}
 						}
-					});             
-	        	}
-        	});
-        </script>
-    </body>
+						if(infoEvento != ""){
+							return {
+								tooltip: infoEvento,
+								classes: classes+""
+			            	};
+		            	}
+		            }
+				});             
+    		}
+		});
+
+    </script>
+
+</body>
 </html>
 
