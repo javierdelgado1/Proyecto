@@ -19,6 +19,15 @@
 		body{
 			padding: 10px;
 		}	
+		.navbar {
+			margin-bottom: 0px;
+		}
+		.year {
+			font-size: 15px;
+		}
+		.month{
+			font-size: 20px;
+		}
 		.datepicker table tr td, .datepicker table tr th {
 			padding: 20px 20px;
 			font-size: 25px;
@@ -170,30 +179,46 @@
             function buscarCursos(desde,hasta){
                 $.ajax
 				({
-				type: "POST",
-				url: "Modelo/consultasPortafolio.php",
-				data: {id:12, desde:desde, hasta:hasta},
-				async: false,	
-				dataType: "json",		
-				success:
-				function (msg) 
-				{	
-					eventos = msg;
-				},
-				error:
-				function (msg) {
-					console.dir(msg);
-					console.log("No se pudo realizar la conexion");}
+					type: "POST",
+					url: "Modelo/consultasPortafolio.php",
+					data: {id:12, desde:desde, hasta:hasta},
+					async: false,	
+					dataType: "json",		
+					success:
+					function (msg) 
+					{	
+						eventos = msg;
+					},
+					error:
+					function (msg) {
+						console.log("No se pudo realizar la conexion");}
 				});		
+        	}
+        	function buscarProximosCursos(desde){
+        		var result;
+                $.ajax
+				({
+					type: "POST",
+					url: "Modelo/consultasPortafolio.php",
+					data: {id:13, desde:desde},
+					async: false,	
+					dataType: "json",		
+					success:
+					function (msg) 
+					{	
+						result = msg;
+					},
+					error:
+					function (msg) {
+						console.log("No se pudo realizar la conexion");}
+				});	
+				return result;	
         	}
         	MostrarCursosProximos();
 			calendario();
 			function MostrarCursosProximos(){
 				var desde = new Date();
-	    		var hasta = new Date();
-    			hasta = hasta.setMonth(hasta.getMonth()+2);
-	    		buscarCursos(desde/1000,hasta/1000);
-
+	    		var resultCursos = buscarProximosCursos(desde/1000);
 				$('#cursosproximos').html("");	
 
 				var table = $('<table></table>').addClass('table table-hover');							
@@ -205,13 +230,13 @@
 				row.append($('<td></td>').html("<b>Duracion</b>"));
 				table.append(row);	
 				
-				for(i=0; i<eventos.length; i++){
+				for(i=0; i<resultCursos.length; i++){
 					var row2 = $('<tr></tr>');
-					var fila1 = $('<td></td>').text(eventos[i].Curso);
-					var fila2 = $('<td></td>').text(eventos[i].Area);
-					var fila3 = $('<td></td>').text(eventos[i].Desde.reverse().join("/"));
-					var fila4 = $('<td></td>').text(eventos[i].Hasta.reverse().join("/"));
-					var fila5 = $('<td></td>').text(eventos[i].Duracion);
+					var fila1 = $('<td></td>').text(resultCursos[i].Curso);
+					var fila2 = $('<td></td>').text(resultCursos[i].Area);
+					var fila3 = $('<td></td>').text(resultCursos[i].Desde.reverse().join("/"));
+					var fila4 = $('<td></td>').text(resultCursos[i].Hasta.reverse().join("/"));
+					var fila5 = $('<td></td>').text(resultCursos[i].Duracion);
 
 					row2.append(fila1);
 					row2.append(fila2);

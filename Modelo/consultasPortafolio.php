@@ -42,7 +42,30 @@
 		case 12 :
 			ObtenerFechasdeCurso();
 			break;
+		case 13 :
+			ObtenerProximosCursos();
+			break;
 		default;
+	}
+	function ObtenerProximosCursos(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$desde=$_REQUEST['desde'];
+		$tupla = "SELECT * FROM portafolio WHERE (UNIX_TIMESTAMP(Desde) >= $desde) ORDER BY Desde LIMIT 5";
+		$resultado = $mysqli->query($tupla);
+		$i=0;
+		$objeto = array();
+		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['Area']=$db_resultado['Area'];
+			$objeto[$i]['Curso']=$db_resultado['Curso'];
+			$objeto[$i]['Cupos']=$db_resultado['Cupos'];
+			$objeto[$i]['Desde']=explode("-", $db_resultado['Desde']);
+			$objeto[$i]['Hasta']=explode("-", $db_resultado['Hasta']);
+			$objeto[$i]['Duracion']=$db_resultado['Duracion'];
+			$i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
 	}
 	function ObtenerFechasdeCurso(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
