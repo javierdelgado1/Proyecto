@@ -115,11 +115,12 @@
 
 
 	<div class="panel panel-info">
-	  <!-- Default panel contents -->
-	  <div class="panel-heading">Cursos próximos a dictar</div>
-	  <div class="panel-body">
-	    <p>...</p>
-	  </div>
+		<!-- Default panel contents -->
+		<div class="panel-heading">Cursos próximos a dictar</div>
+
+		<!-- Table -->
+		<div id="cursosproximos">
+		</div>
 
 	</div>
 	
@@ -135,25 +136,35 @@
             var contador = 0;
             var globaldesde = 0;
 		    function updateCalendario(){
-		    	console.log("uc");
-		    	$('.calendario').datepicker('show');
+		    	$('.calendario').datepicker('update');
+		    	console.log("UC");
 		    }
 		    checkboxEnLinea1.onclick=function(){
+		    	checkboxEnLinea2.checked = false;
+		    	checkboxEnLinea3.checked = false;
+		    	checkboxEnLinea4.checked = false;
+		    	checkboxEnLinea5.checked = false;
+		    	checkboxEnLinea6.checked = false;
 				updateCalendario();
 			}
 			checkboxEnLinea2.onclick=function(){
+				checkboxEnLinea1.checked = false;
 				updateCalendario();
 			}
 			checkboxEnLinea3.onclick=function(){
+				checkboxEnLinea1.checked = false;
 				updateCalendario();
 			}
 			checkboxEnLinea4.onclick=function(){
+				checkboxEnLinea1.checked = false;
 				updateCalendario();
 			}
 			checkboxEnLinea5.onclick=function(){
+				checkboxEnLinea1.checked = false;
 				updateCalendario();
 			}
 			checkboxEnLinea6.onclick=function(){
+				checkboxEnLinea1.checked = false;
 				updateCalendario();
 			}
             function buscarCursos(desde,hasta){
@@ -175,13 +186,46 @@
 					console.log("No se pudo realizar la conexion");}
 				});		
         	}
+        	MostrarCursosProximos();
 			calendario();
+			function MostrarCursosProximos(){
+				var desde = new Date();
+	    		var hasta = new Date();
+    			hasta = hasta.setMonth(hasta.getMonth()+2);
+	    		buscarCursos(desde/1000,hasta/1000);
+
+				$('#cursosproximos').html("");	
+
+				var table = $('<table></table>').addClass('table table-hover');							
+				var row= $('<tr></tr>');
+				row.append($('<td></td>').html("<b>Curso</b>"));
+				row.append($('<td></td>').html("<b>Area</b>"));							
+				row.append($('<td></td>').html("<b>Desde</b>"));
+				row.append($('<td></td>').html("<b>Hasta</b>"));
+				row.append($('<td></td>').html("<b>Duracion</b>"));
+				table.append(row);	
+				
+				for(i=0; i<eventos.length; i++){
+					var row2 = $('<tr></tr>');
+					var fila1 = $('<td></td>').text(eventos[i].Curso);
+					var fila2 = $('<td></td>').text(eventos[i].Area);
+					var fila3 = $('<td></td>').text(eventos[i].Desde.reverse().join("/"));
+					var fila4 = $('<td></td>').text(eventos[i].Hasta.reverse().join("/"));
+					var fila5 = $('<td></td>').text(eventos[i].Duracion);
+
+					row2.append(fila1);
+					row2.append(fila2);
+					row2.append(fila3);
+					row2.append(fila4);
+					row2.append(fila5);									
+				    table.append(row2);
+				}
+				$('#cursosproximos').append(table);
+			}
 			function calendario(){
                 $('#calendario').datepicker({
 				    language: "es",
-				    format: "dd/mm/yyyy",
-				    todayHighlight: true,
-				    
+				    format: "dd/mm/yyyy",			    
 
 				    beforeShowDay: function (date){
 				    	if(contador == 0){
@@ -245,7 +289,7 @@
 						if(infoEvento != ""){
 							return {
 								tooltip: infoEvento,
-								classes: classes+""
+								classes: classes
 			            	};
 		            	}
 		            }

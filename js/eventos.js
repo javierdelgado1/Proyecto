@@ -1,5 +1,5 @@
 function abrirCalendario() { 
-	open('calendario.php','','top=50,left=50,width=850,height=550') ; 
+	open('calendario.html','','top=50,left=50,width=850,height=740') ; 
 } 
 function eventos() {
 
@@ -33,10 +33,12 @@ function eventos() {
 	$("#INICIO2").click(function(){
 		$("#contenedor").load('formas/inicio.html');	
 		$('#girar').fadeIn();
+		abrirCalendario();
 	});
 	INICIO.onclick=function(){		
 		$("#contenedor").load('formas/inicio.html');	
 		$('#girar').fadeIn();
+		abrirCalendario();
 	}
 	LAEMPRESA.onclick=function(){		
 		$("#contenedor").load('formas/laempresa.html');	
@@ -488,6 +490,7 @@ function eventos() {
 	minicio.onclick=function(){		
 		$("#contenedor").load('formas/inicio.html');	
 		$('#girar').fadeIn();
+		abrirCalendario();
 	}
 	mlaempresa.onclick=function(){		
 		$("#contenedor").load('formas/laempresa.html');	
