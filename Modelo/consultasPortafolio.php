@@ -271,6 +271,7 @@
 		{
 			$objeto[$i]['id']=$db_resultado['id'];
 			$objeto[$i]['Curso']=$db_resultado['Curso'];
+			$objeto[$i]['Area']=$db_resultado['Area'];
 
 			$objeto[$i]['Desde']=$db_resultado['Desde'];
 			$objeto[$i]['Hasta']=$db_resultado['Hasta'];

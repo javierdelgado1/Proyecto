@@ -3,39 +3,86 @@ function abrirCalendario() {
 } 
 function eventos() {
 
-	  $("#categoria1").change(function(){
-      $.ajax
-          ({
-            type: "POST",
-            url: "Modelo/consultasPortafolio.php",
-            data: {id:10, Areas: $("#categoria1").val()},
-            async: false,
-            dataType: "json",
-            success:
-            function (msg) 
-            {       
-               
-              for(var i=0; i<msg[0].m; i++){                
-                curso1.options[i]= new Option (msg[i].Curso);
-                curso1.options[i].text = msg[i].Curso+"";
-                curso1.options[i].value = msg[i].Curso+"";
+	categoria1.onchange=function(){
+		var area = categoria1.options[categoria1.selectedIndex].value;
+		var result;
+		switch(area){
+			case "Perforacion":
+				result = ConsultaCursos(1);
+				break;
+			case "Yacimiento":
+				result = ConsultaCursos(2);
+				break;
+			case "Administracion":
+				result = ConsultaCursos(3);
+				break;
+			case "Finanzas":
+				result = ConsultaCursos(4);
+				break;
+			default:
+				curso1.innerHTML = "";
+				var option = document.createElement("option");
+				option.text = "Selección por curso";
+				option.value = "";
+				curso1.add(option);
+				return;
+				break;
+		}
+		LlenarSelectCursos(result);
+	}
+	curso1.onchange=function(){
+		var cursoID = curso1.options[curso1.selectedIndex].value;
+		if(cursoID == "")
+			return;
+		VaciarFileInput();
+		fileupload.action = "server/php/PortafolioVerAdjuntos.php?id="+cursoID;
+		mainInputFile();
+		$("#ModalDescargarArchivo").modal("show");
+	}
 
-                console.log(msg[i].Curso);
-              }
-            },
-          error:
-          function (msg) {
-            console.log( msg +"No se pudo realizar la conexion");}
-          });
-    });
+	function LlenarSelectCursos(datosCurso){
+		curso1.innerHTML = "";
+		var option = document.createElement("option");
+		option.text = "Selección por curso";
+		option.value = "";
+		curso1.add(option);
+		for(i=0; i < datosCurso[0].m; i++){
+			var option = document.createElement("option");
+			option.text = datosCurso[i].Curso;
+			option.value = datosCurso[i].id;
+			curso1.add(option);
+		}
+    }
+	function ConsultaCursos(tipo){
+		var result;
+		$.ajax
+		({
+			type: "POST",
+			url: "Modelo/consultasPortafolio.php",
+			data: {id:2, tipo:tipo},
+			async: false,
+			dataType: "json",
+			success:
+			function (msg)
+			{
+				result = msg;
+			},
+		error:
+		function (msg) {
+			console.log("No se pudo realizar la conexion");}
+		});
+		return result;
+	}
 
-
+	LabelTodosCursos.onclick=function(){
+		$("#SERVICIOS").click();
+	}
 	$("#INICIO2").click(function(){
 		$("#contenedor").load('formas/inicio.html');	
 		$('#girar').fadeIn();
 		abrirCalendario();
 	});
-	INICIO.onclick=function(){		
+	INICIO.onclick=function(){
 		$("#contenedor").load('formas/inicio.html');	
 		$('#girar').fadeIn();
 		abrirCalendario();
@@ -46,29 +93,6 @@ function eventos() {
 	}
 	SERVICIOS.onclick=function(){
 		$("#contenedor").load('formas/servicios.html' , function() {
-			// $("input[name=tareas]").change(function(){
-			// 	console.log($(this).val());
-			// 	$("#cursos").empty();
-			// 	$.ajax
-			// 		({
-			// 			type: "POST",
-			// 			url: "Modelo/consultasPortafolio.php",
-			// 			data: {id:10, Areas:$(this).val()},
-			// 			async: false,
-			// 			dataType: "json",
-			// 			success:
-			// 			function (msg) 
-			// 			{				
-			// 				for(var i=0; i<msg[0].m; i++){								
-			// 					$("#cursos").append("<option value='"+msg[i].Curso+"'>");
-			// 				}
-			// 			},
-			// 		error:
-			// 		function (msg) {
-			// 			console.log( msg +"No se pudo realizar la conexion");}
-			// 		});
-			// });
-
 		$("#perforacion").click(function(){
 			$.ajax
 			({
@@ -159,7 +183,7 @@ function eventos() {
 			VerContenido();	
 		});
 
-		$("#descargar").click(function(){
+		descargar.onclick=function(){
 			$.ajax
 			({
 				type: "POST",
@@ -180,7 +204,7 @@ function eventos() {
 				console.log( msg +"No se pudo realizar la conexion");}
 			});	
 			VerContenido();
-		});
+		}
 		$("#facilitador").click(function(){
 			$("#tabla").load('formas/facilitador.html', function(){
 				$("input[name=tareas]").change(function(){				
@@ -690,14 +714,12 @@ function validarFormularioFormasdepago(){
 		return table;
 	}
 	function VerContenido(){
-		console.log("Funcion Ver contenido");
 		$('button.vercontenido').on('click',  function()
 		{
 			var id=$(this).attr('name');
 			VaciarFileInput();
 			fileupload.action = "server/php/PortafolioVerAdjuntos.php?id="+id;
 			mainInputFile();
-			console.log("Auch");
 		});
 	}
 

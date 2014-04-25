@@ -68,19 +68,17 @@
      </div>
      <div id="programaciondecursos_inputs">
            <select id="categoria1" style="width: 180px;">
-            <option>Selecion por Categoria</option> 
-            <option value="Perforacion">Perforacion</option> 
+            <option value="">Selección por área</option> 
+            <option value="Perforacion">Perforación</option> 
             <option value="Yacimiento">Yacimiento</option> 
-            <option value="Administracion">Administracion</option> 
+            <option value="Administracion">Administración</option> 
             <option value="Finanzas">Finanzas</option> 
           </select>
           <select id="curso1" style="width: 180px;">
-            <option>Selecion por Categoria</option>
+            <option value="">Selección por curso</option>
          </select>
           <br>
-          <a onClick="abrirCalendario();">
-            <label class="fuente" style="color: #C2C3C7;">TODOS LOS CURSOS</label>
-          </a>
+          <label id="LabelTodosCursos" class="fuente" style="color: #C2C3C7;">TODOS LOS CURSOS</label>
 
      </div>
 
@@ -255,6 +253,23 @@
           </div>
         </div>         
     </div>
+      <!-- Modal Ver Curso -->
+    <div class="modal fade" id="ModalVerCurso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Información</h4>
+      </div>
+      <!-- Table -->
+      <div id="TablaVerCurso">
+      </div>
+      <div class="modal-footer">
+      </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Modal Ver Curso -->
 
       <!-- Modal INPUT FILE -->
     <div class="modal fade" id="ModalSubirArchivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
