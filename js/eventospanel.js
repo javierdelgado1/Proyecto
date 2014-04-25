@@ -1,5 +1,12 @@
 function eventosPanel() {
-	console.log("entro envento panel");
+
+	function abrirCalendario() { 
+		open('calendario.html','','top=50,left=50,width=900,height=740') ; 
+	}
+
+	calendario.onclick=function(){
+		abrirCalendario();
+	}
 	cerrar.onclick=function(){
 		$.ajax
 			({
@@ -39,7 +46,7 @@ function eventosPanel() {
 					success:
 					function (msg) 
 					{	
-						console.log(msg);
+						//console.log(msg);
 						tbanco.value="";
 						titular.value="";
 						nrodecuenta.value="";
@@ -299,33 +306,36 @@ function eventosPanel() {
 	facilitador.onclick=function(){
 		$("#contenedor").load('formas/configFacilitador.html', function (){			
 			listarfacilitadores();
-		});	
+		});
 	}
 
 }
 
 function listarfacilitadores(){
-			$.ajax
-				({
-					type: "POST",
-					url: "Modelo/consultasFacilitador.php",
-					data: {id:2 },
-					async: false,
-					dataType: "json",
-					success:
-					function (msg) 
-					{				
-						$('#Facilitador').html("");
-						var table = $('<table></table>').addClass('table table-hover');							
-						var row=$('<tr></tr>');							
-						$('#Facilitador').append(ListarTablaFacilitador(msg, table, row));
-					},
-				error:
-				function (msg) {
-					console.log( msg +"No se pudo realizar la conexion");}
-				});
-			EditarActualizarFacilitador();
-			eliminarFacilitador();
+	$.ajax
+	({
+		type: "POST",
+		url: "Modelo/consultasFacilitador.php",
+		data: {id:2 },
+		async: false,
+		dataType: "json",
+		success:
+		function (msg) 
+		{				
+			$('#Facilitador').html("");
+			var table = $('<table></table>').addClass('table table-hover');							
+			var row=$('<tr></tr>');							
+			$('#Facilitador').append(ListarTablaFacilitador(msg, table, row));
+		},
+		error:
+		function (msg) {
+			//console.log(msg);
+			console.log("No se pudo realizar la conexion");}
+	});
+	VerContenidoFacilitador();
+	EditarActualizarFacilitador();
+	eliminarFacilitador();
+
 }
 function validarAgregarCuenta(){
 	if(tbanco.value==""){
@@ -535,7 +545,7 @@ function eliminar(){
 				},
 				error:
 				function (msg) {
-					console.log(msg);
+					//console.log(msg);
 					console.dir("No se pudo realizar la conexion");}
 			});
 			$(this).attr("disabled", "true");
@@ -1005,10 +1015,19 @@ function VerAdjuntos(){
 }
 
 function VerContenido(){
+	
 	$('a.vercontenido').on('click',  function(){
 		var id=$(this).attr('name');
 		VaciarFileInput();
 		fileupload.action = "server/php/PortafolioVerAdjuntos.php?id="+id;
+		mainInputFile();
+	});
+}
+function VerContenidoFacilitador(){
+	$('a.verCV').on('click',  function(){
+		var id=$(this).attr('name');
+		VaciarFileInput();
+		fileupload.action = "server/php/Facilitador.php?id="+id;
 		mainInputFile();
 	});
 }

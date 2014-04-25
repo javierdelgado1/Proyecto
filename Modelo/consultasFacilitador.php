@@ -1,6 +1,6 @@
 <?php
 	include("conector.php");
-
+	include("funcionesGlobales.php");
 	$id=$_REQUEST['id'];
 
 	switch($id)
@@ -30,6 +30,8 @@
 		$error="true";
 		$resultado = $mysqli->query($tupla) or $error=$mysqli->error;		
 		$mysqli->close();
+		$ubicacion = '../server/php/files/facilitador/'.$ID;
+		eliminarArchivos($ubicacion);
 		echo json_encode($error);	
 	}
 	function ObtenerFacilitadorEspecifico(){
@@ -101,6 +103,11 @@
 		$tupla="INSERT INTO  facilitador (Nombre, Apellido, Telefono, Correo, Area, Curso) 
 		                         VALUES ('$Nombre','$Apellido','$Telefono','$Correo','$Area','$Curso')";
 	 	$resultado = $mysqli->query($tupla) or $error=$mysqli->error;
+		$id = $mysqli->insert_id;
+		session_start();
+		$ubicacion = '../server/php/files/tempfacilitador/'.session_id();
+		$destino = '../server/php/files/facilitador/'.$id;
+		moverArchivos($ubicacion,$destino);
 		$mysqli->close();	
 		echo json_encode($error);                    
 	}

@@ -1,5 +1,5 @@
 function abrirCalendario() { 
-	open('calendario.html','','top=50,left=50,width=850,height=740') ; 
+	open('calendario.html','','top=50,left=50,width=900,height=740') ; 
 } 
 function eventos() {
 
@@ -247,6 +247,7 @@ function eventos() {
 									tareas.value="";
 									tcurso.value="";
 									tcorreo.value="";
+									VaciarFileInput();
 								}
 
 							},
@@ -256,6 +257,12 @@ function eventos() {
 						});					
 					}
 				});
+				SubirCv.onclick=function(){
+					VaciarFileInput();
+					fileupload.action = "server/php/FacilitadorTemporal.php";
+					mainInputFile();
+					$("#ModalSubirArchivo").modal("show");
+				}
 
 			});
 		});	
@@ -744,7 +751,7 @@ function validarFormularioFormasdepago(){
 
 	function validarFormularioFacilitador(){
 		if(tnombre.value==""){
-		alertas.innerHTML="<center><b>Escriba  su  nombre</b></center>";
+		alertas.innerHTML="<center><b>Escriba su nombre</b></center>";
 		return false;
 		}	
 		else if(tapellido.value=="")
@@ -771,6 +778,11 @@ function validarFormularioFormasdepago(){
 		{  
 	        alertas.innerHTML="<center><b>Escriba un correo valido</b></center>";
 			return false;
-		}	
+		}
+		else if (typeof ArchivoSubido == "undefined") 
+		{
+			alertas.innerHTML="<center><b>Cargue el CV</b></center>";
+			return false;
+		}
 		else {return true;}	
 	}
