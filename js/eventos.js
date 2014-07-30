@@ -412,7 +412,15 @@ function eventos() {
 						success:
 						function (msg) 
 						{				
-							console.log(msg);
+							tnombre.value="";
+							Apellido:tapellido.value="";
+							Telefono:tTelefono.value="";
+							tareas.value="";
+							Correo:tcorreo.value="";
+							Curso:tcurso.value="";
+							Modalidad:tmodalidad.value="";
+							Fecha:tFecha.value="";
+							Temas:tTemas.value="";
 						},
 					error:
 					function (msg) {

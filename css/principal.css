@@ -30,7 +30,7 @@
 #footer2{
 	background: url("../img/piedepagina2.png") repeat-x;
 	position:absolute; 
-	top: 855px;
+	top: 630px;
 	left:0px; 
 	bottom:-262px; 
 	width:100%; height:88px; 	
@@ -39,12 +39,14 @@
 #cuerpo{
 	position: absolute;
 	padding-top: 2px;
-	left:15%;
+	left:14%;
 	top: 90px;
 	width: 980px;
 	height: 530px;
 
 }
+
+
 body{
 	background-color: rgb(153, 153, 153);
 }
@@ -656,7 +658,7 @@ label:hover{
 	top: 7px;
 	right: 5px;
 	width: 719px;
-	height: 390px;
+	height: 518px;
 	overflow: hidden;
 	border-right: 1px solid gray;
 	border-bottom: 1px solid gray;	
@@ -984,6 +986,26 @@ a:link
 	border-left: 1px solid  rgb(168, 168, 168);
 	border-bottom: 1px solid rgb(168, 168, 168) ;
 	border-right: 1px solid rgb(168, 168, 168);
+
+}
+
+.noticias2{
+	padding-left: 5px;
+	width: 668px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	background: #9C9C9C;
+	border-top: 1px solid rgb(168, 168, 168);
+	border-left: 1px solid  rgb(168, 168, 168);
+	border-bottom: 1px solid rgb(168, 168, 168) ;
+	border-right: 1px solid rgb(168, 168, 168);
+	font-size: 94%;
+	line-height: 1.2em; font-size: 1em;
+	color: #C2C3C7;
+	font-weight: 400; 
+	
 }
 
 fieldset{
