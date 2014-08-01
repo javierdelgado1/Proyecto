@@ -1,0 +1,117 @@
+/*######### Tipo y tamaño de letra general#######*/
+html, body {/*, form, fieldset, table, tr, td, img {*/
+	font-family: "LeagueGothic-Regular";
+	src: local("LeagueGothic-Regular"),
+	url("fonts/LeagueGothic-Regular.otf") format("TrueType");
+	font-size: x-large;
+}
+/*######### FIN Tipo y tamaño de letra general#######*/
+/*#####Fondo#####*/
+img.bg {
+  min-height: 100%;
+  min-width: 1024px;
+	
+  width: 100%;
+  height: auto;
+	
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+/*##########Fin Fondo##############*/
+
+@media (min-width: 768px) {
+
+	@media (max-width: 846px)  {
+		.navbar-custom .navbar-nav > li > a {
+			font-size: large;
+		}
+	}
+	
+/*############Menu Izquierdo########*/
+	.sidebar-nav{
+		padding-left: 10px;
+	}
+	.sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	}
+	.sidebar-nav .navbar ul {
+		float: none;
+	}
+	.sidebar-nav .navbar ul:not {
+		display: block;
+	}
+	.sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	}
+	.sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	}
+	.menu-izquierdo{
+		width: 263px;
+		z-index: 1;
+	}
+/*############Fin Menu Izquierdo########*/
+	.contenido{
+		position: fixed;
+		padding-left: 263px;
+	}
+	/*##### Tamaño de linea menú principal#####*/
+	.navbar-custom .navbar-nav > li > a {
+		line-height: 80px;
+	}
+	/*##### Fin Tamaño de linea menú principal#####*/
+
+} /*########## Tamaño mayor a 768 ##########*/
+
+
+.dropdown-menu {
+	font-size: inherit;
+}
+.dropdown-header {
+	font-size: smaller;
+}
+
+.contenido{
+	width: 100%;
+}
+
+/*############ Menu principal estilo ###########*/
+.navbar-custom {
+  border-bottom: 5px solid #fa7311;
+}
+/*############ Fin Menu principal estilo ###########*/
+.navbar-custom .navbar-brand {
+  line-height: 50px;
+}
+
+
+.mybar {
+    margin-left:0px !important;
+    border-left: 1px solid;
+	/*border-right: 1px solid;*/
+}
+
+.mybar li{
+    /*border-left: 1px solid;*/
+	border-right: 1px solid;
+}
+.mybrand{
+     float:none !important;   
+}
+
+.myheader{
+    text-align: right;
+    padding: 5px;
+}
+
