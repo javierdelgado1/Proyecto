@@ -67,9 +67,10 @@ img.bg {
 	}
 /*############Fin Menu Izquierdo########*/
 	.contenido{
+		width: 80%;
 		position: fixed;
 		padding-left: 263px;
-		margin-right: 10%;
+		/*margin-right: 10%;*/
 	}
 	/*##### Tamaño de linea menú principal#####*/
 	.navbar-custom .navbar-nav > li > a {
@@ -161,7 +162,6 @@ img.bg {
 }
 
 .sidebar-nav .navbar li{
-	border: 5px solid #fff;
 
 	background: #59B0B9; /* Old browsers */
     background: -moz-linear-gradient(top, #59B0B9 0%, #59B0B9 50%, #417B81 50%, #417B81 100%); /* FF3.6+ */
