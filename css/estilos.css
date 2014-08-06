@@ -66,11 +66,12 @@ img.bg {
 		padding-left: 0px;
 	}
 /*############Fin Menu Izquierdo########*/
-	.contenido{
-		width: 80%;
-		position: fixed;
-		padding-left: 263px;
-		/*margin-right: 10%;*/
+	.contenido {
+		/* width: 80%; */
+		position: relative;
+		margin-left: 263px;
+		/* margin-right: 10%; */
+		top: -245px;
 	}
 	/*##### Tamaño de linea menú principal#####*/
 	.navbar-custom .navbar-nav > li > a {
