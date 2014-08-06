@@ -1,6 +1,6 @@
 /*######### Tipo y tamaño de letra general#######*/
 html, body {/*, form, fieldset, table, tr, td, img {*/
-	position: relative;
+	
 	font-family: "LeagueGothic-Regular";
 	src: local("LeagueGothic-Regular"),
 	url("fonts/LeagueGothic-Regular.otf") format("TrueType");
@@ -75,6 +75,7 @@ img.bg {
 	  margin-left: 263px;
 	  /* margin-right: 10%; */
 	  top: -325px;
+
 	}
 	/*##### Tamaño de linea menú principal#####*/
 	.navbar-custom .navbar-nav > li > a {
@@ -193,19 +194,249 @@ img.bg {
 }
 
 .footer{
-	position: fixed;
-	bottom: -18px;
+	position: relative;
+	
 	width:100%;
 	background-color: #5E5E60; 
 	box-shadow: -3px -5px 1px rgba(82, 82, 82, 0.7);
+	margin-top: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (min-width: 768px) { /* Specific to this particular image */
   .footer {
     position: relative;
-	bottom: -78px;
+	
 	width:100%;
 	background-color: #5E5E60; 
+	margin-top: 20px;
 	box-shadow: -3px -5px 1px rgba(82, 82, 82, 0.7);
   }
 }
