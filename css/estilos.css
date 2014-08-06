@@ -17,6 +17,7 @@ img.bg {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: -1;
 }
 
 @media screen and (max-width: 1024px) { /* Specific to this particular image */
@@ -37,12 +38,6 @@ img.bg {
 
 @media (min-width: 768px) {
 
-	@media (max-width: 846px)  {
-		.navbar-custom .navbar-nav > li > a {
-			font-size: large;
-		}
-	}
-	
 /*############Menu Izquierdo########*/
 	.sidebar-nav{
 		padding-left: 10px;
@@ -176,4 +171,19 @@ img.bg {
     background: -ms-linear-gradient(top, #59B0B9 0%,#59B0B9 50%,#417B81 50%,#417B81 100%); /* IE10+ */
     background: linear-gradient(top, #59B0B9 0%,#59B0B9 50%,#417B81 50%,#417B81 100%); /* W3C */
 }
-    
+
+
+#Social{	
+	background: rgba(70, 63, 63, 0.44);	
+	height: 25px;	
+	border: 1px solid rgb(70, 63, 63);
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	font-family: levenim mt;
+	text-align: right;
+	font-size: 12px;	
+	color: white;	
+	box-shadow: 1px 1px 0px rgba(50, 50, 50, 0.5);
+}
