@@ -218,3 +218,14 @@ img.bg {
   color: #98C723;
   font-weight: 500; 
 }
+
+/*### Nuevo menú ###*/
+
+.metro form {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.form-control {
+	margin-bottom: 10px;
+}
