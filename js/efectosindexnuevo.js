@@ -1,5 +1,4 @@
-function efectos(){
-	
+function efectos(){	
 	$('#laempresa').click(function() {
 		$(this).addClass("active");
 		$('#servicios').removeClass("active");
@@ -36,5 +35,4 @@ function efectos(){
 		$('#laempresa').removeClass("active");
 		$('#contacto').removeClass("active");	
 	});
-
 }
