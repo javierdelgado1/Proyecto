@@ -83,7 +83,7 @@ function eventos(){
         }); 
 	}
 	$("#preinscripcionaloscursos").click(function(){
-		$("#contenedor").load('formas/preinscripcion.html', function(){
+		$("#contenedor").hide().load('formas/preinscripcion.html', function(){
 			$("input[name=tareas]").change(function(){				
 				$("#cursos").empty();
 				$.ajax
@@ -133,15 +133,15 @@ function eventos(){
 					});
 				}
 			});
-		});
-		$('#girar').fadeOut();
+		}).slideDown(1000);
+		
 	});
 
 	$("#formasdepago").click(function(){
 		VaciarFileInput();
 		fileupload.action = "server/php/FormasPago.php";
 		mainInputFile();
-		$("#contenedor").load('formas/formasdepago.html', function(){
+		$("#contenedor").hide().load('formas/formasdepago.html', function(){
 					$.ajax
 						({
 						type: "POST",
@@ -228,7 +228,7 @@ function eventos(){
 					});
 				}
 			});
-		});	
+		}).slideDown(1000);	
 		
 	});	
 
