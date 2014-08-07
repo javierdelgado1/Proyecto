@@ -192,27 +192,29 @@ img.bg {
 @media screen and (min-width: 768px) { /* Specific to this particular image */
   .footer {
     position: relative;
-
 	bottom: 0px;
-
 	width:100%;
 	background-color:  rgba(227, 227, 227, 0.7);
 	margin-top: 20px;
 	box-shadow: -3px -5px 1px rgba(89,176,185, 0.7);
   }
+
+  .fuente_Panel {
+	  font-family: "steelfishbdit";
+	  src: local("steelfishbdit"),
+	  url("fonts/steelfishbdit.otf") format("Open Type");
+	  font-size: 80%;
+	  color: #98C723;
+	  font-weight: 500; 
+}
 }
 
 
-
 .fuente_Panel {
-
-
-
   font-family: "steelfishbdit";
   src: local("steelfishbdit"),
   url("fonts/steelfishbdit.otf") format("Open Type");
   font-size: 50%;
-
   color: #98C723;
   font-weight: 500; 
 }
