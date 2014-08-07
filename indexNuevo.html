@@ -12,32 +12,26 @@
 
   <link href="css/estilos.css" rel="stylesheet">
 
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
     </head>
     <body >
+     <!---Barra Menu Principal -->
       <img src="img/bg.jpg" class="bg">
-
       <div id="navbar">
         <nav role="navigation" class="navbar-custom navbar navbar-default">
-          <div class="navbar-header col-xs-3 myheader">
+          <div class="navbar-header col-xs-4 myheader">
             <button class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand mybrand" href="index.html"> <img src="img/logo70x70.png"></a>
+            <a class="navbar-brand mybrand" href="indexNuevo.html"> <img src="img/logo70x70.png" ></a>
 
           </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse col-xs-8" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav mybar">
-              <li  id="inicio" ><a href="index.html" >INICIO</a></li>
+              <li  id="inicio" ><a href="indexNuevo.html" >INICIO</a></li>
               <li id="laempresa"><a href="#">LA EMPRESA</a></li>
               <li id="servicios"><a href="#">SERVICIOS</a></li>
               <li id="blog"><a href="#">BLOG</a></li>
@@ -46,10 +40,11 @@
           </div>
         </nav>
       </div>
+       <!---Barra Menu Principal -->
       <div class="row">
         <div class="col-sm-3">
         <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel"><a href="index.html">INICIO</a></h4></center></div>
+              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel"><a href="indexNuevo.html">INICIO</a></h4></center></div>
             </div> 
             
             <div  class="panel panel-default">
@@ -69,7 +64,7 @@
                       <option value="">Selección por curso</option>
                       </select>
                      
-                     <center><h6><label id="LabelTodosCursos" class="fuente" style="color: #C2C3C7;">TODOS LOS CURSOS</label></h6></center>
+                     <center><h6><label id="LabelTodosCursos" class="fuente" style="color: #C2C3C7;"><a href="#">TODOS LOS CURSOS</a></label></h6></center>
 
                       </div>
                   </form>             
@@ -82,16 +77,16 @@
                     <ul style="list-style:none; ">
                       <li><h5>Sedes Externas</h5> </li>
                         
-                      <li id="incompany"><h5>In Company</h5> </li>
+                      <li id="incompany"><a href="#"><h5>In Company</h5></a> </li>
                     </ul>
                   </form>             
                 </div>
             </div> 
             <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel" id="preinscripcionaloscursos">PREINSCRIPCION A LOS CURSOS</h4></center></div>
+              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel" ><a href="#" id="preinscripcionaloscursos">PREINSCRIPCION A LOS CURSOS</a></h4></center></div>
             </div> 
             <div  class="panel panel-default">
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel" id="formasdepago">FORMAS DE PAGO</h4></center></div>
+              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel" > <a href="#" id="formasdepago">FORMAS DE PAGO</a></h4></center></div>
             </div> 
 
             <div  class="panel panel-default" >
@@ -107,6 +102,7 @@
         </div>
 
         <div class="col-sm-9 well" id="contenedor">
+
           <div id="carousel-example-generic" class="carousel slide" data-ride="carousel2">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -117,17 +113,20 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
               <div class="item active">
-                <img src="img/LOGOliviano.png">
-                <div class="carousel-caption">
-                  <p class="carusel-titulo"></p>
-                </div>
+              <div class="fuenteslider"> Especialistas en Capacitación Integral</div>
+                <img src="img/LOGOliviano.png" class="logo">
+
+               <!--  <div class="carousel-caption">
+                  <p class="carusel-titulo">Quienes Somos</p>
+                </div> -->
               </div>
 
               <div class="item">
-                <img src="img/LOGOliviano.png">
-                <div class="carousel-caption">
+                <div class="fuenteslider"> Especialistas en Capacitación Integral</div>
+                <img src="img/LOGOliviano.png" class="logo">
+               <!--  <div class="carousel-caption">
                   <p class="carusel-titulo"></p>
-                </div>
+                </div> -->
               </div>
             </div>
 
@@ -243,7 +242,7 @@
     </div>
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+ <!--      <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
         <div class="slides"></div>
         <h3 class="title"></h3>
         <a class="prev">‹</a>
@@ -251,13 +250,13 @@
         <a class="close">×</a>
         <a class="play-pause"></a>
         <ol class="indicator"></ol>
-    </div>
+    </div> -->
     <!-- The template to display files available for upload -->
           <footer  class="footer">
       <center>
           <img src="img/logo100x100.png">   
           <label > 
-            <a href="index.html" title="Inicio">Inicio</a>| 
+            <a href="indexNuevo.html" title="Inicio">Inicio</a>| 
             <a href="#" id="mlaempresa" title="La Empresa">La Empresa</a>| 
             <a href="#" id="mservicios" title="Servicios">Servicios</a>|
 
@@ -398,14 +397,17 @@
         </tr>
     {% } %}
     </script>
+
       <script src="include/jquery-1.9.1.js"></script>
       <script type="text/javascript" src="js/efectosindexnuevo.js"></script>
       <script type="text/javascript" src="js/eventosnuevo.js"></script>
 
       <script type="text/javascript"> efectos();</script>
       <script type="text/javascript">eventos();</script>
+ 
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="js/bootstrap.min.js"></script>
+
             <!-- SCRIPT FOR INPUT FILE -->
     <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
     <script src="js/vendor/jquery.ui.widget.js"></script>

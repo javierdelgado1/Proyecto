@@ -25,8 +25,8 @@ img.bg {
   height: auto;
 
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0px;
+  right: 0px;
   z-index: -1;
 }
 
@@ -258,4 +258,28 @@ a:hover{
 	font-family: FontTitulo;
 	color:#000;
 	font-size: 50px;
+}
+.fuenteslider{
+
+top: 0px;
+left: 0px;
+ font-family:FontTitulo;
+ color:#DBDBDB;
+ font-size:65px;
+ text-shadow: 1px 1px 5px #000;
+}
+
+.logo{
+
+right: -50px;
+top: 0px;
+width: 280px;  height:280px;
+}
+.textslider{
+	
+	width: 380px;
+	height: 100px;	
+	bottom: 40px;
+	left: 10px;
+	color: #E1E1E1;
 }
