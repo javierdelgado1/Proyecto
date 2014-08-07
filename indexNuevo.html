@@ -33,11 +33,11 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand mybrand" href="index.html"> <img src="img/logo70x70.png"></a>
-             
+
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav mybar">
-              <li  id="inicio" ><a href="#" >INICIO</a></li>
+              <li  id="inicio" ><a href="index.html" >INICIO</a></li>
               <li id="laempresa"><a href="#">LA EMPRESA</a></li>
               <li id="servicios"><a href="#">SERVICIOS</a></li>
               <li id="blog"><a href="#">BLOG</a></li>
@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-sm-3">
         <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel">INICIO</h4></center></div>
+              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel"><a href="index.html">INICIO</a></h4></center></div>
             </div> 
             
             <div  class="panel panel-default">
@@ -102,17 +102,45 @@
                     <button type="submit" class="btn btn-default" style="float:right;">Enviar</button>
                   </form>             
                 </div>
-            </div> 
+              </form>             
+            </div>
         </div>
-
 
         <div class="col-sm-9 well" id="contenedor">
-          Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here Main content goes here 
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel2">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            </ol>
 
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="img/LOGOliviano.png">
+                <div class="carousel-caption">
+                  <p class="carusel-titulo"></p>
+                </div>
+              </div>
+
+              <div class="item">
+                <img src="img/LOGOliviano.png">
+                <div class="carousel-caption">
+                  <p class="carusel-titulo"></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
         </div>
       </div> 
-
-
 
         <!-- Modal Ver Curso -->
     <div class="modal fade" id="ModalVerCurso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -229,14 +257,14 @@
       <center>
           <img src="img/logo100x100.png">   
           <label > 
-            <a href="#" title="Inicio">Inicio</a>| 
+            <a href="index.html" title="Inicio">Inicio</a>| 
             <a href="#" id="mlaempresa" title="La Empresa">La Empresa</a>| 
             <a href="#" id="mservicios" title="Servicios">Servicios</a>|
-           
+
             <a href="#" id="mblog" title="Blog"> Blog</a>| 
             <a href="#" id="mcontacto" title="Contacto">Contacto</a>
           </label>
-                                    
+
           <div id="Social" >
             <a href="#" title="Hazte Fan"><img src="img/facebook.png" style="width:20px; height:20px; ">Global SYS</a>
             <a href="#" title="Siguenos "><img src="img/Twitter.png" style="width:20px; height:20px; ">@GlobalSYS</a>
@@ -375,7 +403,7 @@
       <script type="text/javascript" src="js/eventosnuevo.js"></script>
 
       <script type="text/javascript"> efectos();</script>
-        <script type="text/javascript">eventos();</script>
+      <script type="text/javascript">eventos();</script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="js/bootstrap.min.js"></script>
             <!-- SCRIPT FOR INPUT FILE -->

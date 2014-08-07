@@ -35,7 +35,14 @@ function eventos(){
 		mainInputFile();
 		$("#ModalDescargarArchivo").modal("show");
 	}
-
+    blog.onclick=function(){            
+         $.ajax({  
+            url: 'formas/blog.html',  
+            success: function(data) {  
+                $('#contenedor').hide().html(data).slideDown(1000);
+            }  
+        }); 
+    }
 	laempresa.onclick=function(){			 
 		 $.ajax({  
             url: 'formas/laempresa.html',  
