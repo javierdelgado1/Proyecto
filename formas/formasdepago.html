@@ -1,19 +1,21 @@
 
-    <div style="position:absolute; left:10px; padding-bottom:5px; width:690px;">
-	<h2>Formas de pago - <small>Cuentas Bancarias</small></h2>
-	<div style="color: #ECF0FF;" id="cuentas">
+	<h2 class="alert alert-info" style="background-color: rgba(211, 207, 207, 0.31);	border-color: #796868; color: #334953;" ><i id="tituloNoticia">Formas de pago - <small>Cuentas Bancarias</small></i> </h2>
+	
+	<div  id="cuentas">
 		<h4>
 			<i>Av. Fuerzas Armadas, Villa Terracota II Casa 3-C, Barcelona Edo. Anzoátegui, 
 			Teléfonos 0416-6813944/0416-6816433</i> 
 		</h4>
 	</div>
-	<h3><small>Comprobar Pago</small></h3>
+	<h2 class="alert alert-info" style="background-color: rgba(211, 207, 207, 0.31);	border-color: #796868; color: #334953;" ><i id="tituloNoticia">Comprobar Pago</i> </h2>
+
 	
-	<div class="alert alert-info" id="alertas">
+	
+	<div class="alert alert-info" style="background-color: rgba(211, 207, 207, 0.31);	border-color: #796868; color: #334953;"  id="alertas">
 		<b>Todos los campos con (*) son requeridos.</b>	
 	</div>
-	<fieldset>
-	<table>
+<h4>
+	<table class="table">
 		<tr>
 			<td>
 				<b>Nombre</b> 
@@ -22,14 +24,14 @@
 				*
 			</td>
 			<td>
-				<input type="text" id="tnombre" class="CajaTexto" />
+				<input type="text" id="tnombre" class="form-control" />
 			</td>
 			<td>
 				<b>Nro. de Cuenta</b>
 			</td>
 			<td>*</td>
 			<td>
-				<input 	list="numeros" name="tnumerodecuenta" id="tnumerodecuenta" class="CajaTexto">	
+				<input 	list="numeros" name="tnumerodecuenta" id="tnumerodecuenta" class="form-control">	
 				<datalist id="numeros" >								          
 				</datalist>				
 			</td>
@@ -42,14 +44,14 @@
 				*
 			</td>
 			<td>
-				<input 	type="text" name="tapellido" id="tapellido"  class="CajaTexto" />
+				<input 	type="text" name="tapellido" id="tapellido"  class="form-control" />
 			</td>
 			<td>
 				<b>Tipo de Pago</b>
 			</td>
 			<td>*</td>
 			<td>
-				<input 	 name="tTipo" id="tTipo" class="CajaTexto" list="Tipo">
+				<input 	 name="tTipo" id="tTipo" class="form-control" list="Tipo">
 				<datalist id="Tipo" >
 					<option value="Transferencia">
 					<option value="Deposito">				          
@@ -64,14 +66,14 @@
 				*
 			</td>
 			<td>
-				<input type="text" id="tTelefono" class="CajaTexto" />
+				<input type="text" id="tTelefono" class="form-control" />
 			</td>
 			<td>
 				<b>Nro. de Comprobante</b>
 			</td>
 			<td>*</td>
 			<td>
-				<input  type="texto" 	 name="tComprobante" id="tComprobante" class="CajaTexto">								
+				<input  type="texto" 	 name="tComprobante" id="tComprobante" class="form-control">								
 			</td>
 		</tr>
 		<tr>
@@ -80,14 +82,14 @@
 			</td>
 			<td>*</td>
 			<td>
-				<input 	type="email" name="tcorreo" id="tcorreo" class="CajaTexto">
+				<input 	type="email" name="tcorreo" id="tcorreo" class="form-control">
 			</td>
 			<td>
 				<b>Fecha del Pago</b>
 			</td>
 			<td>*</td>
 			<td>
-				<input 	type="date" name="tfechadepago" id="tfechadepago" class="CajaTexto">								
+				<input 	type="date" name="tfechadepago" id="tfechadepago" class="form-control">								
 			</td>
 		</tr>
 		<tr>
@@ -96,7 +98,7 @@
 			</td>
 			<td>*</td>
 			<td>
-				<input 	 name="tbanco" id="tbanco" class="CajaTexto" list="bancos">
+				<input 	 name="tbanco" id="tbanco" class="form-control" list="bancos">
 				<datalist id="bancos" >				          
 				</datalist>	
 			</td>
@@ -105,7 +107,7 @@
 			</td>
 			<td>*</td>
 			<td>
-				<input type="text" name="tmonto" id="tmonto" class="CajaTexto">								
+				<input type="text" name="tmonto" id="tmonto" class="form-control">								
 			</td>
 		</tr>
 		<tr>
@@ -114,7 +116,7 @@
 			</td>
 			<td>*</td>
 			<td>
-				<input type="text" name="tconcepto" id="tconcepto" class="CajaTexto">								
+				<input type="text" name="tconcepto" id="tconcepto" class="form-control">								
 			</td>
 
 		</tr>
@@ -131,13 +133,13 @@
 				*
 			</td>
 			<td align="left">
-				<input  type="submit" class="boton" href="#" data-toggle="modal" data-target="#ModalSubirArchivo" value="Cargar Archivos" />
+				<input  type="submit" class="form-control" href="#" data-toggle="modal" data-target="#ModalSubirArchivo" value="Cargar Archivos" />
 			</td>
 			<td></td>
 			<td>
-				<input type="submit" value="Confirmar Pago" class="boton" id="enviarformadepago"/>
+				<input type="submit" value="Confirmar Pago" class="form-control" id="enviarformadepago"/>
 			</td>
 		</tr>
 	</table>
-	</fieldset>
-</div>
+</h4>
+
