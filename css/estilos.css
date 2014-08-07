@@ -1,8 +1,18 @@
 /*######### Tipo y tamaño de letra general#######*/
+@font-face
+{
+ font-family: FontMenu;
+ src: local("LeagueGothic-Regular"), url("fonts/LeagueGothic-Regular.otf") format("TrueType");
+}
+
+@font-face
+{
+ font-family: FontTitulo;
+ src: url(../fonts/LABTOP__.ttf);
+}
+
 html, body {/*, form, fieldset, table, tr, td, img {*/
-	font-family: "LeagueGothic-Regular";
-	src: local("LeagueGothic-Regular"),
-	url("fonts/LeagueGothic-Regular.otf") format("TrueType");
+	font-family: FontMenu;
 	/*font-size: x-large;*/
 }
 /*######### FIN Tipo y tamaño de letra general#######*/
@@ -211,12 +221,20 @@ img.bg {
 
 
 .fuente_Panel {
-  font-family: "steelfishbdit";
-  src: local("steelfishbdit"),
-  url("fonts/steelfishbdit.otf") format("Open Type");
-  font-size: 50%;
-  color: #98C723;
-  font-weight: 500; 
+	font-family: "steelfishbdit";
+	src: local("steelfishbdit"),
+	url("fonts/steelfishbdit.otf") format("Open Type");
+	font-size: 60%;
+	color: #98C723;
+	font-weight: 500; 
+}
+
+.fuente_Panel>a{
+	color: #98C723;
+}
+
+a:hover{
+	text-decoration: none;
 }
 
 /*### Nuevo menú ###*/
@@ -228,4 +246,24 @@ img.bg {
 
 .form-control {
 	margin-bottom: 10px;
+}
+
+.carousel-control.right{
+	background: transparent;
+}
+.carousel-control.left{
+	background: transparent;
+}
+
+.carousel-inner { text-align: center; }
+
+.carousel .item > img { 
+	display: inline-block;
+	opacity: 0.7;
+}
+
+.carusel-titulo {
+	font-family: FontTitulo;
+	color:#000;
+	font-size: 50px;
 }
