@@ -25,4 +25,14 @@ function eventos(){
         }); 
 	}	
 
+	incompany.onclick=function(){	
+		console.log("contacto");
+		 $.ajax({  
+            url: 'formas/incompany.html',  
+            success: function(data) {  
+            	$('#contenedor').hide().html(data).slideDown(1000);
+            }  
+        }); 
+	}	
+
 }
