@@ -357,3 +357,11 @@ width: 280px;  height:280px;
 .dropdown-submenu{
 	border:none !important;
 }
+
+.li-sin-borde{
+	border:none !important;
+}
+
+.dropdown-menu-estirado{
+	width: 165px;
+}
