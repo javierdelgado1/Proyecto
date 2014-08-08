@@ -315,7 +315,7 @@ function eventos(){
 			VerContenido();
 		}
 		$("#facilitador").click(function(){
-			$("#tabla").load('formas/facilitador.html', function(){
+			$("#contenedor").load('formas/facilitador.html', function(){
 				$("input[name=tareas]").change(function(){				
 				$("#cursos").empty();
 				$.ajax
@@ -378,7 +378,7 @@ function eventos(){
 				
 
 		$("#participar").click(function(){
-			$("#tabla").load('formas/preinscripcion.html', function(){
+			$("#contenedor").load('formas/preinscripcion.html', function(){
 			$("input[name=tareas]").change(function(){				
 				$("#cursos").empty();
 				$.ajax
