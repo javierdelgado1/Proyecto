@@ -33,7 +33,47 @@
             <ul class="nav navbar-nav mybar">
               <li  id="inicio" ><a href="indexNuevo.html" >INICIO</a></li>
               <li id="laempresa"><a href="#">LA EMPRESA</a></li>
-              <li id="servicios"><a href="#">SERVICIOS</a></li>
+              
+
+              <li class="dropdown" id="servicios">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">SERVICIOS <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li class="menu-item dropdown">                    
+                    <ul class="nav navbar-nav">
+                        <li class="menu-item dropdown dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portafolio de Cursos</a>
+                            <ul class="dropdown-menu">
+                                <li class="menu-item ">
+                                    <li><a href="#" id="perforacion">Perforacion</a></li>          
+                                    <li><a href="#" id="yacimiento">Yacimiento</a></li>
+                                    <li><a href="#" id="administracion">Administracion</a></li> 
+                                    <li><a href="#" id="finanzas">Finanzas</a></li>  
+                                    <li><a href="#" id="tecnicas">Técnica/Seguridad</a></li>    
+                                </li>                                
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item dropdown">                    
+                    <ul class="nav navbar-nav">
+                        <li class="menu-item dropdown dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registros</a>
+                            <ul class="dropdown-menu">
+                                <li class="menu-item ">
+                                    <li><a href="#" id="participar">Participante</a></li>
+                                    <li><a href="#" id="facilitador">Facilitador</a></li>   
+                                </li>                                
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="divider"></li>
+                <li><a  href="#" id="descargar">Descargas           </a></li>
+              </ul>
+            </li>
+
+
               <li id="blog"><a href="#">BLOG</a></li>
               <li id="contacto"><a href="#">CONTACTO</a></li>
             </ul>
@@ -54,11 +94,12 @@
                   <form class="form-signin" role="form">                            
                       <div id="programaciondecursos_inputs">
                       <select id="categoria1" class="form-control">
-                      <option value="">Selección por área</option> 
-                      <option value="Perforacion">Perforación</option> 
-                      <option value="Yacimiento">Yacimiento</option> 
-                      <option value="Administracion">Administración</option> 
-                      <option value="Finanzas">Finanzas</option> 
+                        <option value="">Selección por área</option> 
+                        <option value="Perforacion">Perforación</option> 
+                        <option value="Yacimiento">Yacimiento</option> 
+                        <option value="Administracion">Administración</option> 
+                        <option value="Finanzas">Finanzas</option> 
+                        <option value="TecnicaSeguridad">Técnica/Seguridad</option> 
                       </select>
                       <select id="curso1" class="form-control">
                       <option value="">Selección por curso</option>
@@ -406,8 +447,14 @@
       <script type="text/javascript">eventos();</script>
  
       <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="js/bootstrap.min.js"></script>
-
+      <script src="js/bootstrap.js"></script>
+      <script type="text/javascript">
+       
+        $( document ).ready(function() {
+           $('.dropdown-toggle').dropdown();
+        });
+     
+      </script>
             <!-- SCRIPT FOR INPUT FILE -->
     <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
     <script src="js/vendor/jquery.ui.widget.js"></script>

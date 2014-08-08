@@ -297,6 +297,31 @@ function eventosPanel() {
 					EditarActualizar();
 					eliminar();
 				}
+				tecnicas.onclick=function(){
+					console.log("click en tecnica");
+					$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:2, tipo:5 },
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{				
+							$('#Tecnicas').html("");
+							var table = $('<table></table>').addClass('table table-hover');							
+							var row=$('<tr></tr>');							
+							$('#Tecnicas').append(ListarTabla(msg, table, row));
+						},
+					error:
+					function (msg) {
+						console.log( msg +"No se pudo realizar la conexion");}
+					});
+					VerContenido();
+					EditarActualizar();
+					eliminar();
+				}
 			}
 		});	
 	}

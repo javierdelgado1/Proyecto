@@ -15,6 +15,9 @@ function eventos(){
 			case "Finanzas":
 				result = ConsultaCursos(4);
 				break;
+			case "TecnicaSeguridad":
+				result = ConsultaCursos(5);
+				break;
 			default:
 				curso1.innerHTML = "";
 				var option = document.createElement("option");
@@ -169,8 +172,8 @@ function eventos(){
 		
 	}
 
-	servicios.onclick=function(){
-		$("#contenedor").hide().load('formas/servicios.html' , function() {
+
+
 		$("#perforacion").click(function(){
 			$.ajax
 			({
@@ -186,7 +189,8 @@ function eventos(){
 					var table = $('<table></table>');	
 
 					var row=$('<tr></tr>');
-					$('#tabla').append(ListarTabla(msg, table, row));
+					contenedor.innerHTML="";
+					$('#contenedor').append(ListarTabla(msg, table, row));
 				},
 			error:
 			function (msg) {
@@ -208,7 +212,8 @@ function eventos(){
 					$('#tabla').html("");	
 					var table = $('<table></table>');							
 					var row=$('<tr></tr>');
-					$('#tabla').append(ListarTabla(msg, table, row));
+					contenedor.innerHTML="";
+					$('#contenedor').append(ListarTabla(msg, table, row));
 				},
 			error:
 			function (msg) {
@@ -230,7 +235,8 @@ function eventos(){
 					$('#tabla').html("");	
 					var table = $('<table></table>');							
 					var row=$('<tr></tr>');
-					$('#tabla').append(ListarTabla(msg, table, row));
+					contenedor.innerHTML="";
+					$('#contenedor').append(ListarTabla(msg, table, row));
 				},
 			error:
 			function (msg) {
@@ -252,7 +258,31 @@ function eventos(){
 					$('#tabla').html("");	
 					var table = $('<table></table>');							
 					var row=$('<tr></tr>');
-					$('#tabla').append(ListarTabla(msg, table, row));
+					contenedor.innerHTML="";
+					$('#contenedor').append(ListarTabla(msg, table, row));
+				},
+			error:
+			function (msg) {
+				console.log( msg +"No se pudo realizar la conexion");}
+			});	
+			VerContenido();	
+		});
+		$("#tecnicas").click(function(){
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:2, tipo:5},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{			
+					$('#tabla').html("");	
+					var table = $('<table></table>');							
+					var row=$('<tr></tr>');
+					contenedor.innerHTML="";
+					$('#contenedor').append(ListarTabla(msg, table, row));
 				},
 			error:
 			function (msg) {
@@ -275,7 +305,8 @@ function eventos(){
 					$('#tabla').html("");	
 					var table = $('<table></table>');							
 					var row=$('<tr></tr>');
-					$('#tabla').append(ListarTabla(msg, table, row));
+					contenedor.innerHTML="";
+					$('#contenedor').append(ListarTabla(msg, table, row));
 				},
 				error:
 				function (msg) {
@@ -393,9 +424,7 @@ function eventos(){
 		});
 
 
-		}).slideDown(1000);	
 		
-	}
 
 	$("#formasdepago").click(function(){
 		VaciarFileInput();
@@ -728,7 +757,7 @@ function validarFormularioFormasdepago(){
 			var fila2 = $('<td></td>').text(msg[i].Desde);
 			var fila3 = $('<td></td>').text(msg[i].Hasta);
 			var fila4 = $('<td></td>').text(msg[i].Duracion);
-		    var fila6 = $('<td></td>').append('<button name="'+msg[i].id+'" type="button" class="btn btn-default vercontenido"  data-toggle="modal" data-target="#ModalDescargarArchivo" title="Ver contenido" ><span class="glyphicon glyphicon-eye-open">Ver</span></button>');
+		    var fila6 = $('<td></td>').append('<button name="'+msg[i].id+'" type="button" class="btn btn-default vercontenido"  title="Ver contenido" ><span class="glyphicon glyphicon-eye-open">Ver</span></button>');
 
 			row2.append(fila1);
 			row2.append(fila2);
@@ -741,7 +770,7 @@ function validarFormularioFormasdepago(){
 	}
 	function VerContenido(){
 		$('button.vercontenido').on('click',  function()
-		{
+		{	$('#ModalDescargarArchivo').modal('show');
 			var id=$(this).attr('name');
 			VaciarFileInput();
 			fileupload.action = "server/php/PortafolioVerAdjuntos.php?id="+id;

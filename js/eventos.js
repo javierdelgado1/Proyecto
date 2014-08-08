@@ -19,6 +19,9 @@ function eventos() {
 			case "Finanzas":
 				result = ConsultaCursos(4);
 				break;
+			case "TecnicaSeguridad":
+				result = ConsultaCursos(5);
+				break;
 			default:
 				curso1.innerHTML = "";
 				var option = document.createElement("option");

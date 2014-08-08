@@ -262,6 +262,8 @@
 			$tupla = "SELECT * FROM  portafolio WHERE Area='Administracion'";
 		if($tipo==4)
 			$tupla = "SELECT * FROM  portafolio WHERE Area='Finanzas'";
+		if($tipo==5)
+			$tupla = "SELECT * FROM  portafolio WHERE Area='TecnicaSeguridad'";
 		$resultado = $mysqli->query($tupla);
 		$objeto[0]['mensaje']=false;
 		$i=0;

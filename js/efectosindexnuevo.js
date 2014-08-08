@@ -7,7 +7,7 @@ function efectos(){
 		$('#inicio').removeClass("active");
 	});
 	$('#servicios').click(function() {
-		$(this).addClass("active");
+		/*$(this).addClass("active");*/
 		$('#contacto').removeClass("active");
 		$('#blog').removeClass("active");
 		$('#laempresa').removeClass("active");
