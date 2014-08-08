@@ -20,6 +20,8 @@
 
   <noscript><link rel="stylesheet" href="css/jquery.fileupload-noscript.css"></noscript>
   <noscript><link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css"></noscript>
+  <link href="css/metro-bootstrap.css" rel="stylesheet">
+  <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
 </head>
     <body >
      <!---Barra Menu Principal -->
@@ -87,64 +89,36 @@
         </nav>
       </div>
        <!---Barra Menu Principal -->
-      <div class="row">
+      <div class="row metro">
         <div class="col-sm-3">
-        <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel"><a id="INICIO2" href="#">CALENDARIO</a></h4></center></div>
-            </div> 
-            
-            <div  class="panel panel-default">
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel">PROGRAMACION DE CURSOS</h4></center></div>
-                <div class="panel-body">
-                  
-                  <form class="form-signin" role="form">                            
-                      <div id="programaciondecursos_inputs">
-                      <select id="categoria1" class="form-control">
-                        <option value="">Selección por área</option> 
-                        <option value="Perforacion">Perforación</option> 
-                        <option value="Yacimiento">Yacimiento</option> 
-                        <option value="Administracion">Administración</option> 
-                        <option value="Finanzas">Finanzas</option> 
-                        <option value="TecnicaSeguridad">Técnica/Seguridad</option> 
-                      </select>
-                      <select id="curso1" class="form-control">
+          <nav class="sidebar light">
+            <ul>
+              <li class="active"><a href="#">INICIO</a></li>
+              <li>
+                <a href="#">PROGRAMACIÓN DE CURSOS</a>  
+                <form class="form-signin" role="form">
+                  <div id="programaciondecursos_inputs">
+                    <select id="categoria1" class="form-control">
+                      <option value="">Selección por área</option>
+                      <option value="Perforacion">Perforación</option>
+                      <option value="Yacimiento">Yacimiento</option>
+                      <option value="Administracion">Administración</option> 
+                      <option value="Finanzas">Finanzas</option> 
+                    </select>
+                    <select id="curso1" class="form-control">
                       <option value="">Selección por curso</option>
-                      </select>
-                     
-                     <center><h6><label id="LabelTodosCursos" class="fuente" style="color: #C2C3C7;"><a href="#" id="todosloscursos">TODOS LOS CURSOS</a></label></h6></center>
+                    </select>
 
-                      </div>
-                  </form>             
-                </div>
-            </div> 
-            <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel">SOLICITUD DE REGISTRO</h4></center></div>
-                <div class="panel-body">                  
-                  <form class="form-signin" role="form">                            
-                    <ul style="list-style:none; ">
-                      <li><h5>Sedes Externas</h5> </li>
-                        
-                      <li id="incompany"><a href="#"><h5>In Company</h5></a> </li>
-                    </ul>
-                  </form>             
-                </div>
-            </div> 
-            <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel" ><a href="#" id="preinscripcionaloscursos">PREINSCRIPCION A LOS CURSOS</a></h4></center></div>
-            </div> 
-            <div  class="panel panel-default">
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel" > <a href="#" id="formasdepago">FORMAS DE PAGO</a></h4></center></div>
-            </div> 
+                    <center><h6><label id="LabelTodosCursos">TODOS LOS CURSOS</label></h6></center>
 
-            <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel">RECIBE NUESTRA PROGRAMACION</h4></center></div>
-                <div class="panel-body">                  
-                  <form class="form-signin" role="form">                            
-                    <input type="text" id="temail" class="text form-control" placeholder="Ingresa tu email aqui.." />  
-                    <button type="submit" class="btn btn-default" style="float:right;">Enviar</button>
-                  </form>             
-                </div>
-            </div>
+                  </div>
+                </form>
+              </li>
+              <li ><a href="#">SOLICITUD DE PRESUPUESTO</a></li>
+              <li><a href="#">PREINSCRIPCIÓN DE CURSOS</a></li>
+              <li><a href="#">FORMAS DE PAGO</a></li>
+            </ul>
+          </nav>
         </div>
 
         <div class="col-sm-9 well" id="contenedor">

@@ -1,4 +1,10 @@
-function eventos(){	
+function abrirCalendario() { 
+	open('calendario.html','','top=50,left=50,width=900,height=740') ; 
+}
+function eventos(){
+	$("#INICIO2").click(function(){
+		abrirCalendario();
+	});
 	categoria1.onchange=function(){
 		var area = categoria1.options[categoria1.selectedIndex].value;
 		var result;
