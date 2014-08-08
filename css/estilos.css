@@ -353,3 +353,7 @@ width: 280px;  height:280px;
     -moz-border-radius:6px 0 6px 6px;
     border-radius:6px 0 6px 6px;
 }
+
+.dropdown-submenu{
+	border:none !important;
+}
