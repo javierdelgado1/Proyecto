@@ -185,9 +185,7 @@ function eventos(){
 				success:
 				function (msg) 
 				{			
-					$('#tabla').html("");	
-					var table = $('<table></table>');	
-
+					var table = $('<table></table>');
 					var row=$('<tr></tr>');
 					contenedor.innerHTML="";
 					$('#contenedor').append(ListarTabla(msg, table, row));
@@ -292,6 +290,30 @@ function eventos(){
 		});
 
 		descargar.onclick=function(){
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:11},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{			
+					$('#tabla').html("");	
+					var table = $('<table></table>');							
+					var row=$('<tr></tr>');
+					contenedor.innerHTML="";
+					$('#contenedor').append(ListarTabla(msg, table, row));
+				},
+				error:
+				function (msg) {
+				console.log( msg +"No se pudo realizar la conexion");}
+			});	
+			VerContenido();
+		}
+
+		todosloscursos.onclick=function(){
 			$.ajax
 			({
 				type: "POST",
@@ -744,19 +766,23 @@ function validarFormularioFormasdepago(){
 
 	function ListarTabla(msg, table, row){			
 		table.addClass('table');
-		row.append($('<td></td>').html("<b>Curso</b>"));							
-		row.append($('<td></td>').html("<b>Desde</b>"));
-		row.append($('<td></td>').html("<b>Hasta</b>"));
-		row.append($('<td></td>').html("<b>Duracion</b>"));
-		row.append($('<td></td>').html("<b>Contenido</b>"));
+
+		row.append($('<td></td>').html("<h4><b>Curso</b></h4>"));							
+		row.append($('<td></td>').html("<h4><b>Desde</b></h4>"));
+		row.append($('<td></td>').html("<h4><b>Hasta</b></h4>"));
+		row.append($('<td></td>').html("<h4><b>Duracion</b></h4>"));
+		row.append($('<td></td>').html("<h4><b>Contenido</b></h4>"));
 		table.append(row);
+	
+
+
 	
 		for(i=0; i<msg[0].m; i++){
 			var row2 = $('<tr></tr>');
-			var fila1 = $('<td></td>').text(msg[i].Curso);
-			var fila2 = $('<td></td>').text(msg[i].Desde);
-			var fila3 = $('<td></td>').text(msg[i].Hasta);
-			var fila4 = $('<td></td>').text(msg[i].Duracion);
+			var fila1 = $('<td></td>').html("<h4>"+msg[i].Curso+"</h4>");
+			var fila2 = $('<td></td>').html("<h4>"+msg[i].Desde+"</h4>");
+			var fila3 = $('<td></td>').html("<h4>"+msg[i].Hasta+"</h4>");
+			var fila4 = $('<td></td>').html("<h4>"+msg[i].Duracion+"</h4>");
 		    var fila6 = $('<td></td>').append('<button name="'+msg[i].id+'" type="button" class="btn btn-default vercontenido"  title="Ver contenido" ><span class="glyphicon glyphicon-eye-open">Ver</span></button>');
 
 			row2.append(fila1);
@@ -776,4 +802,42 @@ function validarFormularioFormasdepago(){
 			fileupload.action = "server/php/PortafolioVerAdjuntos.php?id="+id;
 			mainInputFile();
 		});
+	}
+
+	function validarFormularioFacilitador(){
+		if(tnombre.value==""){
+		alertas.innerHTML="<center><b>Escriba su nombre</b></center>";
+		return false;
+		}	
+		else if(tapellido.value=="")
+		{  
+	        alertas.innerHTML="<center><b>Escriba su Apellido</b></center>";
+			return false;
+		}
+		else if(!tTelefono.value.match(/^[0-9-]+$/))
+		{  
+	        alertas.innerHTML="<center><b>Escriba un telefono valido</b></center>";
+			return false;
+		}		
+		else if(tareas.value=="")
+		{  
+	        alertas.innerHTML="<center><b>Debe escribir el Area</b></center>";
+			return false;
+		}
+		else if(tcurso.value=="")
+		{  
+	        alertas.innerHTML="<center><b>Debe escribir un Curso/Diplomado/Taller</b></center>";
+			return false;
+		}
+		else if(tcorreo.value==""||!validar_email(tcorreo.value))
+		{  
+	        alertas.innerHTML="<center><b>Escriba un correo valido</b></center>";
+			return false;
+		}
+		else if (typeof ArchivoSubido == "undefined") 
+		{
+			alertas.innerHTML="<center><b>Cargue el CV</b></center>";
+			return false;
+		}
+		else {return true;}	
 	}
