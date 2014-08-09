@@ -1,133 +1,266 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Calendario</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Calendario</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css">
-    <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
-	--><style>	
-		body{
-			padding: 10px;
-		}	
-		.navbar-nav {
-			margin-top: 12px;
-		}
-		.navbar {
-			margin-bottom: 0px;
-		}
-		.year {
-			font-size: 15px;
-		}
-		.month{
-			font-size: 20px;
-		}
-		.datepicker table tr td, .datepicker table tr th {
-			padding: 20px 20px;
-			font-size: 25px;
-		}
-		label {
-			-webkit-border-radius: 5px;
-			-moz-border-radius: 5px;
-			border-radius: 5px; 
-		}
-		.Perforacion {
-			color: #ffffff !important;
-			background-color: #7932B1;
-			border-color: #7932B1;
-		}
-		.Perforacion:hover{
-			background-color: #9F4BE0 !important;
-		}
-		.Yacimiento {
-			color: #ffffff !important;
-			background-color: #31A88C;
-			border-color: #31A88C;
-		}
-		.Yacimiento:hover{
-			background-color: #38BD9E !important;
-		}
-		.Administracion {
-			color: #ffffff !important;
-			background-color: #BDAD38;
-			border-color: #BDAD38;
-		}
-		.Administracion:hover{
-			background-color: #CAB937 !important;
-		}
-		.Finanzas {
-			color: #ffffff !important;
-			background-color: #B93895;
-			border-color: #B93895;
-		}
-		.Finanzas:hover{
-			background-color: #D658B3 !important;
-		}		
-		.multiple {
-			color: #ffffff !important;
-			background-color: #D5A9A9;
-			border-color: #D5A9A9;
-		}
-		.multiple:hover{
-			background-color: #E0BEBE !important;
-		}
-		.otros {
-			color: #ffffff !important;
-			background-color: #165C5F;
-			border-color: #165C5F;
-		}
-		.otros:hover{
-			background-color: #1D777A !important;
-		}
+      <![endif]-->
+      <link rel="stylesheet" href="css/datepicker3.css">
+    <style>	
+    body{
+    	padding: 10px;
+    }	
+    /*#####Fondo#####*/
+    img.bg {
+    	min-height: 100%;
+    	min-width: 1024px;
+
+    	width: 100%;
+    	height: auto;
+
+    	position: fixed;
+    	top: 0px;
+    	right: 0px;
+    	z-index: -1;
+    }
+
+    @media screen and (max-width: 1024px) { /* Specific to this particular image */
+    	img.bg {
+    		left: 50%;
+    		margin-left: -512px;   /* 50% */
+    	}
+    }
+    /*##########Fin Fondo##############*/
+    .navbar-nav {
+    	margin-top: 12px;
+    }
+
+    .year {
+    	font-size: 15px;
+    }
+    .month{
+    	font-size: 20px;
+    }
+    .datepicker table tr td, .datepicker table tr th {
+    	padding: 20px 20px;
+    	font-size: 25px;
+    }
+    label {
+    	-webkit-border-radius: 5px;
+    	-moz-border-radius: 5px;
+    	border-radius: 5px; 
+    	padding-left: 0px;
+    	margin-bottom: 0px;
+    	cursor: pointer;
+    }
+    .PerforacionLabel {
+    	color: #7932B1 !important;
+    	font-weight: bold;
+    }
+    .PerforacionLabel:hover{
+    	color: #9F4BE0 !important;
+    }
+    .YacimientoLabel {
+    	color: #31A88C !important;
+    	font-weight: bold;
+    }
+    .YacimientoLabel:hover{
+    	color: #38BD9E !important;
+    }
+    .AdministracionLabel {
+    	color: #BDAD38 !important;
+    	font-weight: bold;
+    }
+    .AdministracionLabel:hover{
+    	color: #CAB937 !important;
+    }
+    .FinanzasLabel {
+    	color: #B93895 !important;
+    	font-weight: bold;
+    }
+    .FinanzasLabel:hover{
+    	color: #D658B3 !important;
+    }		
+    .multipleLabel {
+    	color: #D5A9A9 !important;
+    	font-weight: bold;
+    }
+    .multipleLabel:hover{
+    	color: #E0BEBE !important;
+    }
+    .otrosLabel {
+    	color: #165C5F !important;
+    	font-weight: bold;
+    }
+    .otrosLabel:hover{
+    	color: #1D777A !important;
+    }
+    .Perforacion {
+    	color: #ffffff !important;
+    	background-color: #7932B1;
+    	border-color: #7932B1;
+    }
+    .Perforacion:hover{
+    	background-color: #9F4BE0 !important;
+    }
+    .Yacimiento {
+    	color: #ffffff !important;
+    	background-color: #31A88C;
+    	border-color: #31A88C;
+    }
+    .Yacimiento:hover{
+    	background-color: #38BD9E !important;
+    }
+    .Administracion {
+    	color: #ffffff !important;
+    	background-color: #BDAD38;
+    	border-color: #BDAD38;
+    }
+    .Administracion:hover{
+    	background-color: #CAB937 !important;
+    }
+    .Finanzas {
+    	color: #ffffff !important;
+    	background-color: #B93895;
+    	border-color: #B93895;
+    }
+    .Finanzas:hover{
+    	background-color: #D658B3 !important;
+    }		
+    .multiple {
+    	color: #ffffff !important;
+    	background-color: #D5A9A9;
+    	border-color: #D5A9A9;
+    }
+    .multiple:hover{
+    	background-color: #E0BEBE !important;
+    }
+    .otros {
+    	color: #ffffff !important;
+    	background-color: #165C5F;
+    	border-color: #165C5F;
+    }
+    .otros:hover{
+    	background-color: #1D777A !important;
+    }
+
+    .table-condensed{
+    	position: relative;
+    	width: 100%;
+    }
+    .row{
+    	width: 100%;
+    }
+    .datepicker-inline{
+    	width: 100%;
+    }
+    input[type=checkbox]{
+    	display: none;
+    }
+
+	/*###### Menu principal bordes casillas #######*/
+	.mybar {
+	}
+
+	.mybar li{
+		border-width: 1px;
+	    border-right-style: solid;
+	    -webkit-border-image: 
+	      -webkit-gradient(linear, 0 100%, 0 0, from(#9e9e9a), to(rgba(0, 0, 0, 0))) 1 100%;
+	    -webkit-border-image: 
+	      -webkit-linear-gradient(bottom, #9e9e9a, rgba(0, 0, 0, 0)) 1 100%;
+	    -moz-border-image:
+	      -moz-linear-gradient(bottom, #9e9e9a, rgba(0, 0, 0, 0)) 1 100%;  
+	    -o-border-image:
+	      -o-linear-gradient(bottom, #9e9e9a, rgba(0, 0, 0, 0)) 1 100%;
+	    border-image:
+	      linear-gradient(to top, #9e9e9a, rgba(0, 0, 0, 0)) 1 100%;
+		padding-left: 5px;
+		padding-right: 5px;
+
+	}
+	.mybar > .active li{
+		border-width: 50px;
+	}
+
+	.mybar > li .active > label  {
+		border-bottom: solid 2px #48657E;
+		box-shadow: 0 5px 0 #3786CD;
+	}
+
+	.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+		border-bottom: solid 2px #48657E;
+		box-shadow: 0 5px 0 #3786CD;
+	}
+	/*###### Fin Menu principal bordes casillas #######*/
+
+	/*########### Menu principal borde inferior#######*/
 
 
-	</style>
+	/*############ Menu principal border general inferior  ###########*/
+	.navbar-custom {
+	  border-bottom: 5px solid #59B0B9;
+	}
+	/*############ Fin Menu principal border general inferior   ###########*/
+	/*########### Fin Menu principal borde inferior#######*/
+
+
+	.mybrand{
+	     float:none !important;   
+	}
+
+	.myheader{
+	    text-align: center;
+	    padding: 5px;
+	}
+
+	.navbar-nav>li>a{
+		padding:0px;
+	}
+
+    </style>
 </head>
 <body>
-	<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Mostrar: </a>
-    </div>
+	<img src="img/bg.jpg" class="bg">
+	<div id="navbar">
+		<nav role="navigation" class="navbar-custom navbar navbar-default">
+			<div class="navbar-header myheader">
+				<button class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li>
-        	<label class="checkbox-inline"><input type="checkbox" id="checkboxEnLinea1" checked="true" > Todos</label>
-			<label class="checkbox-inline Perforacion"><input type="checkbox" id="checkboxEnLinea2">Perforación</label>
-			<label class="checkbox-inline Yacimiento"><input type="checkbox" id="checkboxEnLinea3" onClick="updateCalendario();"> Yacimiento</label>
-			<label class="checkbox-inline Administracion"><input type="checkbox" id="checkboxEnLinea4" onClick="updateCalendario();"> Administración</label>
-			<label class="checkbox-inline Finanzas"><input type="checkbox" id="checkboxEnLinea5" onClick="updateCalendario();"> Finanzas</label>
-			<label class="checkbox-inline otros"><input type="checkbox" id="checkboxEnLinea6" onClick="updateCalendario();"> Otras áreas</label>
-			<label class="checkbox-inline multiple">Múltiples Cursos</label>
-		</li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand mybrand" href="index.html"> <img src="img/logo70x70.png" style ="width: 40px; height: 40px;"></a>
 
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav mybar">
+					<li><a href="#" class="active"><label><input type="checkbox" id="checkboxEnLinea1" checked="true" >Todos</label></a></li>
+					<li><a href="#"><label class="PerforacionLabel"><input type="checkbox" id="checkboxEnLinea2">Perforación</label></a></li>
+					<li><a href="#"><label class="YacimientoLabel"><input type="checkbox" id="checkboxEnLinea3" onClick="updateCalendario();"> Yacimiento</label></a></li>
+					<li><a href="#"><label class="AdministracionLabel"><input type="checkbox" id="checkboxEnLinea4" onClick="updateCalendario();"> Administración</label></a></li>
+					<li><a href="#"><label class="FinanzasLabel"><input type="checkbox" id="checkboxEnLinea5" onClick="updateCalendario();"> Finanzas</label></a></li>
+					<li><a href="#"><label class="otrosLabel"><input type="checkbox" id="checkboxEnLinea6" onClick="updateCalendario();"> Otras áreas</label></a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
 
 	<div class="container">
-	  <div class="row" >
-	    <div class="span8 offset2" id="calendario"></div>
-	  </div>
+		<div class="row" >
+			<div class="span8 offset2" id="calendario"></div>
+		</div>
 	</div>
 
 
@@ -141,279 +274,320 @@
 		</div>
 
 	</div>
-      <!-- Modal Ver Evento ARCHIVO -->
-    <div class="modal fade" id="ModalVerEvento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Información</h4>
-			</div>
-			<!-- Table -->
-			<div id="TablaVerCurso">
+	<!-- Modal Ver Evento ARCHIVO -->
+	<div class="modal fade" id="ModalVerEvento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Información</h4>
 				</div>
-			<div class="modal-footer">
-				
+				<!-- Table -->
+				<div id="TablaVerCurso">
+				</div>
+				<div class="modal-footer">
+
+				</div>
 			</div>
-        </div>
-      </div>
-    </div>
-    <!-- Fin Modal Descargar archivo -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+		</div>
+	</div>
+	<!-- Fin Modal Descargar archivo -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>	
 	<script src="js/bootstrap-datepicker.es.js"></script>
-    <script type="text/javascript">     
-        $(document).ready(function () {
+	<script type="text/javascript">     
+	$(document).ready(function () {
 
-            var eventos;
-            var contador = 0;
-            var globaldesde = 0;
+		var eventos;
+		var contador = 0;
+		var globaldesde = 0;
 
-			MostrarCursosProximos();
-			calendario();
+		MostrarCursosProximos();
+		calendario();
+		AbrirModal();
+
+		function AbrirModal(){
+			$('td.day').on('click',  function(){
+				var datosCurso=$(this).attr('name');
+				if(typeof datosCurso != "undefined"){
+					$('td.day').attr('data-toggle',"modal");
+					$('td.day').attr('data-target',"#ModalVerEvento");
+					datosCurso = datosCurso.split("&&&");
+					for(var i = 0; i < datosCurso.length; i++)
+						datosCurso[i] = datosCurso[i].split("|||");
+					LlenarModal(datosCurso);
+				}
+			});
+		}
+
+
+		function LlenarModal(datosCurso){
+			$('#TablaVerCurso').html("");	
+
+			var table = $('<table></table>').addClass('table table-hover');							
+			var row= $('<tr></tr>');
+			row.append($('<td></td>').html("<b>Curso</b>"));
+			row.append($('<td></td>').html("<b>Area</b>"));							
+			row.append($('<td></td>').html("<b>Desde</b>"));
+			row.append($('<td></td>').html("<b>Hasta</b>"));
+			row.append($('<td></td>').html("<b>Duración</b>"));
+			table.append(row);
+
+			for(i=0; i<datosCurso.length; i++){
+				var row2 = $('<tr></tr>');
+				var fila1 = $('<td></td>').text(datosCurso[i][0]);
+				var fila2 = $('<td></td>').text(datosCurso[i][1]);
+				var fila3 = $('<td></td>').text(datosCurso[i][4]);
+				var fila4 = $('<td></td>').text(datosCurso[i][5]);
+				var fila5 = $('<td></td>').text(datosCurso[i][2]);
+				row2.append(fila1);
+				row2.append(fila2);
+				row2.append(fila3);
+				row2.append(fila4);
+				row2.append(fila5);									
+				table.append(row2);
+			}
+			$('#TablaVerCurso').append(table);
+
+		}
+		function updateCalendario(){
+			$('#calendario').datepicker('update');
+		}
+		checkboxEnLinea1.onclick=function(){
+			checkboxEnLinea2.checked = false;
+			checkboxEnLinea2.parentNode.parentNode.setAttribute("class","");
+			checkboxEnLinea3.checked = false;
+			checkboxEnLinea3.parentNode.parentNode.setAttribute("class","");
+			checkboxEnLinea4.checked = false;
+			checkboxEnLinea4.parentNode.parentNode.setAttribute("class","");
+			checkboxEnLinea5.checked = false;
+			checkboxEnLinea5.parentNode.parentNode.setAttribute("class","");
+			checkboxEnLinea6.checked = false;
+			checkboxEnLinea6.parentNode.parentNode.setAttribute("class","");
+			if(checkboxEnLinea1.checked)
+				checkboxEnLinea1.parentNode.parentNode.setAttribute("class","active");
+			else
+				checkboxEnLinea1.parentNode.parentNode.setAttribute("class","");
+			updateCalendario();
 			AbrirModal();
-
-			function AbrirModal(){
-				$('td.day').on('click',  function(){
-					var datosCurso=$(this).attr('name');
-					if(typeof datosCurso != "undefined"){
-						$('td.day').attr('data-toggle',"modal");
-						$('td.day').attr('data-target',"#ModalVerEvento");
-						
-						datosCurso = datosCurso.split("&&&");
-						for(var i = 0; i < datosCurso.length; i++)
-							datosCurso[i] = datosCurso[i].split("|||");
-						LlenarModal(datosCurso);
-					}
-				});
-		    }
-
-			
-		    function LlenarModal(datosCurso){
-		    	$('#TablaVerCurso').html("");	
-
-				var table = $('<table></table>').addClass('table table-hover');							
-				var row= $('<tr></tr>');
-				row.append($('<td></td>').html("<b>Curso</b>"));
-				row.append($('<td></td>').html("<b>Area</b>"));							
-				row.append($('<td></td>').html("<b>Desde</b>"));
-				row.append($('<td></td>').html("<b>Hasta</b>"));
-				row.append($('<td></td>').html("<b>Duracion</b>"));
-				table.append(row);
-				
-				for(i=0; i<datosCurso.length; i++){
-					var row2 = $('<tr></tr>');
-					var fila1 = $('<td></td>').text(datosCurso[i][0]);
-					var fila2 = $('<td></td>').text(datosCurso[i][1]);
-					var fila3 = $('<td></td>').text(datosCurso[i][4]);
-					var fila4 = $('<td></td>').text(datosCurso[i][5]);
-					var fila5 = $('<td></td>').text(datosCurso[i][2]);
-					row2.append(fila1);
-					row2.append(fila2);
-					row2.append(fila3);
-					row2.append(fila4);
-					row2.append(fila5);									
-				    table.append(row2);
-				}
-				$('#TablaVerCurso').append(table);
-
-		    }
-		    function updateCalendario(){
-		    	$('#calendario').datepicker('update');
-			}
-		    checkboxEnLinea1.onclick=function(){
-		    	checkboxEnLinea2.checked = false;
-		    	checkboxEnLinea3.checked = false;
-		    	checkboxEnLinea4.checked = false;
-		    	checkboxEnLinea5.checked = false;
-		    	checkboxEnLinea6.checked = false;
-				updateCalendario();
-			}
-			checkboxEnLinea2.onclick=function(){
-				checkboxEnLinea1.checked = false;
-				updateCalendario();
-			}
-			checkboxEnLinea3.onclick=function(){
-				checkboxEnLinea1.checked = false;
-				updateCalendario();
-			}
-			checkboxEnLinea4.onclick=function(){
-				checkboxEnLinea1.checked = false;
-				updateCalendario();
-			}
-			checkboxEnLinea5.onclick=function(){
-				checkboxEnLinea1.checked = false;
-				updateCalendario();
-			}
-			checkboxEnLinea6.onclick=function(){
-				checkboxEnLinea1.checked = false;
-				updateCalendario();
-			}
-            function buscarCursos(desde,hasta){
-                $.ajax
-				({
-					type: "POST",
-					url: "Modelo/consultasPortafolio.php",
-					data: {id:12, desde:desde, hasta:hasta},
-					async: false,	
-					dataType: "json",		
-					success:
-					function (msg) 
-					{	
-						eventos = msg;
-					},
-					error:
-					function (msg) {
-						console.log("No se pudo realizar la conexion");}
+		}
+		checkboxEnLinea2.onclick=function(){
+			checkboxEnLinea1.checked = false;
+			checkboxEnLinea1.parentNode.parentNode.setAttribute("class","");
+			if(checkboxEnLinea2.checked)
+				checkboxEnLinea2.parentNode.parentNode.setAttribute("class","active");
+			else
+				checkboxEnLinea2.parentNode.parentNode.setAttribute("class","");
+			updateCalendario();
+			AbrirModal();
+		}
+		checkboxEnLinea3.onclick=function(){
+			checkboxEnLinea1.checked = false;
+			checkboxEnLinea1.parentNode.parentNode.setAttribute("class","");
+			if(checkboxEnLinea3.checked)
+				checkboxEnLinea3.parentNode.parentNode.setAttribute("class","active");
+			else
+				checkboxEnLinea3.parentNode.parentNode.setAttribute("class","");
+			updateCalendario();
+			AbrirModal();
+		}
+		checkboxEnLinea4.onclick=function(){
+			checkboxEnLinea1.checked = false;
+			checkboxEnLinea1.parentNode.parentNode.setAttribute("class","");
+			if(checkboxEnLinea4.checked)
+				checkboxEnLinea4.parentNode.parentNode.setAttribute("class","active");
+			else
+				checkboxEnLinea4.parentNode.parentNode.setAttribute("class","");
+			updateCalendario();
+			AbrirModal();
+		}
+		checkboxEnLinea5.onclick=function(){
+			checkboxEnLinea1.checked = false;
+			checkboxEnLinea1.parentNode.parentNode.setAttribute("class","");
+			if(checkboxEnLinea5.checked)
+				checkboxEnLinea5.parentNode.parentNode.setAttribute("class","active");
+			else
+				checkboxEnLinea5.parentNode.parentNode.setAttribute("class","");
+			updateCalendario();
+			AbrirModal();
+		}
+		checkboxEnLinea6.onclick=function(){
+			checkboxEnLinea1.checked = false;
+			checkboxEnLinea1.parentNode.parentNode.setAttribute("class","");
+			if(checkboxEnLinea6.checked)
+				checkboxEnLinea6.parentNode.parentNode.setAttribute("class","active");
+			else
+				checkboxEnLinea6.parentNode.parentNode.setAttribute("class","");
+			updateCalendario();
+			AbrirModal();
+		}
+		function buscarCursos(desde,hasta){
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:12, desde:desde, hasta:hasta},
+				async: false,	
+				dataType: "json",		
+				success:
+				function (msg) 
+				{	
+					eventos = msg;
+				},
+				error:
+				function (msg) {
+					console.log("No se pudo realizar la conexion");}
 				});		
-        	}
-        	function buscarProximosCursos(desde){
-        		var result;
-                $.ajax
-				({
-					type: "POST",
-					url: "Modelo/consultasPortafolio.php",
-					data: {id:13, desde:desde},
-					async: false,	
-					dataType: "json",		
-					success:
-					function (msg) 
-					{	
-						result = msg;
-					},
-					error:
-					function (msg) {
-						console.log("No se pudo realizar la conexion");}
+		}
+		function buscarProximosCursos(desde){
+			var result;
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:13, desde:desde},
+				async: false,	
+				dataType: "json",		
+				success:
+				function (msg) 
+				{	
+					result = msg;
+				},
+				error:
+				function (msg) {
+					console.log("No se pudo realizar la conexion");}
 				});	
-				return result;	
-        	}
+			return result;	
+		}
 
-        	
-			function MostrarCursosProximos(){
-				var desde = new Date();
-	    		var resultCursos = buscarProximosCursos(desde/1000);
-				$('#cursosproximos').html("");	
 
-				var table = $('<table></table>').addClass('table table-hover');							
-				var row= $('<tr></tr>');
-				row.append($('<td></td>').html("<b>Curso</b>"));
-				row.append($('<td></td>').html("<b>Area</b>"));							
-				row.append($('<td></td>').html("<b>Desde</b>"));
-				row.append($('<td></td>').html("<b>Hasta</b>"));
-				row.append($('<td></td>').html("<b>Duracion</b>"));
-				table.append(row);	
-				
-				for(i=0; i<resultCursos.length; i++){
-					var row2 = $('<tr></tr>');
-					var fila1 = $('<td></td>').text(resultCursos[i].Curso);
-					var fila2 = $('<td></td>').text(resultCursos[i].Area);
-					var fila3 = $('<td></td>').text(resultCursos[i].Desde.reverse().join("/"));
-					var fila4 = $('<td></td>').text(resultCursos[i].Hasta.reverse().join("/"));
-					var fila5 = $('<td></td>').text(resultCursos[i].Duracion);
+		function MostrarCursosProximos(){
+			var desde = new Date();
+			var resultCursos = buscarProximosCursos(desde/1000);
+			$('#cursosproximos').html("");	
 
-					row2.append(fila1);
-					row2.append(fila2);
-					row2.append(fila3);
-					row2.append(fila4);
-					row2.append(fila5);									
-				    table.append(row2);
-				}
-				$('#cursosproximos').append(table);
+			var table = $('<table></table>').addClass('table table-hover');							
+			var row= $('<tr></tr>');
+			row.append($('<td></td>').html("<b>Curso</b>"));
+			row.append($('<td></td>').html("<b>Area</b>"));							
+			row.append($('<td></td>').html("<b>Desde</b>"));
+			row.append($('<td></td>').html("<b>Hasta</b>"));
+			row.append($('<td></td>').html("<b>Duración</b>"));
+			table.append(row);	
+
+			for(i=0; i<resultCursos.length; i++){
+				var row2 = $('<tr></tr>');
+				var fila1 = $('<td></td>').text(resultCursos[i].Curso);
+				var fila2 = $('<td></td>').text(resultCursos[i].Area);
+				var fila3 = $('<td></td>').text(resultCursos[i].Desde.reverse().join("/"));
+				var fila4 = $('<td></td>').text(resultCursos[i].Hasta.reverse().join("/"));
+				var fila5 = $('<td></td>').text(resultCursos[i].Duracion);
+
+				row2.append(fila1);
+				row2.append(fila2);
+				row2.append(fila3);
+				row2.append(fila4);
+				row2.append(fila5);									
+				table.append(row2);
 			}
-			function calendario(){
-                $('#calendario').datepicker({
-				    language: "es",
-				    format: "dd/mm/yyyy",			    
+			$('#cursosproximos').append(table);
+		}
+		function calendario(){
+			$('#calendario').datepicker({
+				language: "es",
+				format: "dd/mm/yyyy",			    
 
-				    beforeShowDay: function (date){
-				    	if(contador == 0){
-				    		auxDesde = date.getTime();
-				    		if(globaldesde != auxDesde){
-					    		globaldesde = auxDesde;
-					    		hasta = new Date(date);
-				    			hasta = hasta.setMonth(hasta.getMonth()+2);
-					    		buscarCursos(globaldesde/1000,hasta/1000);
-					    	}
-				    	}
-				    	contador = (contador+1)%42;
+				beforeShowDay: function (date){
+					if(contador == 0){
+						auxDesde = date.getTime();
+						if(globaldesde != auxDesde){
+							globaldesde = auxDesde;
+							hasta = new Date(date);
+							hasta = hasta.setMonth(hasta.getMonth()+2);
+							buscarCursos(globaldesde/1000,hasta/1000);
+						}
+					}
+					contador = (contador+1)%42;
 
-						var evento;
-						var infoEvento = "";
-						var classes = "";
-						var name = "";
-						for(var i = eventos.length-1; i > -1; i--)
+					var evento;
+					var infoEvento = "";
+					var classes = "";
+					var name = "";
+					for(var i = eventos.length-1; i > -1; i--)
+					{
+						evento = new Date(eventos[i].Desde[0],eventos[i].Desde[1]-1,eventos[i].Desde[2]);
+						if(evento.getTime() == date.getTime())
 						{
-							evento = new Date(eventos[i].Desde[0],eventos[i].Desde[1]-1,eventos[i].Desde[2]);
-							if(evento.getTime() == date.getTime())
-							{
-								if(checkboxEnLinea1.checked 
-									|| checkboxEnLinea2.checked && eventos[i].Area == "Perforacion"
-									|| checkboxEnLinea3.checked && eventos[i].Area == "Yacimiento"
-									|| checkboxEnLinea4.checked && eventos[i].Area == "Administracion"
-									|| checkboxEnLinea5.checked && eventos[i].Area == "Finanzas"
-									|| (checkboxEnLinea6.checked 
-										&& eventos[i].Area != "Perforacion"
-										&& eventos[i].Area != "Yacimiento"
-										&& eventos[i].Area != "Administracion"
-										&& eventos[i].Area != "Finanzas"
-										)
+							if(checkboxEnLinea1.checked 
+								|| checkboxEnLinea2.checked && eventos[i].Area == "Perforacion"
+								|| checkboxEnLinea3.checked && eventos[i].Area == "Yacimiento"
+								|| checkboxEnLinea4.checked && eventos[i].Area == "Administracion"
+								|| checkboxEnLinea5.checked && eventos[i].Area == "Finanzas"
+								|| (checkboxEnLinea6.checked 
+									&& eventos[i].Area != "Perforacion"
+									&& eventos[i].Area != "Yacimiento"
+									&& eventos[i].Area != "Administracion"
+									&& eventos[i].Area != "Finanzas"
 									)
-								{
-									infoEvento +=
-									"Curso: " + eventos[i].Curso +  
-									"\n\tArea: "+  eventos[i].Area +
-									"\n\tCupos: "+  eventos[i].Cupos +
-									"\n\tDuración: "+  eventos[i].Duracion +
-									'\n\tFecha finalización: '+ eventos[i].Hasta[2]+"/"+eventos[i].Hasta[1]+"/"+eventos[i].Hasta[0]+'\n\n';
-
-									if(classes == ""){
-										classes = eventos[i].Area;
-										switch(classes){
-											case "Yacimiento":
-												break;
-											case "Perforacion":
-												break;
-											case "Administracion":
-												break;
-											case "Finanzas":
-												break;
-											default:
-												classes = "otros";
-												break;
-										}
-									} else { classes = "multiple"; }
-									name += eventos[i].Curso +  
-											"|||" + eventos[i].Area +
-											"|||" + eventos[i].Cupos +
-											"|||" + eventos[i].Duracion +
-											"|||" + eventos[i].Desde[2]+"/"+eventos[i].Desde[1]+"/"+eventos[i].Desde[0] +
-											"|||" + eventos[i].Hasta[2]+"/"+eventos[i].Hasta[1]+"/"+eventos[i].Hasta[0] + "&&&";
+								)
+							{
+								infoEvento +=
+								"Curso: " + eventos[i].Curso +  
+								"\n\tArea: "+  eventos[i].Area +
+								"\n\tCupos: "+  eventos[i].Cupos +
+								"\n\tDuración: "+  eventos[i].Duracion +
+								'\n\tFecha finalización: '+ eventos[i].Hasta[2]+"/"+eventos[i].Hasta[1]+"/"+eventos[i].Hasta[0]+'\n\n';
+								if(classes == ""){
+									classes = eventos[i].Area;
+									
+									switch(classes){
+										case "Yacimiento":
+										break;
+										case "Perforacion":
+										break;
+										case "Administracion":
+										break;
+										case "Finanzas":
+										break;
+										default:
+										classes = "otros";
+										break;
+									}
+								} else { 
+									if(classes != eventos[i].Area)
+										classes = "multiple";
 								}
+								name += eventos[i].Curso +  
+								"|||" + eventos[i].Area +
+								"|||" + eventos[i].Cupos +
+								"|||" + eventos[i].Duracion +
+								"|||" + eventos[i].Desde[2]+"/"+eventos[i].Desde[1]+"/"+eventos[i].Desde[0] +
+								"|||" + eventos[i].Hasta[2]+"/"+eventos[i].Hasta[1]+"/"+eventos[i].Hasta[0] + "&&&";
 							}
 						}
-						if(infoEvento != ""){
-							return {
-								tooltip: infoEvento,
-								classes: classes + "\" name=\"" + name.substring(0,name.length-3)
-							};
-		            	}
-		            	return {
-								tooltip: " ",
-								classes: " "
-		            	};
-		            }
-		        });  
+					}
+					if(infoEvento != ""){
+						return {
+							tooltip: infoEvento,
+							classes: classes + "\" name=\"" + name.substring(0,name.length-3)
+						};
+					}
+					return {
+						tooltip: " ",
+						classes: " "
+					};
+				}
+			});  
 
-				$('#calendario').on('click',  function(){
-					console.log("calen click");
-					AbrirModal();
-				});
-    		}
-		});
-    </script>
+$('#calendario').on('click',  function(){
+	AbrirModal();
+});
+}
+});
+</script>
 
 </body>
 </html>
