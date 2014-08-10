@@ -1,6 +1,6 @@
 function abrirCalendario() { 
 	open('calendario.html','','top=50,left=50,width=900,height=740') ; 
-} 
+}
 function eventos() {
 
 	categoria1.onchange=function(){

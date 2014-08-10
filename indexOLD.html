@@ -1,186 +1,275 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Global Sys</title>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>GlobalSys</title>   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+    <link rel="stylesheet" type="text/css" href="css/principal.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapAdaptationfileupload.css">
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link rel="stylesheet" href="css/jquery.fileupload.css">
+    <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
 
-  <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+    <noscript><link rel="stylesheet" href="css/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="css/jquery.fileupload-ui-noscript.css"></noscript>
+    <style>
 
-  <link href="css/estilos.css" rel="stylesheet">
+    </style>
+  </head>
+  <body>
+<!--   <div id="submenu">*Portafolios de Cursos *Registro *Descarga</div> -->
+   <div id="header">
+    <div style="position:absolute; left:20%; width: 980px;">      
+      <img src="img/LOGOliviano.png" style="position: absolute; left:10px; width: 85px;  height: 85px;"></img>
 
-    </head>
-    <body >
-     <!---Barra Menu Principal -->
-      <img src="img/bg.jpg" class="bg">
-      <div id="navbar">
-        <nav role="navigation" class="navbar-custom navbar navbar-default">
-          <div class="navbar-header col-xs-4 myheader">
-            <button class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand mybrand" href="indexNuevo.html"> <img src="img/logo70x70.png" ></a>
-
-          </div>
-          <div class="collapse navbar-collapse col-xs-8" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav mybar">
-              <li  id="inicio" ><a href="indexNuevo.html" >INICIO</a></li>
-              <li id="laempresa"><a href="#">LA EMPRESA</a></li>
-              
-
-              <li class="dropdown" id="servicios">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">SERVICIOS <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li class="menu-item dropdown">                    
-                    <ul class="nav navbar-nav">
-                        <li class="menu-item dropdown dropdown-submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portafolio de Cursos</a>
-                            <ul class="dropdown-menu">
-                                <li class="menu-item ">
-                                    <li><a href="#" id="perforacion">Perforacion</a></li>          
-                                    <li><a href="#" id="yacimiento">Yacimiento</a></li>
-                                    <li><a href="#" id="administracion">Administracion</a></li> 
-                                    <li><a href="#" id="finanzas">Finanzas</a></li>  
-                                    <li><a href="#" id="tecnicas">Técnica/Seguridad</a></li>    
-                                </li>                                
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-item dropdown">                    
-                    <ul class="nav navbar-nav">
-                        <li class="menu-item dropdown dropdown-submenu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registros</a>
-                            <ul class="dropdown-menu">
-                                <li class="menu-item ">
-                                    <li><a href="#" id="participar">Participante</a></li>
-                                    <li><a href="#" id="facilitador">Facilitador</a></li>   
-                                </li>                                
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a  href="#" id="descargar">Descargas           </a></li>
-              </ul>
-            </li>
-
-
-              <li id="blog"><a href="#">BLOG</a></li>
-              <li id="contacto"><a href="#">CONTACTO</a></li>
-            </ul>
-          </div>
-        </nav>
+      <div style="position:absolute; left:200px; top:20px; color:#4B4B4D; font-family:Arial, Helvetica, sans-serif; letter-spacing: -1x; font-size:85%;" >
+        
+        <div id="INICIO"><center><b>INICIO</b></center></div>   
+        <div id="LAEMPRESA" style="left:91px;"><center><b>LA EMPRESA</b></center></div>     
+        <div id="SERVICIOS" style="left:182px;"><center><b>SERVICIOS</b></center></div> 
+        <div id="CLIENTES" style="left:273px;"><center><b>CLIENTES</b></center></div>
+        <div id="VALORES" style="left:364px;"><center><b>VALORES</b></center></div> 
+        <div id="BLOG" style="left:455px;"><center><b>BLOG</b></center></div>
+        <div id="CONTACTO" style="left:546px;"><center><b>CONTACTO</b></center></div>   
       </div>
-       <!---Barra Menu Principal -->
-      <div class="row">
-        <div class="col-sm-3">
-        <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel"><a href="indexNuevo.html">INICIO</a></h4></center></div>
-            </div> 
+
+    </div>
+    
+   </div> 
+   <img src="img/flecha.png" class="girar" id="girar"> </img>
+   <div id="cuerpo"> 
+    <div class="contenedor" id="contenedor">
+          <div class="slider">
+            <div>
+                <img src="img/LOGOliviano.png" style="position: absolute; right: 0px; top: 10px;" width="330" height="330">
+              <div class="fuenteslider">Especialistas en <br> Capacitación Integral</div>
+              <div class="textslider">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxx xx  xxxxxxxxxxxxxxxxxxxxxxxx  xxxxx xxxxxxxxxxxxxxxxx
+              xxxxxxxxxxxxxxxxxxxxxxxxxxxx xxx xx xxxxx xxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+              xxxxx xxx xxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxx xxx </div>
+            </div>         
+       </div>
+
+      <div class="slider2">
+            <div>
+                <img src="img/LOGOliviano.png" style="position: absolute; right: 0px; top: 10px;" width="330" height="330">
+              <div class="fuenteslider">Especialistas en <br> Capacitación Integral</div>
+              <div class="textslider">yyyyyyyyyyyyyyyyyyy xxxxxxxxxx xx  yyyyyyyyyyyyyyyyyyyy  xxxxx xxxxxxxxxxxxxxxxx
+              zzzzzzzzzzzzzzzzzzzzzzzzzz xxx xx wwwww xxx yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+              xxxxx xxx yyyyyyyyyyyyyyyyyyyyyyyyyyyy eeeeeeeeeeeeeeeeeeeee xxx </div>
+            </div>         
+       </div>
+    </div>
+    <div id="inicio" class="Panel">
+     <div class="PanelReflejo">
+        
+     </div>
+     <div class="BorderderechoPanelinicio" >
+            <div class="ReflejoBorderderechoPanelinicio" ></div>
+    </div>
+     <div class="fuente_Panel"><label id="INICIO2"> <b>INICIO</b></label></div>
+   </div>
+
+
+  <div id="programaciondecursos" class="Panel3">
+     <div class="Panel3Reflejo">
+        
+     </div>
+     <div class="BorderderechoPanel3">
+
+      <div class="ReflejoBorderderechoPanel3"></div>
+
+     </div>
+     <div id="programaciondecursos_inputs">
+           <select id="categoria1" style="width: 180px;">
+            <option value="">Selección por área</option> 
+            <option value="Perforacion">Perforación</option> 
+            <option value="Yacimiento">Yacimiento</option> 
+            <option value="Administracion">Administración</option> 
+            <option value="Finanzas">Finanzas</option> 
+          </select>
+          <select id="curso1" style="width: 180px;">
+            <option value="">Selección por curso</option>
+         </select>
+          <br>
+          <label id="LabelTodosCursos" class="fuente" style="color: #C2C3C7;">TODOS LOS CURSOS</label>
+
+     </div>
+
+     <div class="fuente_Panel" id="" ><b>PROGRAMACION DE CURSOS</b></div>
+   </div>
+
+
+   <div  id="solicitud" class="Panel2">
+     <div class="Panel2Reflejo">
+        <ul style="list-style:none; position:absolute; top:-15px; left:-25px;">
+          <li>Sedes Externas </li>
             
-            <div  class="panel panel-default">
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel">PROGRAMACION DE CURSOS</h4></center></div>
-                <div class="panel-body">
-                  
-                  <form class="form-signin" role="form">                            
-                      <div id="programaciondecursos_inputs">
-                      <select id="categoria1" class="form-control">
-                        <option value="">Selección por área</option> 
-                        <option value="Perforacion">Perforación</option> 
-                        <option value="Yacimiento">Yacimiento</option> 
-                        <option value="Administracion">Administración</option> 
-                        <option value="Finanzas">Finanzas</option> 
-                        <option value="TecnicaSeguridad">Técnica/Seguridad</option> 
-                      </select>
-                      <select id="curso1" class="form-control">
-                      <option value="">Selección por curso</option>
-                      </select>
-                     
-                     <center><h6><label id="LabelTodosCursos" class="fuente" style="color: #C2C3C7;"><a href="#" id="todosloscursos">TODOS LOS CURSOS</a></label></h6></center>
+          <li> In Company</li>
+        </ul>
+     </div>
+     <div class="BorderderechoPanel2">
 
-                      </div>
-                  </form>             
-                </div>
-            </div> 
-            <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel">SOLICITUD DE REGISTRO</h4></center></div>
-                <div class="panel-body">                  
-                  <form class="form-signin" role="form">                            
-                    <ul style="list-style:none; ">
-                      <li><h5>Sedes Externas</h5> </li>
-                        
-                      <li id="incompany"><a href="#"><h5>In Company</h5></a> </li>
-                    </ul>
-                  </form>             
-                </div>
-            </div> 
-            <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel" ><a href="#" id="preinscripcionaloscursos">PREINSCRIPCION A LOS CURSOS</a></h4></center></div>
-            </div> 
-            <div  class="panel panel-default">
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel" > <a href="#" id="formasdepago">FORMAS DE PAGO</a></h4></center></div>
-            </div> 
+      <div class="ReflejoBorderderechoPanel2"></div>
 
-            <div  class="panel panel-default" >
-              <div  class="panel-heading" style="border-bottom: 4px solid #428BCA;"><center><h4 class="fuente_Panel">RECIBE NUESTRA PROGRAMACION</h4></center></div>
-                <div class="panel-body">                  
-                  <form class="form-signin" role="form">                            
-                    <input type="text" id="temail" class="text form-control" placeholder="Ingresa tu email aqui.." />  
-                    <button type="submit" class="btn btn-default" style="float:right;">Enviar</button>
-                  </form>             
-                </div>
-              </form>             
-            </div>
-        </div>
+     </div>
+     <div class="fuente_Panel" id="" ><label><b>SOLICITUD DE REGISTRO</b></label></div>
+   </div>
 
-        <div class="col-sm-9 well" id="contenedor">
 
-          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel2">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-              <div class="item active">
-              <div class="fuenteslider"> Especialistas en Capacitación Integral</div>
-                <img src="img/LOGOliviano.png" class="logo">
+   <div id="preinscripcion" class="Panel">
+     <div class="PanelReflejo">
+        
+     </div>
+     <div class="BorderderechoPanelpreinscripcion"><div class="ReflejoBorderderechoPanelpreinscripcion"></div></div>
 
-               <!--  <div class="carousel-caption">
-                  <p class="carusel-titulo">Quienes Somos</p>
-                </div> -->
-              </div>
+     <div class="fuente_Panel" ><label id="preinscripcionaloscursos"><b>PREINSCRIPCION A LOS CURSOS</b></label></div>
+   </div>
 
-              <div class="item">
-                <div class="fuenteslider"> Especialistas en Capacitación Integral</div>
-                <img src="img/LOGOliviano.png" class="logo">
-               <!--  <div class="carousel-caption">
-                  <p class="carusel-titulo"></p>
-                </div> -->
-              </div>
-            </div>
+   <div id="Formadepago" class="Panel">
+     <div class="PanelReflejo">
+        
+     </div>
+     <div class="BorderderechoPanel"><div class="ReflejoBorderderechoPanel"></div></div>
+     <div class="fuente_Panel"><label id="formasdepago"><b>FORMAS DE PAGO</b></label></div>
+   </div>
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
+   <div id="programacion">
+     <div id="cuadroprogramacion">
+        <div class="arrow_boxprogramacion">
+         <div id="fuente2">      
+          Recibe nuestra Programacion  
+          
           </div>
-        </div>
-      </div> 
+          </div> 
+          <div id="cuadro2programacion">
+             xxxxxxxxxxx xxxxxx xx xxxxxxxxx xx xxx xxxxxxxxx xxxx 
+             <input type="text" id="temail" class="text" placeholder="Ingresa tu email aqui.." />            
+             <input type="submit" id="benviar" class="enviar" value="Enviar" />   
+          </div>
 
-        <!-- Modal Ver Curso -->
+       </div>
+
+   </div>
+<!--    <div id="postulaciones">
+     <div id="cuadro">
+        <div class="arrow_box">
+         <div id="fuente">      
+          POSTULACIONES  
+          </div>
+          
+        </div>
+        <div id="cuadro2">
+
+             Postulate para ser uno de nuestros instructores, o para solicitar un nuevo curso.
+             <div class="mas"><img src="img/mas.png" style="with:10px; height:10px; ">mas</div>
+          </div>
+       </div>
+   </div> -->
+<!--     <div id="servicios">
+      <div id="cuadro">
+        <div class="arrow_box">
+         <div id="fuente">      
+          SERVICIOS QUE OFRECEMOS 
+          </div>
+          
+        </div>
+        <div id="cuadro2">
+            xxxxxxxxxxx xxxxxx xx xxxxxxxxx xx xxx xxxxxxxxx xxxx 
+             
+             <div class="mas"><img src="img/mas.png" style="with:10px; height:10px; ">mas</div>
+          </div>
+       </div>
+    </div> -->
+<!--     <div  id="instalacion">
+        <div id="cuadro">
+        <div class="arrow_box">
+         <div id="fuente">      
+          INSTALACION 
+          </div>
+          
+        </div>
+        <div id="cuadro2">
+
+             Conoce nuestras instalaciones, descarga material de apoyo para los cursos
+             <div class="mas"><img src="img/mas.png" style="with:10px; height:10px; ">mas</div>
+          </div>
+       </div>
+    </div>   --> 
+   </div> 
+
+
+    <!-- <div id="footer1">
+       <div style="position:absolute; left:20%; width: 950px;" >
+          <img src="img/Opcionesmenufooter2.png" style="position:absolute; width: 920px; height:41px;">
+          <img src="img/audifonos.jpg" id="logofooter2">
+          
+          <img src="img/barra.png" id="barra">
+          <div style=" position:absolute; top:81px; left:207px; width: 170px; height:110px; ">
+            <label style="font-size:105%; color:#B6B6B8;">No dude en contactarnos</label>
+            <label style="font-size: 60%;  font-weight: 600; color: #334667;"> GlOBALSYS</label>
+            <div style="position:relative; font-size: 80%; color: white;">EMPRESA..xxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxx
+           </div>
+           <input type="submit" id="benviar" class="enviar" value="Mas" style="position:absolute; bottom:0px; right:0px;" />   
+          </div>
+
+          <div style=" position:absolute; top:81px; left:397px; width: 170px; height:110px; ">
+            <label style="font-size:105%; color:#B6B6B8;">No dude en contactarnos</label>
+            <label style="font-size: 60%;  font-weight: 600; color: #334667;"> GlOBALSYS</label> 
+            <div style="font-size: 80%; color: white;">
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+           </div>
+           
+          </div>
+          
+          <div style=" position:absolute; top:81px; left:627px; width: 170px; height:110px; ">
+            <label style="font-size:105%; color:#B6B6B8;">No dude en contactarnos</label>
+            <label style="font-size: 60%;  font-weight: 600; color: #334667;"> GlOBALSYS</label> 
+            <label style="font-size: 60%;  font-weight: 600; color: #334667;"> GlOBALSYS</label>
+            <div style="position:relative; font-size: 80%; color: white;">EMPRESA..xxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+           </div>
+           
+          </div>
+
+       </div>
+     </div>
+-->
+
+    <div id="footer2">
+        <div style="position:absolute; left:20%; width: 750px; height:58px;">
+          <img src="img/LOGOliviano.png" id="logofooter">   
+          <label id="menunavFooter"> <a href="#"id="minicio" title="Inicio">Inicio</a>| 
+                                    <a href="#" id="mlaempresa" title="La Empresa">La Empresa</a>| 
+                                    <a href="#" id="mservicios" title="Servicios">Servicios</a>|
+                                    <a href="#" id="mclientes" title="Clientes"> Clientes</a>|
+                                    <a href="#" id="mvalores" title="Valores"> Valores</a>|
+                                    <a href="#" id="mblog" title="Blog"> Blog</a>| 
+                                    <a href="#" id="mcontacto" title="Contacto">Contacto</a> </label>
+                                    
+          <div id="Social">
+            <table width="300px">
+              <tr>
+                <td ><a href="#" title="Hazte Fan"><img src="img/facebook.png" style="width:20px; height:20px; ">Global SYS</a></td>
+                <td><a href="#" title="Siguenos "><img src="img/Twitter.png" style="width:20px; height:20px; ">@GlobalSYS</a></td>
+                <td><a href="#" title="LikedIn"><img src="img/LinkedIn.png" style="width:20px; height:20px; ">GlobalSYS</a></td></tr>
+            </table>
+          </div>
+        </div>         
+    </div>
+      <!-- Modal Ver Curso -->
     <div class="modal fade" id="ModalVerCurso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -218,7 +307,7 @@
                       <span class="btn btn-success fileinput-button">
                           <i class="glyphicon glyphicon-plus"></i>
                           <span>Agregar</span>
-                          <input type="file" name="files[]" multiple >
+                          <input type="file" name="files[]" multiple>
                       </span>
                       <button type="submit" class="btn boton">
                           <i class="glyphicon glyphicon-upload"></i>
@@ -257,8 +346,8 @@
       </div>
     </div>
 
-
-   <div class="modal fade" id="ModalDescargarArchivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <!-- Modal DESCARGAR ARCHIVO -->
+    <div class="modal fade" id="ModalDescargarArchivo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -279,9 +368,9 @@
         </div>
       </div>
     </div>
-
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
- <!--      <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <!-- Fin Modal Descargar archivo -->
+    <!-- The blueimp Gallery widget -->
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
         <div class="slides"></div>
         <h3 class="title"></h3>
         <a class="prev">‹</a>
@@ -289,27 +378,8 @@
         <a class="close">×</a>
         <a class="play-pause"></a>
         <ol class="indicator"></ol>
-    </div> -->
+    </div>
     <!-- The template to display files available for upload -->
-          <footer  class="footer">
-      <center>
-          <img src="img/logo100x100.png">   
-          <label > 
-            <a href="indexNuevo.html" title="Inicio">Inicio</a>| 
-            <a href="#" id="mlaempresa" title="La Empresa">La Empresa</a>| 
-            <a href="#" id="mservicios" title="Servicios">Servicios</a>|
-
-            <a href="#" id="mblog" title="Blog"> Blog</a>| 
-            <a href="#" id="mcontacto" title="Contacto">Contacto</a>
-          </label>
-
-          <div id="Social" >
-            <a href="#" title="Hazte Fan"><img src="img/facebook.png" style="width:20px; height:20px; ">Global SYS</a>
-            <a href="#" title="Siguenos "><img src="img/Twitter.png" style="width:20px; height:20px; ">@GlobalSYS</a>
-            <a href="#" title="LikedIn"><img src="img/LinkedIn.png" style="width:20px; height:20px; ">GlobalSYS</a>            
-          </div>
-        </center>
-      </footer>
     <script id="template-upload-1" type="text/x-tmpl">
     {% for (var i=0, file; file=o.files[i]; i++) { %}
         <tr class="template-upload fade">
@@ -437,23 +507,16 @@
     {% } %}
     </script>
 
-      <script src="include/jquery-1.9.1.js"></script>
-      <script type="text/javascript" src="js/efectosindexnuevo.js"></script>
-      <script type="text/javascript" src="js/eventosnuevo.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/dropdown.css">
+    <script  src="js/efectos.js" language="JavaScript"></script>
+    <script  src="js/eventos.js" language="JavaScript"></script>
+    <script type="text/javascript">
+      efectos();
+      eventos();
+    </script>
 
-      <script type="text/javascript"> efectos();</script>
-      <script type="text/javascript">eventos();</script>
- 
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="js/bootstrap.js"></script>
-      <script type="text/javascript">
-       
-        $( document ).ready(function() {
-           $('.dropdown-toggle').dropdown();
-        });
-     
-      </script>
-            <!-- SCRIPT FOR INPUT FILE -->
+      <!-- SCRIPT FOR INPUT FILE -->
     <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
     <script src="js/vendor/jquery.ui.widget.js"></script>
     <!-- The Templates plugin is included to render the upload/download listings -->
@@ -484,6 +547,9 @@
     <script src="js/jquery.fileupload-ui.js"></script>
     <!-- The main application script -->
     <script src="js/main.js"></script>
-
-    </body>
-    </html>
+    <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+    <!--[if (gte IE 8)&(lt IE 10)]>
+    <script src="js/cors/jquery.xdr-transport.js"></script>
+    <![endif]-->
+  </body>
+</html>
