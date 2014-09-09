@@ -2,6 +2,6 @@
 	define('Host', '127.0.0.1');
 	define('User', 'root');
 	define('Pass', '');	
-	define('BasedeDatos','globalsys');
+	define('BasedeDatos','cursosgl_globalsys');
 
 ?>

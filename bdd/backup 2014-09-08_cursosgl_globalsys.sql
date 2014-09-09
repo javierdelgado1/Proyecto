@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.1.8
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 10-09-2014 a las 01:36:30
--- Versión del servidor: 5.6.17
--- Versión de PHP: 5.5.12
+-- Servidor: localhost
+-- Tiempo de generación: 09-09-2014 a las 14:27:58
+-- Versión del servidor: 5.5.37-cll
+-- Versión de PHP: 5.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,46 +19,14 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `cursosgl_globalsys`
 --
-CREATE DATABASE IF NOT EXISTS `cursosgl_globalsys` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `cursosgl_globalsys`;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `areas`
---
-
-DROP TABLE IF EXISTS `areas`;
-CREATE TABLE IF NOT EXISTS `areas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `areas_curso`
---
-
-DROP TABLE IF EXISTS `areas_curso`;
-CREATE TABLE IF NOT EXISTS `areas_curso` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idArea` int(11) NOT NULL,
-  `idCurso` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idArea` (`idArea`),
-  KEY `idCurso` (`idCurso`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
+CREATE DATABASE IF NOT EXISTS `globalsys` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `globalsys`;
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `banco`
 --
 
-DROP TABLE IF EXISTS `banco`;
 CREATE TABLE IF NOT EXISTS `banco` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Banco` varchar(80) NOT NULL,
@@ -83,7 +51,6 @@ INSERT INTO `banco` (`id`, `Banco`, `Titular`, `Numero`, `Tipo`, `CIRIF`) VALUES
 -- Estructura de tabla para la tabla `comprobantes`
 --
 
-DROP TABLE IF EXISTS `comprobantes`;
 CREATE TABLE IF NOT EXISTS `comprobantes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(25) NOT NULL,
@@ -113,7 +80,6 @@ INSERT INTO `comprobantes` (`id`, `Nombre`, `Apellido`, `Telefono`, `Correo`, `B
 -- Estructura de tabla para la tabla `contacto`
 --
 
-DROP TABLE IF EXISTS `contacto`;
 CREATE TABLE IF NOT EXISTS `contacto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Correo` varchar(100) NOT NULL,
@@ -130,42 +96,26 @@ INSERT INTO `contacto` (`id`, `Correo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `curso`
---
-
-DROP TABLE IF EXISTS `curso`;
-CREATE TABLE IF NOT EXISTS `curso` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `cupos` int(11) NOT NULL,
-  `duracion` varchar(50) NOT NULL,
-  `archivo` varchar(300) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `facilitador`
 --
 
-DROP TABLE IF EXISTS `facilitador`;
 CREATE TABLE IF NOT EXISTS `facilitador` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(25) NOT NULL,
   `Apellido` varchar(25) NOT NULL,
   `Telefono` varchar(15) NOT NULL,
   `Correo` varchar(100) NOT NULL,
+  `Area` varchar(50) NOT NULL,
+  `Curso` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `facilitador`
 --
 
-INSERT INTO `facilitador` (`id`, `Nombre`, `Apellido`, `Telefono`, `Correo`) VALUES
-(4, 'Ricardo', 'Felicce', '222', 'eaea@fiajfa.com');
+INSERT INTO `facilitador` (`id`, `Nombre`, `Apellido`, `Telefono`, `Correo`, `Area`, `Curso`) VALUES
+(4, 'Ricardo', 'Felicce', '222', 'eaea@fiajfa.com', 'Perforacion', 'Tierra 2');
 
 -- --------------------------------------------------------
 
@@ -173,7 +123,6 @@ INSERT INTO `facilitador` (`id`, `Nombre`, `Apellido`, `Telefono`, `Correo`) VAL
 -- Estructura de tabla para la tabla `inscritos`
 --
 
-DROP TABLE IF EXISTS `inscritos`;
 CREATE TABLE IF NOT EXISTS `inscritos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(25) NOT NULL,
@@ -201,7 +150,6 @@ INSERT INTO `inscritos` (`id`, `Nombre`, `Apellido`, `Telefono`, `Correo`, `Dipl
 -- Estructura de tabla para la tabla `noticias`
 --
 
-DROP TABLE IF EXISTS `noticias`;
 CREATE TABLE IF NOT EXISTS `noticias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` varchar(50) NOT NULL,
@@ -224,18 +172,41 @@ INSERT INTO `noticias` (`id`, `Titulo`, `Cuerpo`, `Fecha`) VALUES
 -- Estructura de tabla para la tabla `portafolio`
 --
 
-DROP TABLE IF EXISTS `portafolio`;
 CREATE TABLE IF NOT EXISTS `portafolio` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idCurso` int(11) NOT NULL,
+  `Area` varchar(70) NOT NULL,
+  `Curso` varchar(100) NOT NULL,
+  `Cupos` int(11) NOT NULL,
   `Desde` date NOT NULL,
   `Hasta` date NOT NULL,
+  `Duracion` varchar(25) NOT NULL,
+  `Archivo` varchar(100) NOT NULL,
   `Lugar` varchar(50) NOT NULL,
-  `idFacilitador` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idFacilitador` (`idFacilitador`),
-  KEY `idCurso` (`idCurso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+
+--
+-- Volcado de datos para la tabla `portafolio`
+--
+
+INSERT INTO `portafolio` (`id`, `Area`, `Curso`, `Cupos`, `Desde`, `Hasta`, `Duracion`, `Archivo`, `Lugar`) VALUES
+(10, 'Perforacion', 'Tierra', 40, '2014-03-11', '2014-04-30', '4 horas', '', ''),
+(11, 'Perforacion', 'Tierra 2', 50, '2014-05-08', '2014-04-30', '5 Horas', '', ''),
+(12, 'Yacimiento', 'Curso 1 Yacimiento', 40, '2013-10-16', '2014-04-26', '10 horas', '', ''),
+(13, 'Yacimiento', 'Curso 2 Yacimiento', 23423, '2013-11-01', '2014-04-30', '5 Horas', '', ''),
+(14, 'Administracion', 'Curso 1 Administracion', 23423424, '2013-09-24', '2014-04-30', '60 dias', '', ''),
+(15, 'Administracion', 'Curso 2 Administracion', 34, '2013-11-22', '2014-04-30', '59 Horas ', '', ''),
+(29, 'Area Gerencial/Recursos Humanos', 'Coaching', 10, '2014-09-01', '2014-09-02', '16 Horas', '', ''),
+(18, 'TecnicaSeguridad', 'RecuperaciÃ³n Mejorada de Crudos Pesados y  Extra-pesados por InyecciÃ³n de Vapor', 40, '2014-06-16', '2014-09-20', '40 horas', '', ''),
+(19, 'TecnicaSeguridad', 'IngenierÃ­a de ProducciÃ³n Nivel I', 40, '2014-06-16', '2014-09-20', '40', '', ''),
+(21, 'TecnicaSeguridad', 'OperaciÃ³n y Mantenimiento de Bombas CentrÃ­fugas', 40, '2014-08-16', '2014-08-20', '24', '', ''),
+(22, 'TecnicaSeguridad', 'Bombeo EletrocentrÃ­fugo', 40, '2014-08-23', '2014-08-27', '40', '', ''),
+(23, 'TecnicaSeguridad', 'TÃ©cnicas de Tratamiento de Crudos', 40, '2014-08-23', '2014-08-27', '40', '', ''),
+(24, 'TecnicaSeguridad', 'Gerencia Integrada de Yacimientos', 40, '2014-08-23', '2014-08-27', '40', '', ''),
+(25, 'TecnicaSeguridad', 'Mantenimiento de Transformadores', 40, '2014-08-24', '2014-08-25', '32', '', ''),
+(26, 'TecnicaSeguridad', 'PlanificaciÃ³n, EjecuciÃ³n y Control del Mantenimiento', 40, '2014-08-25', '2014-08-27', '24', '', ''),
+(27, 'TecnicaSeguridad', 'Autocad 3D', 40, '2014-08-25', '2014-08-27', '24', '', ''),
+(28, 'TecnicaSeguridad', 'Programa de IngenierÃ­a de Confiabilidad- MÃ³dulo II. EstimaciÃ³n de la Confiabilidad por MÃ©todos P', 40, '2014-08-25', '2014-08-27', '24', '', '');
 
 -- --------------------------------------------------------
 
@@ -243,7 +214,6 @@ CREATE TABLE IF NOT EXISTS `portafolio` (
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(25) NOT NULL,
@@ -259,25 +229,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 INSERT INTO `usuario` (`ID`, `Nombre`, `Apellido`, `Usuario`, `Contrasena`) VALUES
 (1, 'Javier', 'Delgado', 'admin', '123'),
-(2, 'Ricardo', 'Felicce', 'ricardo@ricardo.com', '123');
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `areas_curso`
---
-ALTER TABLE `areas_curso`
-  ADD CONSTRAINT `areas_curso_ibfk_2` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `areas_curso_ibfk_1` FOREIGN KEY (`idArea`) REFERENCES `areas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `portafolio`
---
-ALTER TABLE `portafolio`
-  ADD CONSTRAINT `portafolio_ibfk_2` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `portafolio_ibfk_1` FOREIGN KEY (`idFacilitador`) REFERENCES `facilitador` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+(2, 'Ricardo', 'Felicce', 'ricardo', '123');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
