@@ -1,8 +1,0 @@
-[12-Apr-2014 20:03:36 America/New_York] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'cursosgl_root'@'localhost' (using password: YES) in /home/cursosgl/public_html/Modelo/consultasPanel.php on line 36
-[12-Apr-2014 20:03:36 America/New_York] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/cursosgl/public_html/Modelo/consultasPanel.php on line 40
-[12-Apr-2014 20:03:36 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/cursosgl/public_html/Modelo/consultasPanel.php on line 41
-[12-Apr-2014 20:03:36 America/New_York] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home/cursosgl/public_html/Modelo/consultasPanel.php on line 55
-[12-Apr-2014 20:03:38 America/New_York] PHP Warning:  mysqli::mysqli(): (28000/1045): Access denied for user 'cursosgl_root'@'localhost' (using password: YES) in /home/cursosgl/public_html/Modelo/consultasPanel.php on line 36
-[12-Apr-2014 20:03:38 America/New_York] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/cursosgl/public_html/Modelo/consultasPanel.php on line 40
-[12-Apr-2014 20:03:38 America/New_York] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/cursosgl/public_html/Modelo/consultasPanel.php on line 41
-[12-Apr-2014 20:03:38 America/New_York] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home/cursosgl/public_html/Modelo/consultasPanel.php on line 55
