@@ -17,7 +17,7 @@
 	<form onsubmit="return false;">
 		<h2 class="alert alert-info" style="background-color: rgba(211, 207, 207, 0.31);	border-color: #796868; color: #334953;" ><i id="tituloNoticia">Formulario de inscripcion</i> </h2>
 
-		<div class="alert alert-info" id="alertas" style="background-color: rgba(211, 207, 207, 0.31);	border-color: #796868; color: #334953;">
+		<div class="alert alert-info" id="alertasinscripcion" style="background-color: rgba(211, 207, 207, 0.31);	border-color: #796868; color: #334953;">
 		<b>Todos los campos con (*) son requeridos.</b>	
 		</div>
 		<h4>
@@ -27,14 +27,7 @@
 				<td><input 	type="text" name="tnombre" id="tnombre" class="form-control"></td>	
 				<td><b>Area</b></td>
 	 			<td>	
-					<input list="Areas" id="tareas" name="tareas"  class="form-control" >
-					<datalist id="Areas" >
-						<option value="Perforacion">
-						<option value="Yacimiento">
-						<option value="Administracion">
-						<option value="Finanzas">  
-						 <option value="TecnicaSeguridad">          
-					</datalist>
+					<select id="areas" class="form-control"></select>
 		        </td>			
 			</tr>
 			<tr>
@@ -42,9 +35,7 @@
 				<td><input 	type="text" name="tapellido" id="tapellido" class="form-control"></td>
 				<td><b>Curso</b></td>
 	        	<td>
-					<input  list="cursos" name="tcurso" id="tcurso" class="form-control">
-					<datalist id="cursos">            
-					</datalist>	        		
+					<select id="cursos" class="form-control"></select>     		
 	        	</td>
 			</tr>
 			<tr>

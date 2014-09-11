@@ -126,20 +126,50 @@ function eventosPanel() {
 		fileupload.action = "server/php/PortafolioCursos.php";
 		mainInputFile();
 		$("#contenedor").load('formas/portafoliodecurso.html', function() {
-			agregarPortafolio.onclick=function(){
-				if(validarAgregarCurso()){
+			VisualizarTabladeAreas();
+
+			agregarArea.onclick=function(){
+				if(NombreArea.value!=""){
 					$.ajax
 					({
 						type: "POST",
 						url: "Modelo/consultasPortafolio.php",
-						data: {id:1, area:tareas.value, curso:curso.value, desde:tdesde.value, hasta:thasta.value, duracion:tduracion.value, cupos:tcupos.value},
+						data: {id:14, NombreArea:NombreArea.value},
 						async: false,
 						dataType: "json",
 						success:
 						function (msg) 
 						{				
 							if(msg=="true"){
-								alertas.innerHTML="<div class='alert alert-success'>Curso Agregado!</div>";
+								alertasAREAS.innerHTML="<div class='alert alert-success'>Area Agregado!</div>";
+								NombreArea.value="";
+								VisualizarTabladeAreas();				
+							}
+						},
+					error:
+					function (msg) {
+						console.log( msg +"Problema al registrar un area");}
+					});
+				}
+				else{
+					alertasAREAS.innerHTML="<div class='alert alert-danger'>Escriba el nombre del area</div>";
+				}
+				
+		  	}
+			agregarPortafolio.onclick=function(){
+				if(validarAgregarCurso()){
+					$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:1, area:Areas.value, curso:curso.value, desde:tdesde.value, hasta:thasta.value, duracion:tduracion.value, cupos:tcupos.value},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{				
+							if(msg=="true"){
+								alertasCurso.innerHTML="<div class='alert alert-success'>Curso Agregado!</div>";
 								limpiarFormularioAgregarPortafolio();
 							}
 						},
@@ -148,60 +178,188 @@ function eventosPanel() {
 						console.log( msg +"No se pudo realizar la conexion");}
 					});
 				}
+
 		  	}
 
 		  	tabAgregarCurso.onclick=function(){
+
 		  		VaciarFileInput();
 				fileupload.action = "server/php/PortafolioCursos.php";
 				mainInputFile();
-		  	}
 
-		  	inscritos.onclick=function(){
 				$.ajax
-				({
-					type: "POST",
-					url: "Modelo/consultasPortafolio.php",
-					data: {id:6},
-					async: false,
-					dataType: "json",
-					success:
-					function (msg) 
-					{				
-						$('#Inscritos').html("");	
-						var table = $('<table></table>').addClass('table table-hover');							
-						var row=$('<tr></tr>');
-						row.append($('<td></td>').html("<b>Nombre</b>"));							
-						row.append($('<td></td>').html("<b>Apellido</b>"));					
-						row.append($('<td></td>').html("<b>Telefono</b>"));
-						row.append($('<td></td>').html("<b>Correo</b>"));
-						row.append($('<td></td>').html("<b>Opciones</b>"));
-						table.append(row);								
-						for(i=0; i<msg[0].m; i++){
-							var row2 = $('<tr></tr>');
-							var fila1 = $('<td></td>').text(msg[i].Nombre);
-							var fila2 = $('<td></td>').text(msg[i].Apellido);
-							var fila3 = $('<td></td>').text(msg[i].Telefono);
-							var fila4 = $('<td></td>').text(msg[i].Correo);																	
-						    var fila6 = $('<td></td>').append('<a  class="editarinscritos btn btn-default btn-sm" data-toggle="modal" data-target="#ModalInscritos"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
-						    fila6.append('<a type="button" class="btn btn-default btn-sm eliminarinscrito" data-toggle="modal" data-target="#EliminarInscrito"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');							row2.append(fila1);
-							row2.append(fila2);
-							row2.append(fila3);
-							row2.append(fila4);									
-							row2.append(fila6);									
-						    table.append(row2);
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:15},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{			
+							for(i=0; i<msg[0].m; i++)
+								{			
+									
+									Areas.options[i]= new Option (msg[i].nombre);
+									Areas.options[i].text = msg[i].nombre+"";
+									Areas.options[i].value = msg[i].id;	
+								}
+						},
+					error:
+					function (msg) {
+						console.log( msg +"Problema al Listar las areas");}
+					});	
+		  	}
+		  	inscritos.onclick=function(){
+		  		$('#AreasInscrito').empty();
+		  		$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:15},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{			
+								AreasInscrito.options[0]= new Option ("");
+								AreasInscrito.options[0].text = "";
+								AreasInscrito.options[0].value =-1	
+
+							for(i=0; i<msg[0].m; i++)
+								{												
+									AreasInscrito.options[i+1]= new Option (msg[i].nombre);
+									AreasInscrito.options[i+1].text = msg[i].nombre+"";
+									AreasInscrito.options[i+1].value = msg[i].id;	
+								}
+						},
+					error:
+					function (msg) {
+						console.log( msg +"Problema al Listar las areas");}
+					});	
+
+					AreasInscrito.onchange=function(){
+						if (AreasInscrito.value!=-1) {
+							$('#CursoInscrito').empty();
+							$.ajax
+								({
+									type: "POST",
+									url: "Modelo/consultasPortafolio.php",
+									data: {id:18, ID:AreasInscrito.value},
+									async: false,
+									dataType: "json",
+									success:
+									function (msg) 
+									{			
+											CursoInscrito.options[0]= new Option ("");
+											CursoInscrito.options[0].text = "";
+											CursoInscrito.options[0].value =-1	
+
+										for(i=0; i<msg[0].m; i++)
+											{												
+												CursoInscrito.options[i+1]= new Option (msg[i].nombre);
+												CursoInscrito.options[i+1].text = msg[i].nombre+"";
+												CursoInscrito.options[i+1].value = msg[i].id;	
+											}
+									},
+								error:
+								function (msg) {
+									console.log( msg +"Problema al Listar las areas");}
+								});	
+						}						
+					}
+
+					BuscarInscritos.onclick=function(){
+						if(CursoInscrito.value!=-1&&FechadeInicioInscrito.value!=""){
+						$.ajax
+							({
+								type: "POST",
+								url: "Modelo/consultasPortafolio.php",
+								data: {id:6, idArea:AreasInscrito.value, idCurso:CursoInscrito.value, Fechadeinicio:FechadeInicioInscrito.value },
+								async: false,
+								dataType: "json",
+								success:
+								function (msg) 
+								{				
+									$('#ListadodeInscritos').html("");	
+									var table = $('<table></table>').addClass('table table-hover');							
+									var row=$('<tr></tr>');
+									row.append($('<td></td>').html("<b>Nombre</b>"));							
+									row.append($('<td></td>').html("<b>Apellido</b>"));					
+									row.append($('<td></td>').html("<b>Telefono</b>"));
+									row.append($('<td></td>').html("<b>Correo</b>"));
+									row.append($('<td></td>').html("<b>Opciones</b>"));
+									table.append(row);								
+									for(i=0; i<msg[0].m; i++){
+										var row2 = $('<tr></tr>');
+										var fila1 = $('<td></td>').text(msg[i].Nombre);
+										var fila2 = $('<td></td>').text(msg[i].Apellido);
+										var fila3 = $('<td></td>').text(msg[i].Telefono);
+										var fila4 = $('<td></td>').text(msg[i].Correo);																	
+									    var fila6 = $('<td></td>').append('<a  class="editarinscritos btn btn-default btn-sm" data-toggle="modal" data-target="#ModalInscritos"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
+									    fila6.append('<a type="button" class="btn btn-default btn-sm eliminarinscrito" data-toggle="modal" data-target="#EliminarInscrito"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');							row2.append(fila1);
+										row2.append(fila2);
+										row2.append(fila3);
+										row2.append(fila4);									
+										row2.append(fila6);									
+									    table.append(row2);
+									}
+									$('#ListadodeInscritos').append(table);
+								},
+							error:
+							function (msg) {
+								console.log( msg +"No se pudo buscar los inscritos");}
+							});
+						EditarActualizarInscritos();
+						eliminarinscrito();
+
 						}
-						$('#Inscritos').append(table);
-					},
-				error:
-				function (msg) {
-					console.log( msg +"No se pudo realizar la conexion");}
-				});
-			EditarActualizarInscritos();
-			eliminarinscrito();
+						else{
+							alertaInscritos.innerHTML="<div class='alert alert-danger'>¡No deje ni un campo vacio!</div>";
+						}
+					}
+
+
+				
 		  	}
 
   			ver.onclick=function(){
-				perforacion.onclick=function(){
+  				$('#Areas_cursos').empty();
+		  		$.ajax
+					({
+						type: "POST",
+						url: "Modelo/consultasPortafolio.php",
+						data: {id:15},
+						async: false,
+						dataType: "json",
+						success:
+						function (msg) 
+						{			
+								Areas_cursos.options[0]= new Option ("");
+								Areas_cursos.options[0].text = "";
+								Areas_cursos.options[0].value =-1	
+
+							for(i=0; i<msg[0].m; i++)
+								{												
+									Areas_cursos.options[i+1]= new Option (msg[i].nombre);
+									Areas_cursos.options[i+1].text = msg[i].nombre+"";
+									Areas_cursos.options[i+1].value = msg[i].id;	
+								}
+						},
+					error:
+					function (msg) {
+						console.log( msg +"Problema al Listar las areas");}
+					});	
+					Areas_cursos.onchange=function(){
+						if(Areas_cursos.value!=-1){
+							listarcursos();
+							VerContenido();
+							EditarActualizar();
+							eliminar();
+						}
+					}
+
+				/*perforacion.onclick=function(){
 					$.ajax
 					({
 						type: "POST",
@@ -321,7 +479,7 @@ function eventosPanel() {
 					VerContenido();
 					EditarActualizar();
 					eliminar();
-				}
+				}*/
 			}
 		});	
 	}
@@ -336,6 +494,27 @@ function eventosPanel() {
 
 }
 
+function listarcursos(){
+	$.ajax
+		({
+			type: "POST",
+			url: "Modelo/consultasPortafolio.php",
+			data: {id:2, idArea:Areas_cursos.value},
+			async: false,
+			dataType: "json",
+			success:
+			function (msg) 
+			{			
+				$('#listadodeCursos').html("");	
+				var table = $('<table></table>').addClass('table table-hover');							
+				var row=$('<tr></tr>');
+				$('#listadodeCursos').append(ListarTabla(msg, table, row));
+			},
+		error:
+		function (msg) {
+			console.log( msg +"No se pudo realizar la conexion");}
+		});
+}
 function listarfacilitadores(){
 	$.ajax
 	({
@@ -391,44 +570,44 @@ function validarAgregarCuenta(){
 }
 function validarAgregarCurso(){
 	var ArchivosSubidos = $('tr.template-download');
-	if(tareas.value==""){
-		alertas.innerHTML="<div class='alert alert-danger'>Elija un area</div>";
+	if(Areas.value==""){
+		alertasCurso.innerHTML="<div class='alert alert-danger'>Elija un area</div>";
 		return false;
 	}
 	else if(curso.value == "" )
 	{  
-        alertas.innerHTML="<div class='alert alert-danger'>Llene el campo curso</div>";
+        alertasCurso.innerHTML="<div class='alert alert-danger'>Llene el campo curso</div>";
 		return false;
 	}	
 	else if(tdesde.value == "" )
 	{  
-        alertas.innerHTML="<div class='alert alert-danger'>Seleccione una fecha  de inicio del curso</div>";
+        alertasCurso.innerHTML="<div class='alert alert-danger'>Seleccione una fecha  de inicio del curso</div>";
 		return false;
 	}	
 	else if(thasta.value == "" )
 	{  
-        alertas.innerHTML="<div class='alert alert-danger'>Seleccione una fecha  de final del curso</div>";
+        alertasCurso.innerHTML="<div class='alert alert-danger'>Seleccione una fecha  de final del curso</div>";
 		return false;
 	}
 	else if(tduracion.value == "" )
 	{  
-        alertas.innerHTML="<div class='alert alert-danger'>Escriba en horas la duracion del curso</div>";
+        alertasCurso.innerHTML="<div class='alert alert-danger'>Escriba en horas la duracion del curso</div>";
 		return false;
 	}
 	else if(tcupos.value == "" )
 	{  
-        alertas.innerHTML="<div class='alert alert-danger'>Escriba la cantidad de cupos</div>";
+        alertasCurso.innerHTML="<div class='alert alert-danger'>Escriba la cantidad de cupos</div>";
 		return false;
 	}
 	else if(ArchivosSubidos.length == 0){
-		alertas.innerHTML="<div class='alert alert-danger'>Debe cargar al menos un archivo del contenido del curso</div>";
+		alertasCurso.innerHTML="<div class='alert alert-danger'>Debe cargar al menos un archivo del contenido del curso</div>";
 		return false;
 	}
 	else {return true;}
 }
 
 function limpiarFormularioAgregarPortafolio(){
-	tareas.value="";
+	
 	curso.value = "";
 	tdesde.value = "";
 	thasta.value = "";
@@ -440,7 +619,7 @@ function limpiarFormularioAgregarPortafolio(){
 function EditarActualizar(){
 	$('a.editar').on('click',  function(){
 	var id=$(this).attr('name');
-	console.log(id);
+	
 	alertas2.innerHTML="";
 	$.ajax
 	({
@@ -493,6 +672,62 @@ function EditarActualizar(){
 	});
 }
 
+function EditarArea(){
+	//console.log("id: "+id);
+	$('a.editararea').on('click',  function(){
+		var id=$(this).attr('name');
+		//console.log("id: "+id);
+		$.ajax
+		({
+			type: "POST",
+			url: "Modelo/consultasPortafolio.php",
+			data: {id:16, ID:id},
+			async: false,
+			dataType: "json",
+			success:
+			function (msg) 
+			{
+				NombreArea2.value=msg[0].nombre;	
+				alertasactualizadoarea.innerHTML="";						
+				$("#footereditararea").html("");
+				$("#footereditararea").append(' <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <a class="actualizarArea btn btn-primary" name="'+id+'">Actualizar</a>');
+			},
+			error:
+			function (msg) {
+				console.log( msg +"No se pudo realizar la conexion");}
+			});
+		actualizarArea();
+	});
+	
+}
+function actualizarArea(){
+	console.log("id: ");
+	$('a.actualizarArea').on('click',  function(){
+			console.log("id: ");
+		if(NombreArea2.value!=""){
+			var id=$(this).attr('name');
+		
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:17, ID:id, NombreArea2:NombreArea2.value},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{
+						alertasactualizadoarea.innerHTML="<div class='alert alert-success'>Area Actualizado!</div>";
+						VisualizarTabladeAreas();
+				},
+				error:
+				function (msg) {
+					console.log( msg +"No se pudo realizar la conexion");}
+				});
+		}
+		else alertasactualizadoarea.innerHTML="<div class='alert alert-danger'>Escriba el nombre del area</div>";
+	});
+}
 function EditarActualizarInscritos(){
 	$('a.editarinscritos').on('click',  function(){
 	var id=$(this).attr('name');
@@ -567,6 +802,7 @@ function eliminar(){
 				function (msg) 
 				{
 					alertas3.innerHTML="<div class='alert alert-success'>Se ha eliminado</div>";
+					listarcursos();
 				},
 				error:
 				function (msg) {
@@ -935,6 +1171,24 @@ function ListarTabladeComprobantes(msg, table, row){
 	return table;
 }
 
+function ListarTabladeAreas(msg, table, row){			
+	row.append($('<td></td>').html("<b>Nombre</b>"));
+	row.append($('<td></td>').html("<b>opciones</b>"));
+	table.append(row);			
+	//console.log("Tamano: "+ msg[0].m);
+	for(i=0; i<msg[0].m; i++){
+	//	console.log(msg[i].id + ": " + msg[i].nombre);
+		var row2 = $('<tr></tr>');
+		var fila1 = $('<td></td>').text(msg[i].nombre);
+		var fila6 = $('<td></td>').append('<a type="button" class="btn btn-default btn-sm editararea" data-toggle="modal" data-target="#EditarArea"  title="Editar/Modificar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-pencil"></span></a>');
+	    fila6.append('<a type="button" class="btn btn-default btn-sm eliminarArea" data-toggle="modal" data-target="#EliminarArea"  title="Eliminar" name="'+msg[i].id+'"> <span class="glyphicon glyphicon-remove"></span></a>');
+	    row2.append(fila1);								
+		row2.append(fila6);									
+	    table.append(row2);
+	}
+	return table;
+}
+
 function EditarActualizarComprobantes(){
 	$('a.editarcomprobante').on('click',  function()
 	{
@@ -1072,4 +1326,28 @@ function VaciarFileInput(){
 		    trs[i].outerHTML = "";
 		}
 	}
+}
+
+
+function VisualizarTabladeAreas(){
+	$.ajax
+	({
+		type: "POST",
+		url: "Modelo/consultasPortafolio.php",
+		data: {id:15},
+		async: false,
+		dataType: "json",
+		success:
+		function (msg2) 
+		{			
+			$('#AreasRegistradas').html("");
+			var table = $('<table></table>').addClass('table table-hover');							
+			var row=$('<tr></tr>');
+			$('#AreasRegistradas').append(ListarTabladeAreas(msg2, table, row));
+			EditarArea();
+		},
+	error:
+	function (msg) {
+		console.log( msg +"Problema al Listar las areas");}
+	});	
 }

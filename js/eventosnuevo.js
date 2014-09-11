@@ -5,8 +5,38 @@ function eventos(){
 	$("#INICIO2").click(function(){
 		abrirCalendario();
 	});
+	//Llenar Select de areas//
+	$.ajax
+	({
+		type: "POST",
+		url: "Modelo/consultasPortafolio.php",
+		data: {id:15},
+		async: false,
+		dataType: "json",
+		success:
+		function (msg) 
+		{			
+			categoria1.options[0]= new Option ("Selección por área");
+			categoria1.options[0].text = "Selección por área";
+			categoria1.options[0].value = -1;	
+
+			for(i=0; i<msg[0].m; i++)
+				{						
+					categoria1.options[i+1]= new Option (msg[i].nombre);
+					categoria1.options[i+1].text = msg[i].nombre+"";
+					categoria1.options[i+1].value = msg[i].id;	
+				}
+		},
+	error:
+	function (msg) {
+		console.log( msg +"Problema al Listar las areas");}
+	});	
+
+	//Llenar Select de areas//
+
 	categoria1.onchange=function(){
-		var area = categoria1.options[categoria1.selectedIndex].value;
+
+		/*var area = categoria1.options[categoria1.selectedIndex].value;
 		var result;
 		switch(area){
 			case "Perforacion":
@@ -33,7 +63,39 @@ function eventos(){
 				return;
 				break;
 		}
-		LlenarSelectCursos(result);
+		LlenarSelectCursos(result);*/
+		if(categoria1.value!=-1){
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:18, ID:categoria1.value},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{			
+						curso1.options[0]= new Option ("");
+						curso1.options[0].text = "";
+						curso1.options[0].value =-1	
+
+					for(i=0; i<msg[0].m; i++)
+						{												
+							curso1.options[i+1]= new Option (msg[i].nombre);
+							curso1.options[i+1].text = msg[i].nombre+"";
+							curso1.options[i+1].value = msg[i].id;	
+						}
+				},
+			error:
+			function (msg) {
+				console.log( msg +"Problema al Listar las areas");}
+			});	
+		}
+		else{
+			$('#curso1').empty();
+		}
+		
+
 	}
 	curso1.onchange=function(){
 		var cursoID = curso1.options[curso1.selectedIndex].value;
@@ -100,7 +162,33 @@ function eventos(){
 	}
 	$("#preinscripcionaloscursos").click(function(){
 		$("#contenedor").hide().load('formas/preinscripcion.html', function(){
-			$("input[name=tareas]").change(function(){				
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:15},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{			
+						areas.options[0]= new Option ("");
+						areas.options[0].text = "";
+						areas.options[0].value =-1	
+
+					for(i=0; i<msg[0].m; i++)
+						{												
+							areas.options[i+1]= new Option (msg[i].nombre);
+							areas.options[i+1].text = msg[i].nombre+"";
+							areas.options[i+1].value = msg[i].id;	
+						}
+				},
+			error:
+			function (msg) {
+				console.log( msg +"Problema al Listar las areas");}
+			});	
+
+			/*$("input[name=tareas]").change(function(){				
 				$("#cursos").empty();
 				$.ajax
 					({
@@ -120,28 +208,69 @@ function eventos(){
 					function (msg) {
 						console.log( msg +"No se pudo realizar la conexion");}
 					});
-			});
+			});*/
+
+				areas.onchange=function(){
+						if (areas.value!=-1) {
+							$('#cursos').empty();
+							$.ajax
+								({
+									type: "POST",
+									url: "Modelo/consultasPortafolio.php",
+									data: {id:18, ID:areas.value},
+									async: false,
+									dataType: "json",
+									success:
+									function (msg) 
+									{			
+										cursos.options[0]= new Option ("");
+										cursos.options[0].text = "";
+										cursos.options[0].value =-1	
+
+									for(i=0; i<msg[0].m; i++)
+										{												
+											cursos.options[i+1]= new Option (msg[i].nombre);
+											cursos.options[i+1].text = msg[i].nombre+"";
+											cursos.options[i+1].value = msg[i].id;	
+										}
+									},
+								error:
+								function (msg) {
+									console.log( msg +"Problema al Listar las areas");}
+								});	
+						}						
+					}
+
 			$("#inscribirse").click(function(){
+				console.log("inscribirme");
 				if(validarFormulariodeinscripcion()){
+					console.log("idArea: " + areas.value + " idCurso: " + cursos.value);
 					$.ajax
 					({
 						type: "POST",
 						url: "Modelo/consultasPreinscripcion.php",
-						data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Correo:tcorreo.value,  Curso:tcurso.value, Modalidad:tmodalidad.value, Fecha:tFecha.value, Temas:tTemas.value},
+						data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Correo:tcorreo.value,  Curso:cursos.value, Modalidad:tmodalidad.value, Fecha:tFecha.value, Temas:tTemas.value, idArea:areas.value},
 						async: false,
-						
+						dataType: "json",
 						success:
 						function (msg) 
 						{				
-							tnombre.value="";
-							Apellido:tapellido.value="";
-							Telefono:tTelefono.value="";
-							tareas.value="";
-							Correo:tcorreo.value="";
-							Curso:tcurso.value="";
-							Modalidad:tmodalidad.value="";
-							Fecha:tFecha.value="";
-							Temas:tTemas.value="";
+							console.log(msg);
+							if(msg=="true"){
+								tnombre.value="";
+								tapellido.value="";
+								tTelefono.value="";							
+								tcorreo.value="";
+								//$('#areas').empty();
+								$('#cursos').empty();
+								tmodalidad.value="";
+								tFecha.value="";
+								tTemas.value="";
+							}
+							else{
+								alertasinscripcion.innerHTML="<center><b>¡Lo Sentimos se han terminado los cupos para este curso!</b></center>";
+							}
+						
 						},
 					error:
 					function (msg) {
@@ -434,13 +563,27 @@ function eventos(){
 					({
 						type: "POST",
 						url: "Modelo/consultasPreinscripcion.php",
-						data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Correo:tcorreo.value,  Curso:tcurso.value, Modalidad:tmodalidad.value, Fecha:tFecha.value, Temas:tTemas.value},
+						data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Correo:tcorreo.value,  Curso:cursos.value, Modalidad:tmodalidad.value, Fecha:tFecha.value, Temas:tTemas.value, idArea:areas.value},
 						async: false,
 						
 						success:
 						function (msg) 
 						{				
-							console.log(msg);
+							if(msg="true"){
+								tnombre.value="";
+								tapellido.value="";
+								tTelefono.value="";							
+								tcorreo.value="";
+								//$('#areas').empty();
+								$('#cursos').empty();
+								tmodalidad.value="";
+								tFecha.value="";
+								tTemas.value="";
+							}
+							else{
+								alertasinscripcion.innerHTML="<center><b>¡Lo Sentimos se han terminado los cupos para este curso!</b></center>";
+							}
+						
 						},
 					error:
 					function (msg) {
@@ -722,48 +865,48 @@ function validarFormularioFormasdepago(){
 
 	function validarFormulariodeinscripcion(){
 	if(tnombre.value==""){
-		alertas.innerHTML="<center><b>Escriba  su  nombre</b></center>";
+		alertasinscripcion.innerHTML="<center><b>Escriba  su  nombre</b></center>";
 		return false;
 	}	
 	else if(tapellido.value=="")
 	{  
-        alertas.innerHTML="<center><b>Escriba su Apellido</b></center>";
+        alertasinscripcion.innerHTML="<center><b>Escriba su Apellido</b></center>";
 		return false;
 	}
 	else if(!tTelefono.value.match(/^[0-9-]+$/))
 	{  
-        alertas.innerHTML="<center><b>Escriba un telefono valido</b></center>";
+        alertasinscripcion.innerHTML="<center><b>Escriba un telefono valido</b></center>";
 		return false;
 	}		
 
 	else if(tcorreo.value==""||!validar_email(tcorreo.value))
 	{  
-        alertas.innerHTML="<center><b>Escriba un correo valido</b></center>";
+        alertasinscripcion.innerHTML="<center><b>Escriba un correo valido</b></center>";
 		return false;
 	}	
-	else if(tareas.value=="")
+	else if(areas.value==-1)
 	{  
-        alertas.innerHTML="<center><b>Debe escribir el Area</b></center>";
+        alertasinscripcion.innerHTML="<center><b>Debe seleccionar el  Area</b></center>";
 		return false;
 	}
-	else if(tcurso.value=="")
+	else if(cursos.value==-1)
 	{  
-        alertas.innerHTML="<center><b>Debe escribir un Curso/Diplomado/Taller</b></center>";
+        alertasinscripcion.innerHTML="<center><b>Debe Seleccionar Curso/Diplomado/Taller</b></center>";
 		return false;
 	}
 	else if(tFecha.value=="")
 	{  
-        alertas.innerHTML="<center><b>Debe escribir una fecha</b></center>";
+        alertasinscripcion.innerHTML="<center><b>Debe escribir una fecha</b></center>";
 		return false;
 	}
 	else if(tTemas.value=="")
 	{  
-        alertas.innerHTML="<center><b>Escriba un tema de interes</b></center>";
+        alertasinscripcion.innerHTML="<center><b>Escriba un tema de interes</b></center>";
 		return false;
 	}	
 	else if(tmodalidad.value=="")
 	{  
-        alertas.innerHTML="<center><b>Elija una modalidad</b></center>";
+        alertasinscripcion.innerHTML="<center><b>Elija una modalidad</b></center>";
 		return false;
 	}								
 	

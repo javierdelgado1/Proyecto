@@ -45,7 +45,88 @@
 		case 13 :
 			ObtenerProximosCursos();
 			break;
+		case 14:
+			crearArea();
+			break;
+		case 15:
+			ObtenerAreas();
+			break;
+		case 16:
+			ObtenerAreaEspecifico();
+			break;
+		case 17:
+			ActualizarArea();
+			break;
+		case 18:
+			buscarCursoSegunArea();
+			break;
 		default;
+	}
+
+	function buscarCursoSegunArea(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$id=$_REQUEST['ID'];
+		$tupla="SELECT  Curso, id FROM  portafolio Where Area='$id'";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['m']=$resultado->num_rows;
+		$i=0;		
+		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['nombre']=$db_resultado['Curso'];
+			$objeto[$i]['id']=$db_resultado['id'];
+			$i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
+	}
+	function ActualizarArea(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$id=$_REQUEST['ID'];
+		$NombreArea=$_REQUEST['NombreArea2'];
+		$tupla="UPDATE areas SET nombre = '$NombreArea' WHERE id = '$id'";
+		$resultado = $mysqli->query($tupla);
+		$mysqli->close();
+		echo json_encode("true");
+	}
+	function ObtenerAreaEspecifico(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$id=$_REQUEST['ID'];
+		$tupla="SELECT * FROM areas WHERE  id='$id'";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['m']=$resultado->num_rows;
+		$i=0;
+		if($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['nombre']=$db_resultado['nombre'];
+			$objeto[$i]['id']=$db_resultado['id'];
+			//$i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
+	}
+	function ObtenerAreas(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$tupla = "SELECT * FROM areas ORDER BY id DESC";
+		$resultado = $mysqli->query($tupla);
+		$objeto[0]['m']=$resultado->num_rows;
+		$i=0;
+		
+		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
+		{
+			$objeto[$i]['nombre']=$db_resultado['nombre'];
+			$objeto[$i]['id']=$db_resultado['id'];
+			$i++;
+		}
+		$mysqli->close();
+		echo json_encode($objeto);
+	}
+	function crearArea(){
+		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
+		$NombreArea=$_REQUEST['NombreArea'];
+		$tupla="INSERT INTO areas (nombre) values ('$NombreArea')";
+		$resultado = $mysqli->query($tupla);
+		$mysqli->close();
+		echo json_encode("true");
 	}
 	function ObtenerProximosCursos(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
@@ -184,7 +265,13 @@
 	}
 	function inscritos(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
-		$tupla="SELECT id, Nombre, Apellido, Telefono, Correo  FROM inscritos";
+		$idArea=$_REQUEST['idArea'];
+		$idCurso=$_REQUEST['Curso'];
+		$Fechadeinicio=$_REQUEST['Fechadeinicio'];
+		$date = new DateTime($Fechadeinicio);
+		$Fechadeinicio=$date->format('Y-m-d');
+
+		$tupla="SELECT id, Nombre, Apellido, Telefono, Correo  FROM inscritos WHERE idArea='$idArea' AND  idCurso='$idCurso' AND Fechadeinicio='$Fechadeinicio'";
 		$resultado = $mysqli->query($tupla);
 		$objeto[0]['mensaje']=false;
 		$i=0;
@@ -214,6 +301,8 @@
 		$resultado = $mysqli->query($tupla);
 		$ubicacion = '../server/php/files/portafolio/'.$ID;
 		eliminarArchivos($ubicacion);
+		$tupla="DELETE FROM inscritos  WHERE idCurso='$ID'";
+		$resultado = $mysqli->query($tupla);
 		echo json_encode("true");
 	}
 	function actualizarCurso(){
@@ -231,7 +320,7 @@
 	function BuscarCurso(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
 		$ID=$_REQUEST['ID'];
-		$tupla = "SELECT * FROM  portafolio WHERE id='$ID'";
+		$tupla = "SELECT *, areas.nombre as Area FROM  portafolio INNER JOIN areas on areas.id=portafolio.Area WHERE  portafolio.id='$ID'";
 		$resultado = $mysqli->query($tupla);
 		$objeto[0]['mensaje']=false;
 	
@@ -252,18 +341,9 @@
 	}
 	function BuscarPerforacion(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
-		$tipo=$_REQUEST['tipo'];
-		$tupla="";
-		if($tipo==1)
-			$tupla = "SELECT * FROM  portafolio WHERE Area='Perforacion'";
-		if($tipo==2)
-			$tupla = "SELECT * FROM  portafolio WHERE Area='Yacimiento'";			
-		if($tipo==3)
-			$tupla = "SELECT * FROM  portafolio WHERE Area='Administracion'";
-		if($tipo==4)
-			$tupla = "SELECT * FROM  portafolio WHERE Area='Finanzas'";
-		if($tipo==5)
-			$tupla = "SELECT * FROM  portafolio WHERE Area='TecnicaSeguridad'";
+		$idArea=$_REQUEST['idArea'];
+	
+		$tupla = "SELECT * FROM  portafolio WHERE Area='$idArea'";
 		$resultado = $mysqli->query($tupla);
 		$objeto[0]['mensaje']=false;
 		$i=0;

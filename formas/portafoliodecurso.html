@@ -1,4 +1,5 @@
 <ul class="nav nav-tabs">
+  <li class="active"><a href="#GestionarArea" data-toggle="tab" id="tabGestionarArea">Gestionar Areas</a></li>
   <li><a href="#Agregar" data-toggle="tab" id="tabAgregarCurso">Agregar Curso</a></li>
   <li><a href="#Inscritos" data-toggle="tab" id="inscritos">Inscritos</a></li> 
   <li><a href="#Ver" data-toggle="tab" id="ver">Ver/administrar Cursos</a></li> 
@@ -6,23 +7,34 @@
 </ul>
 
 <div class="tab-content">
+	<div class="tab-pane  active" id="GestionarArea">
+	 <h1>Agregar Area</h1>
+	    <div id="alertasAREAS">
+			<div class="alert alert-info">Llene todos los campos</div>
+		</div>
+	
+		<form role="form" onsubmit="return false;">
+			  <div class="form-group">
+			    <label >Escriba el Nombre del area</label>
+			    <input type="text" class="form-control" id="NombreArea" >
+			  </div>
+			  <button type="submit" class="btn btn-default" id="agregarArea">Crear Area</button>			  
+		</form>
 
-  <div class="tab-pane active" id="Agregar">
+		<h1>Areas Registradas</h1>
+		<div id="AreasRegistradas">
+			
+		</div>
+	</div>
+  <div class="tab-pane" id="Agregar">
 		<h1>Agregar Curso </h1>
-		<div id="alertas">
+		<div id="alertasCurso">
 			<div class="alert alert-info">Llene todos los campos</div>
 		</div>
 	  	<form role="form" onsubmit="return false;">
 			  <div class="form-group">
 			     <label>Seleccione un Area </label>
-			          <input list="Areas" id="tareas" name="tareas" class="form-control">
-			          <datalist id="Areas">
-			            <option value="Perforación">
-			            <option value="Yacimiento">
-			            <option value="Administración">
-			            <option value="Finanzas">
-			            <option value="Técnica/Seguridad">
-                                   </datalist>
+			          <select class="form-control" id="Areas"></select>
 			  </div>
 			  <div class="form-group">
 			    <label >Escriba un Curso asociado al area</label>
@@ -63,17 +75,44 @@
 			  
 		</form>
   </div>
+  <div class="tab-pane" id="Inscritos">
+   <div class="form-group">
+   	<div id="alertaInscritos"><div class="alert alert-info">Llene todos los campos</div></div>
+	   <label >Seleccione El Area</label>
+	    <select class="form-control" id="AreasInscrito"></select>
+     </div> 
+     <div class="form-group">
+	    <label >Seleccione el Curso</label>
+	     <select class="form-control" id="CursoInscrito"></select>
+      </div> 
+      <div class="form-group">
+	    <label >Fecha de Inicio</label>
+	     <input type="date" class="form-control" id="FechadeInicioInscrito">
+      </div> 
+      <button type="submit" class="btn btn-default" id="BuscarInscritos">Mostrar Inscritos</button>
+
+      <div id="ListadodeInscritos"></div>
+  </div> 
+
   <div class="tab-pane" id="Ver">
-  	<ul class="nav nav-tabs" id="myTab">
+     <div class="form-group">
+	   <label >Seleccione El Area</label>
+	    <select class="form-control" id="Areas_cursos"></select>
+	    <div id="listadodeCursos"></div>
+     </div>     
+      
+    
+
+ <!--  	<ul class="nav nav-tabs" id="myTab">
 	  <li><a href="#Perforación" data-toggle="tab" id="Perforación">Perforación</a></li>
 	  <li><a href="#Yacimiento" data-toggle="tab" id="Yacimiento">Yacimiento</a></li>
 	  <li><a href="#Administración" data-toggle="tab" id="Administración" >Administración</a></li>
 	  <li><a href="#Finanzas" data-toggle="tab" id="Finanzas">Finanzas</a></li>
-	  <li><a href="#Técnica/Seguridad" data-toggle="tab" id="Técnica/Seguridad">Técnica/Seguridad</a></li>
+	  <li><a href="#Técnica/Seguridad" data-toggle="tab" id="Tecnica/Seguridad">Técnica/Seguridad</a></li>
        
-	</ul>
+	</ul> -->
 
-	<div class="tab-content">	  
+	<!-- <div class="tab-content">	  
 	  <div class="tab-pane" id="Perforación">
 	  </div>
 	  <div class="tab-pane" id="Yacimiento">
@@ -82,20 +121,20 @@
 	  </div>
 	  <div class="tab-pane" id="Finanzas">
 	  </div>
-	  <div class="tab-pane" id="Técnica/Seguridad">
+	  <div class="tab-pane" id="Tecnica/Seguridad">
 	  </div>
           
-	</div>
+	</div> 
 
 	<script>
 	  $(function () {
 	    $('#myTab a:last').tab('show')
 	  })
 	</script>
-	</div>
+	</div>-->
 
-	<div class="tab-pane" id="Inscritos">
-	</div>
+	<!-- <div class="tab-pane" id="Inscritos">
+	</div> -->
 </div>
 
 	<div class="modal fade " id="Modificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -110,13 +149,13 @@
 			  <div class="form-group">
 			     <label>Seleccione un área </label>
 			          <input list="Areas" id="tareas2" name="tareas2" class="form-control">
-			          <datalist id="Areas">
+			          <!-- <datalist id="Areas">
 			            <option value="Perforacion">
 			            <option value="Yacimiento">
 			            <option value="Administracion">
 			            <option value="Finanzas">
 			            <option value="TecnicaSeguridad">
-			          </datalist>
+			          </datalist> -->
 			  </div>
 			  <div class="form-group">
 			    <label >Escriba un Curso asociado al área</label>
@@ -158,6 +197,7 @@
 	      </div>
 	      <div class="modal-body">
 			   <div id="alertas3"><div class="alert alert-warning">¿Está seguro que desea eliminar?</div></div> 
+			   <h3>Alerta: ¡Se eliminaran todas las personas inscritas en este curso!</h3>
 	      </div>
 	      
 	      <div class="modal-footer" id="footereliminar">
@@ -181,6 +221,31 @@
 	      
 	      <div class="modal-footer" id="footereliminarinscrito">
 	        
+	       
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<div class="modal fade " id="EditarArea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Editar Area</h4>
+	      </div>
+	      <div class="modal-body">
+				<form role="form" onsubmit="return false;">
+					<div class="form-group">
+						<label >Escriba el Nombre del area</label>
+						<input type="text" class="form-control" id="NombreArea2" >
+					</div>
+							  
+				</form> 
+	      </div>
+	      <div id="alertasactualizadoarea"></div>
+	      <div class="modal-footer" id="footereditararea">       
 	       
 	      </div>
 	    </div>
