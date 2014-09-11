@@ -100,7 +100,7 @@
 		$Area=$_REQUEST['Areas'];
 		$Curso=$_REQUEST['Curso'];
 		$error="true";
-		$tupla="INSERT INTO  facilitador (Nombre, Apellido, Telefono, Correo, Area, Curso) 
+		$tupla="INSERT INTO  facilitador (Nombre, Apellido, Telefono, Correo, idArea, idCurso) 
 		                         VALUES ('$Nombre','$Apellido','$Telefono','$Correo','$Area','$Curso')";
 	 	$resultado = $mysqli->query($tupla) or $error=$mysqli->error;
 		$id = $mysqli->insert_id;

@@ -20,11 +20,14 @@ function eventos(){
 			categoria1.options[0].text = "Selección por área";
 			categoria1.options[0].value = -1;	
 
-			for(i=0; i<msg[0].m; i++)
+				for(i=0; i<msg[0].m; i++)
 				{						
 					categoria1.options[i+1]= new Option (msg[i].nombre);
 					categoria1.options[i+1].text = msg[i].nombre+"";
 					categoria1.options[i+1].value = msg[i].id;	
+					var li=$("<li class='li-sin-borde' ><a href='#' name="+msg[i].id+" class='areasmenu'>"+msg[i].nombre+"</a></li>");
+		           //	li.html(");
+		           	$('#listadeareas').append(li);
 				}
 		},
 	error:
@@ -33,37 +36,31 @@ function eventos(){
 	});	
 
 	//Llenar Select de areas//
+	$('a.areasmenu').on('click',  function(){
+		var idArea=$(this).attr('name');
+			$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:2, idArea:idArea},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{			
+					var table = $('<table></table>');
+					var row=$('<tr></tr>');
+					contenedor.innerHTML="";
+					$('#contenedor').append(ListarTabla(msg, table, row));
+				},
+			error:
+			function (msg) {
+				console.log( msg +"No se pudo realizar la consulta para ver los cursos del areas");}
+			});
+			VerContenido();
 
+	});
 	categoria1.onchange=function(){
-
-		/*var area = categoria1.options[categoria1.selectedIndex].value;
-		var result;
-		switch(area){
-			case "Perforacion":
-				result = ConsultaCursos(1);
-				break;
-			case "Yacimiento":
-				result = ConsultaCursos(2);
-				break;
-			case "Administracion":
-				result = ConsultaCursos(3);
-				break;
-			case "Finanzas":
-				result = ConsultaCursos(4);
-				break;
-			case "TecnicaSeguridad":
-				result = ConsultaCursos(5);
-				break;
-			default:
-				curso1.innerHTML = "";
-				var option = document.createElement("option");
-				option.text = "Selección por curso";
-				option.value = "";
-				curso1.add(option);
-				return;
-				break;
-		}
-		LlenarSelectCursos(result);*/
 		if(categoria1.value!=-1){
 			$.ajax
 			({
@@ -106,14 +103,6 @@ function eventos(){
 		mainInputFile();
 		$("#ModalDescargarArchivo").modal("show");
 	}
-/*    blog.onclick=function(){            
-         $.ajax({  
-            url: 'formas/blog.html',  
-            success: function(data) {  
-                $('#contenedor').hide().html(data).slideDown(1000);
-            }  
-        }); 
-    }*/
 	laempresa.onclick=function(){			 
 		 $.ajax({  
             url: 'formas/laempresa.html',  
@@ -130,8 +119,7 @@ function eventos(){
             }  
         }); 
 	}	
-	contacto.onclick=function(){	
-		console.log("contacto");
+	contacto.onclick=function(){		
 		 $.ajax({  
             url: 'formas/contacto.html',  
             success: function(data) {  
@@ -140,8 +128,7 @@ function eventos(){
             }  
         }); 
 	}	
-	mcontacto.onclick=function(){	
-		console.log("contacto");
+	mcontacto.onclick=function(){		
 		 $.ajax({  
             url: 'formas/contacto.html',  
             success: function(data) {  
@@ -151,8 +138,7 @@ function eventos(){
         }); 
 	}
 
-	incompany.onclick=function(){	
-		console.log("contacto");
+	incompany.onclick=function(){			
 		 $.ajax({  
             url: 'formas/incompany.html',  
             success: function(data) {  
@@ -162,89 +148,12 @@ function eventos(){
 	}
 	$("#preinscripcionaloscursos").click(function(){
 		$("#contenedor").hide().load('formas/preinscripcion.html', function(){
-			$.ajax
-			({
-				type: "POST",
-				url: "Modelo/consultasPortafolio.php",
-				data: {id:15},
-				async: false,
-				dataType: "json",
-				success:
-				function (msg) 
-				{			
-						areas.options[0]= new Option ("");
-						areas.options[0].text = "";
-						areas.options[0].value =-1	
-
-					for(i=0; i<msg[0].m; i++)
-						{												
-							areas.options[i+1]= new Option (msg[i].nombre);
-							areas.options[i+1].text = msg[i].nombre+"";
-							areas.options[i+1].value = msg[i].id;	
-						}
-				},
-			error:
-			function (msg) {
-				console.log( msg +"Problema al Listar las areas");}
-			});	
-
-			/*$("input[name=tareas]").change(function(){				
-				$("#cursos").empty();
-				$.ajax
-					({
-						type: "POST",
-						url: "Modelo/consultasPortafolio.php",
-						data: {id:10, Areas:$(this).val()},
-						async: false,
-						dataType: "json",
-						success:
-						function (msg) 
-						{				
-							for(var i=0; i<msg[0].m; i++){								
-								$("#cursos").append("<option value='"+msg[i].Curso+"'>");
-							}
-						},
-					error:
-					function (msg) {
-						console.log( msg +"No se pudo realizar la conexion");}
-					});
-			});*/
-
-				areas.onchange=function(){
-						if (areas.value!=-1) {
-							$('#cursos').empty();
-							$.ajax
-								({
-									type: "POST",
-									url: "Modelo/consultasPortafolio.php",
-									data: {id:18, ID:areas.value},
-									async: false,
-									dataType: "json",
-									success:
-									function (msg) 
-									{			
-										cursos.options[0]= new Option ("");
-										cursos.options[0].text = "";
-										cursos.options[0].value =-1	
-
-									for(i=0; i<msg[0].m; i++)
-										{												
-											cursos.options[i+1]= new Option (msg[i].nombre);
-											cursos.options[i+1].text = msg[i].nombre+"";
-											cursos.options[i+1].value = msg[i].id;	
-										}
-									},
-								error:
-								function (msg) {
-									console.log( msg +"Problema al Listar las areas");}
-								});	
-						}						
-					}
+			llenarSelectAreaySelectCursos();
 
 			$("#inscribirse").click(function(){
-				console.log("inscribirme");
+				//console.log("inscribirme");
 				if(validarFormulariodeinscripcion()){
-					console.log("idArea: " + areas.value + " idCurso: " + cursos.value);
+					//console.log("idArea: " + areas.value + " idCurso: " + cursos.value);
 					$.ajax
 					({
 						type: "POST",
@@ -262,10 +171,11 @@ function eventos(){
 								tTelefono.value="";							
 								tcorreo.value="";
 								//$('#areas').empty();
-								$('#cursos').empty();
+								//$('#cursos').empty();
 								tmodalidad.value="";
 								tFecha.value="";
 								tTemas.value="";
+								alertasinscripcion.innerHTML="<center><b>¡Se ha Registrado Exitosamente!</b></center>";
 							}
 							else{
 								alertasinscripcion.innerHTML="<center><b>¡Lo Sentimos se han terminado los cupos para este curso!</b></center>";
@@ -306,124 +216,6 @@ function eventos(){
 		}).slideDown(1000);	
 		
 	}
-
-
-
-		$("#perforacion").click(function(){
-			$.ajax
-			({
-				type: "POST",
-				url: "Modelo/consultasPortafolio.php",
-				data: {id:2, tipo:1},
-				async: false,
-				dataType: "json",
-				success:
-				function (msg) 
-				{			
-					var table = $('<table></table>');
-					var row=$('<tr></tr>');
-					contenedor.innerHTML="";
-					$('#contenedor').append(ListarTabla(msg, table, row));
-				},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
-			});
-			VerContenido();
-		});
-		$("#yacimiento").click(function(){
-			$.ajax
-			({
-				type: "POST",
-				url: "Modelo/consultasPortafolio.php",
-				data: {id:2, tipo:2},
-				async: false,
-				dataType: "json",
-				success:
-				function (msg) 
-				{			
-					$('#tabla').html("");	
-					var table = $('<table></table>');							
-					var row=$('<tr></tr>');
-					contenedor.innerHTML="";
-					$('#contenedor').append(ListarTabla(msg, table, row));
-				},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
-			});
-			VerContenido();
-		});
-		$("#administracion").click(function(){
-			$.ajax
-			({
-				type: "POST",
-				url: "Modelo/consultasPortafolio.php",
-				data: {id:2, tipo:3},
-				async: false,
-				dataType: "json",
-				success:
-				function (msg) 
-				{			
-					$('#tabla').html("");	
-					var table = $('<table></table>');							
-					var row=$('<tr></tr>');
-					contenedor.innerHTML="";
-					$('#contenedor').append(ListarTabla(msg, table, row));
-				},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
-			});
-			VerContenido();
-		});
-		$("#finanzas").click(function(){
-			$.ajax
-			({
-				type: "POST",
-				url: "Modelo/consultasPortafolio.php",
-				data: {id:2, tipo:4},
-				async: false,
-				dataType: "json",
-				success:
-				function (msg) 
-				{			
-					$('#tabla').html("");	
-					var table = $('<table></table>');							
-					var row=$('<tr></tr>');
-					contenedor.innerHTML="";
-					$('#contenedor').append(ListarTabla(msg, table, row));
-				},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
-			});	
-			VerContenido();	
-		});
-		$("#tecnicas").click(function(){
-			$.ajax
-			({
-				type: "POST",
-				url: "Modelo/consultasPortafolio.php",
-				data: {id:2, tipo:5},
-				async: false,
-				dataType: "json",
-				success:
-				function (msg) 
-				{			
-					$('#tabla').html("");	
-					var table = $('<table></table>');							
-					var row=$('<tr></tr>');
-					contenedor.innerHTML="";
-					$('#contenedor').append(ListarTabla(msg, table, row));
-				},
-			error:
-			function (msg) {
-				console.log( msg +"No se pudo realizar la conexion");}
-			});	
-			VerContenido();	
-		});
-
 		descargar.onclick=function(){
 			$.ajax
 			({
@@ -473,34 +265,14 @@ function eventos(){
 		}
 		$("#facilitador").click(function(){
 			$("#contenedor").load('formas/facilitador.html', function(){
-				$("input[name=tareas]").change(function(){				
-				$("#cursos").empty();
-				$.ajax
-					({
-						type: "POST",
-						url: "Modelo/consultasPortafolio.php",
-						data: {id:10, Areas:$(this).val()},
-						async: false,
-						dataType: "json",
-						success:
-						function (msg) 
-						{				
-							for(var i=0; i<msg[0].m; i++){								
-								$("#cursos").append("<option value='"+msg[i].Curso+"'>");
-							}
-						},
-					error:
-					function (msg) {
-						console.log( msg +"No se pudo realizar la conexion");}
-					});
-				});	
+				llenarSelectAreaySelectCursos();
 				$("#RegistrarFacilitador").click(function(){
 					if(validarFormularioFacilitador()){
 						$.ajax
 						({
 							type: "POST",
 							url: "Modelo/consultasFacilitador.php",
-							data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Areas:tareas.value, Curso:tcurso.value, Correo:tcorreo.value },
+							data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Areas:areas.value, Curso:cursos.value, Correo:tcorreo.value },
 							async: false,
 							dataType: "json",
 							success:
@@ -510,10 +282,11 @@ function eventos(){
 									tnombre.value="";
 									tapellido.value="";
 									tTelefono.value="";
-									tareas.value="";
-									tcurso.value="";
+									/*tareas.value="";
+									tcurso.value="";*/
 									tcorreo.value="";
 									VaciarFileInput();
+									alertas.innerHTML="<center><b>¡Se ha Registrado Exitosamente!</b></center>";
 								}
 
 							},
@@ -536,27 +309,7 @@ function eventos(){
 
 		$("#participar").click(function(){
 			$("#contenedor").load('formas/preinscripcion.html', function(){
-			$("input[name=tareas]").change(function(){				
-				$("#cursos").empty();
-				$.ajax
-					({
-						type: "POST",
-						url: "Modelo/consultasPortafolio.php",
-						data: {id:10, Areas:$(this).val()},
-						async: false,
-						dataType: "json",
-						success:
-						function (msg) 
-						{				
-							for(var i=0; i<msg[0].m; i++){								
-								$("#cursos").append("<option value='"+msg[i].Curso+"'>");
-							}
-						},
-					error:
-					function (msg) {
-						console.log( msg +"No se pudo realizar la conexion");}
-					});
-			});
+			llenarSelectAreaySelectCursos();
 			$("#inscribirse").click(function(){
 				if(validarFormulariodeinscripcion()){
 					$.ajax
@@ -565,20 +318,21 @@ function eventos(){
 						url: "Modelo/consultasPreinscripcion.php",
 						data: {id:1, Nombre:tnombre.value, Apellido:tapellido.value, Telefono:tTelefono.value, Correo:tcorreo.value,  Curso:cursos.value, Modalidad:tmodalidad.value, Fecha:tFecha.value, Temas:tTemas.value, idArea:areas.value},
 						async: false,
-						
+						dataType: "json",
 						success:
 						function (msg) 
 						{				
-							if(msg="true"){
+							if(msg=="true"){
 								tnombre.value="";
 								tapellido.value="";
 								tTelefono.value="";							
 								tcorreo.value="";
 								//$('#areas').empty();
-								$('#cursos').empty();
+								//$('#cursos').empty();
 								tmodalidad.value="";
 								tFecha.value="";
 								tTemas.value="";
+								alertasinscripcion.innerHTML="<center><b>¡Se ha Registrado Exitosamente!</b></center>";
 							}
 							else{
 								alertasinscripcion.innerHTML="<center><b>¡Lo Sentimos se han terminado los cupos para este curso!</b></center>";
@@ -592,10 +346,7 @@ function eventos(){
 				}
 			});
 		});
-		});
-
-
-		
+		});		
 
 	$("#formasdepago").click(function(){
 		VaciarFileInput();
@@ -693,6 +444,64 @@ function eventos(){
 	});	
 
 }
+
+	function llenarSelectAreaySelectCursos(){
+		$.ajax
+			({
+				type: "POST",
+				url: "Modelo/consultasPortafolio.php",
+				data: {id:15},
+				async: false,
+				dataType: "json",
+				success:
+				function (msg) 
+				{			
+						areas.options[0]= new Option ("");
+						areas.options[0].text = "";
+						areas.options[0].value =-1	
+
+					for(i=0; i<msg[0].m; i++)
+						{												
+							areas.options[i+1]= new Option (msg[i].nombre);
+							areas.options[i+1].text = msg[i].nombre+"";
+							areas.options[i+1].value = msg[i].id;	
+						}
+				},
+			error:
+			function (msg) {
+				console.log( msg +"Problema al Listar las areas");}
+			});	
+			areas.onchange=function(){
+				if (areas.value!=-1) {
+					$('#cursos').empty();
+					$.ajax
+						({
+							type: "POST",
+							url: "Modelo/consultasPortafolio.php",
+							data: {id:18, ID:areas.value},
+							async: false,
+							dataType: "json",
+							success:
+							function (msg) 
+							{			
+								cursos.options[0]= new Option ("");
+								cursos.options[0].text = "";
+								cursos.options[0].value =-1	
+
+							for(i=0; i<msg[0].m; i++)
+								{												
+									cursos.options[i+1]= new Option (msg[i].nombre);
+									cursos.options[i+1].text = msg[i].nombre+"";
+									cursos.options[i+1].value = msg[i].id;	
+								}
+							},
+						error:
+						function (msg) {
+							console.log( msg +"Problema al Listar las areas");}
+						});	
+				}						
+			}
+	}
 	function LlenarSelectCursos(datosCurso){
 		curso1.innerHTML = "";
 		var option = document.createElement("option");
@@ -968,14 +777,14 @@ function validarFormularioFormasdepago(){
 	        alertas.innerHTML="<center><b>Escriba un telefono valido</b></center>";
 			return false;
 		}		
-		else if(tareas.value=="")
+		else if(areas.value==-1)
 		{  
-	        alertas.innerHTML="<center><b>Debe escribir el Area</b></center>";
+	        alertas.innerHTML="<center><b>Debe seleccionar un  Area</b></center>";
 			return false;
 		}
-		else if(tcurso.value=="")
+		else if(cursos.value==-1)
 		{  
-	        alertas.innerHTML="<center><b>Debe escribir un Curso/Diplomado/Taller</b></center>";
+	        alertas.innerHTML="<center><b>Debe seleccionar un Curso/Diplomado/Taller</b></center>";
 			return false;
 		}
 		else if(tcorreo.value==""||!validar_email(tcorreo.value))
