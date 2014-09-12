@@ -69,7 +69,6 @@
 		$resultado = $mysqli->query($tupla) or $error=$mysqli->error;
 		$mysqli->close();
 		echo json_encode($error);
-
 	}
 	function ObtenerFacilitadores(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);

@@ -270,13 +270,11 @@
 		$Fechadeinicio=$_REQUEST['Fechadeinicio'];
 		$date = new DateTime($Fechadeinicio);
 		$Fechadeinicio=$date->format('Y-m-d');
-
 		$tupla="SELECT id, Nombre, Apellido, Telefono, Correo  FROM inscritos WHERE idArea='$idArea' AND  idCurso='$idCurso' AND Fechadeinicio='$Fechadeinicio'";
 		$resultado = $mysqli->query($tupla);
 		$objeto[0]['mensaje']=false;
 		$i=0;
 		$objeto[0]['m']=$resultado->num_rows;
-
 		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
 		{
 			$objeto[$i]['id']=$db_resultado['id'];
@@ -284,11 +282,6 @@
 			$objeto[$i]['Apellido']=$db_resultado['Apellido'];
 			$objeto[$i]['Telefono']=$db_resultado['Telefono'];			
 			$objeto[$i]['Correo']=$db_resultado['Correo'];
-			/*$objeto[$i]['DiplomadoCursoTaller']=$db_resultado['DiplomadoCursoTaller'];
-			$objeto[$i]['Fechadeinicio']=$db_resultado['Fechadeinicio'];
-			$date = new DateTime($objeto[$i]['Fechadeinicio']);
-			$objeto[$i]['Fechadeinicio']=$date->format('d-m-Y');
-			$objeto[$i]['Temasdeinteres']=$db_resultado['Temasdeinteres'];*/
 			$i++;
 		}
 		$mysqli->close();
@@ -322,10 +315,8 @@
 		$ID=$_REQUEST['ID'];
 		$tupla = "SELECT *, areas.nombre as Area FROM  portafolio INNER JOIN areas on areas.id=portafolio.Area WHERE  portafolio.id='$ID'";
 		$resultado = $mysqli->query($tupla);
-		$objeto[0]['mensaje']=false;
-	
+		$objeto[0]['mensaje']=false;	
 		$objeto[0]['m']=$resultado->num_rows;
-
 		if($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
 		{
 			$objeto[0]['id']=$db_resultado['id'];
@@ -341,23 +332,19 @@
 	}
 	function BuscarPerforacion(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
-		$idArea=$_REQUEST['idArea'];
-	
+		$idArea=$_REQUEST['idArea'];	
 		$tupla = "SELECT * FROM  portafolio WHERE Area='$idArea'";
 		$resultado = $mysqli->query($tupla);
 		$objeto[0]['mensaje']=false;
 		$i=0;
 		$objeto[0]['m']=$resultado->num_rows;
-
 		while($db_resultado = mysqli_fetch_array($resultado, MYSQLI_ASSOC))
 		{
 			$objeto[$i]['id']=$db_resultado['id'];
 			$objeto[$i]['Curso']=$db_resultado['Curso'];
 			$objeto[$i]['Area']=$db_resultado['Area'];
-
 			$objeto[$i]['Desde']=$db_resultado['Desde'];
 			$objeto[$i]['Hasta']=$db_resultado['Hasta'];
-
 			$date = new DateTime($objeto[$i]['Desde']);
 			$objeto[$i]['Desde']=$date->format('d-m-Y');
 			$date = new DateTime($objeto[$i]['Hasta']);
@@ -368,8 +355,6 @@
 		$mysqli->close();
 		echo json_encode($objeto);
 	}
-
-
 	function AgregarPortafolio(){
 		$mysqli = new mysqli(Host, User, Pass, BasedeDatos);
 		$area=$_REQUEST['area'];
