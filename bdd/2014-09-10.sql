@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 -- Base de datos: `globalsys`
 --
 
+CREATE DATABASE IF NOT EXISTS `cursosgl_globalsys` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `cursosgl_globalsys`;
+
 -- --------------------------------------------------------
 
 --

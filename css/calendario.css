@@ -1,0 +1,138 @@
+body{
+	padding: 10px;
+}	
+/*#####Fondo#####*/
+img.bg {
+	min-height: 100%;
+	min-width: 1024px;
+
+	width: 100%;
+	height: auto;
+
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	z-index: -1;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+	img.bg {
+		left: 50%;
+		margin-left: -512px;   /* 50% */
+	}
+}
+/*##########Fin Fondo##############*/
+.navbar-nav {
+	margin-top: 15px;
+    font-size: 18px;
+}
+
+.year {
+	font-size: 15px;
+}
+.month{
+	font-size: 20px;
+}
+.datepicker table tr td, .datepicker table tr th {
+	padding: 20px 20px;
+	font-size: 25px;
+}
+label {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; 
+	padding-left: 0px;
+	margin-bottom: 0px;
+	cursor: pointer;
+}
+.otrosLabel {
+	color: #165C5F !important;
+	font-weight: bold;
+}
+.otrosLabel:hover{
+	color: #1D777A !important;
+}
+.otros {
+	color: #ffffff !important;
+	background-color: #165C5F;
+	border-color: #165C5F;
+}
+.otros:hover{
+	background-color: #1D777A !important;
+}
+
+.table-condensed{
+	position: relative;
+	width: 100%;
+}
+.row{
+	width: 100%;
+}
+.datepicker-inline{
+	width: 100%;
+}
+input[type=checkbox]{
+	/*display: none;*/
+}
+
+/*###### Menu principal bordes casillas #######*/
+.mybar {
+}
+
+.mybar li{
+  border-width: 1px;
+  border-right-style: solid;
+  -webkit-border-image: 
+  -webkit-gradient(linear, 0 100%, 0 0, from(#9e9e9a), to(rgba(0, 0, 0, 0))) 1 100%;
+  -webkit-border-image: 
+  -webkit-linear-gradient(bottom, #9e9e9a, rgba(0, 0, 0, 0)) 1 100%;
+  -moz-border-image:
+  -moz-linear-gradient(bottom, #9e9e9a, rgba(0, 0, 0, 0)) 1 100%;  
+  -o-border-image:
+  -o-linear-gradient(bottom, #9e9e9a, rgba(0, 0, 0, 0)) 1 100%;
+  border-image:
+  linear-gradient(to top, #9e9e9a, rgba(0, 0, 0, 0)) 1 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+
+}
+.mybar > .active li{
+  border-width: 50px;
+}
+
+.mybar > li .active > label  {
+  border-bottom: solid 2px #48657E;
+  box-shadow: 0 5px 0 #3786CD;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+  border-bottom: solid 2px #48657E;
+  box-shadow: 0 5px 0 #3786CD;
+}
+/*###### Fin Menu principal bordes casillas #######*/
+
+/*########### Menu principal borde inferior#######*/
+
+
+/*############ Menu principal border general inferior  ###########*/
+.navbar-custom {
+ border-bottom: 5px solid #59B0B9;
+}
+
+.borde-verde {
+    border-bottom: 5px solid #59B0B9;
+}
+
+#menuCheckBox{
+    padding-left: 40px;
+}
+
+.logo{
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: -6px;
+}
+.navbar-nav>li>a{
+padding:0px;
+}
