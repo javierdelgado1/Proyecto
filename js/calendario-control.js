@@ -229,6 +229,7 @@ $(document).ready(function () {
 	function calendario(){
 		$('#calendario').datepicker({
 			language: "es",
+			todayHighlight: true,
 			format: "dd/mm/yyyy",			    
 
 			beforeShowDay: function (date){

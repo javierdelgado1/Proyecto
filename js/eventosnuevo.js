@@ -1,5 +1,7 @@
 function abrirCalendario() { 
-	open('calendario.html','','top=50,left=50,width=900,height=740') ; 
+	$window    = $(window);
+	var left = $window.width()/2 - 300;
+	open('calendario.html','','top=50,left=' + left + ',width=470,height=500') ; 
 }
 function eventos(){
 	$("#INICIO2").click(function(){

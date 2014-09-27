@@ -1,5 +1,5 @@
 function abrirCalendario() { 
-	open('calendario.html','','top=50,left=50,width=900,height=740') ; 
+	open('calendario.html','','top=50,left=50,width=600,height=500') ; 
 }
 function eventos() {
 

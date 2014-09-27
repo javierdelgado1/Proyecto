@@ -27,16 +27,7 @@ img.bg {
     font-size: 18px;
 }
 
-.year {
-	font-size: 15px;
-}
-.month{
-	font-size: 20px;
-}
-.datepicker table tr td, .datepicker table tr th {
-	padding: 20px 20px;
-	font-size: 25px;
-}
+
 label {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -61,16 +52,7 @@ label {
 	background-color: #1D777A !important;
 }
 
-.table-condensed{
-	position: relative;
-	width: 100%;
-}
-.row{
-	width: 100%;
-}
-.datepicker-inline{
-	width: 100%;
-}
+
 input[type=checkbox]{
 	/*display: none;*/
 }
@@ -134,5 +116,53 @@ input[type=checkbox]{
     top: -6px;
 }
 .navbar-nav>li>a{
-padding:0px;
+	padding:0px;
+}
+
+.panel-info {
+	border-color: #15727C;
+}
+
+.panel-info>.panel-heading {
+	color: #000000;
+	background-color: #59B0B9;
+	border-color: #15727C;
+}
+
+/** CALENDARIO **/
+
+.datepicker{
+	font-size: 16px;
+}
+
+.table-condensed{
+	position: relative;
+	width: 100%;
+}
+
+.datepicker-inline{
+	width: 100%;
+}
+
+.datepicker table tr td.today, .datepicker table tr td.today:hover {
+	color: #FFFFFF;
+	background-color: #4BC1D8;
+	border-color: #2B8697;
+}
+
+.datepicker table tr td.today:hover, .datepicker table tr td.today:hover:hover{
+	color: #FFFFFF;
+	background-color: #2ABCD8;
+	border-color: #2B8697;
+}
+
+@media screen and (min-width: 900px) { /* Specific to this particular image */
+	.datepicker{
+		font-size: 25px;
+		line-height: 2;
+	}
+	.container {
+		width: 750px;
+	}
+
 }
